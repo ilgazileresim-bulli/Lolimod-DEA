@@ -430,13 +430,6 @@
             justify-content: center;
         }
 
-
-        /*
-        ========================================
-        PREVIEW WINDOW
-        ========================================
-        */
-
         .preview-window {
             position: relative;
 
@@ -451,11 +444,6 @@
 
             background: #050509;
 
-            /*
-            ÖNEMLİ:
-            Div resmi kırpmıyor.
-            */
-
             overflow: hidden;
 
             box-shadow:
@@ -467,30 +455,7 @@
                 box-shadow .4s ease;
         }
 
-
-        /*
-        ========================================
-        RESİM
-        ========================================
-
-        27px üstten alınıyor.
-
-        top: -27px
-        → resmi yukarı taşır.
-
-        margin-bottom: -27px
-        → div'in yüksekliğini de 27px azaltır.
-
-        Böylece:
-
-        RESİM:       -27px
-        DIV:         -27px
-
-        İKİSİ AYNI MİKTARDA KÜÇÜLÜR.
-        */
-
         .preview-window img {
-
             display: block;
 
             width: 100%;
@@ -518,13 +483,7 @@
             vertical-align: top;
         }
 
-
-        /*
-        ÜST ÇİZGİ
-        */
-
         .preview-window::before {
-
             content: "";
 
             position: absolute;
@@ -698,6 +657,8 @@
                 0 15px 40px rgba(91, 70, 255, .3);
 
             transition: .3s;
+
+            cursor: pointer;
         }
 
         .download-button:hover {
@@ -946,9 +907,7 @@
 <body>
 
 
-    <!-- =========================
-         BACKGROUND
-    ========================= -->
+    <!-- BACKGROUND -->
 
     <div class="background">
 
@@ -962,9 +921,7 @@
 
 
 
-    <!-- =========================
-         NAVBAR
-    ========================= -->
+    <!-- NAVBAR -->
 
     <nav class="navbar">
 
@@ -992,7 +949,9 @@
             <a href="#preview">
 
                 <span data-en="Preview" data-tr="Önizleme">
+
                     Preview
+
                 </span>
 
             </a>
@@ -1001,7 +960,9 @@
             <a href="#features">
 
                 <span data-en="Features" data-tr="Özellikler">
+
                     Features
+
                 </span>
 
             </a>
@@ -1010,7 +971,9 @@
             <a href="#download">
 
                 <span data-en="Download" data-tr="İndir">
+
                     Download
+
                 </span>
 
             </a>
@@ -1039,14 +1002,11 @@
 
 
 
-    <!-- =========================
-         HERO
-    ========================= -->
+    <!-- HERO -->
 
     <section class="hero">
 
         <div class="hero-content">
-
 
             <img src="icon.ico" class="hero-icon" alt="LoliMod Studio Icon">
 
@@ -1067,7 +1027,6 @@
 
             <div class="buttons">
 
-
                 <a href="#download" class="btn btn-primary" data-en="Download Now" data-tr="Hemen İndir">
 
                     Download Now
@@ -1081,7 +1040,6 @@
 
                 </a>
 
-
             </div>
 
         </div>
@@ -1090,15 +1048,11 @@
 
 
 
-    <!-- =========================
-         PREVIEW
-    ========================= -->
+    <!-- PREVIEW -->
 
     <section class="section reveal" id="preview">
 
-
         <div class="section-title">
-
 
             <h2 data-en="Studio Preview" data-tr="Studio Önizlemesi">
 
@@ -1113,22 +1067,16 @@
 
             </p>
 
-
         </div>
-
 
 
         <div class="preview-wrapper">
 
-
             <div class="preview-window">
-
 
                 <img src="lolimod-studio-preview.png" alt="LoliMod Studio Preview">
 
-
             </div>
-
 
         </div>
 
@@ -1136,15 +1084,11 @@
 
 
 
-    <!-- =========================
-         FEATURES
-    ========================= -->
+    <!-- FEATURES -->
 
     <section class="section reveal" id="features">
 
-
         <div class="section-title">
-
 
             <h2 data-en="Powerful Features" data-tr="Güçlü Özellikler">
 
@@ -1160,9 +1104,7 @@
 
             </p>
 
-
         </div>
-
 
 
         <div class="features">
@@ -1304,36 +1246,27 @@
 
             </div>
 
-
         </div>
 
     </section>
 
 
 
-    <!-- =========================
-         VERSION
-    ========================= -->
+    <!-- VERSION -->
 
     <section class="section reveal">
 
-
         <div class="version-box">
-
 
             <div class="version-left">
 
-
                 <img src="icon.ico" class="version-logo" alt="LoliMod Studio">
 
-
                 <div class="version-info">
-
 
                     <h3>
                         LoliMod Studio
                     </h3>
-
 
                     <span data-en="Latest stable release" data-tr="En son kararlı sürüm">
 
@@ -1341,9 +1274,7 @@
 
                     </span>
 
-
                 </div>
-
 
             </div>
 
@@ -1352,22 +1283,17 @@
                 v1.0.0
             </div>
 
-
         </div>
 
     </section>
 
 
 
-    <!-- =========================
-         DOWNLOAD
-    ========================= -->
+    <!-- DOWNLOAD -->
 
     <section class="section reveal" id="download">
 
-
         <div class="download-card">
-
 
             <h2 data-en="Ready to Create?" data-tr="Üretmeye Hazır mısın?">
 
@@ -1384,13 +1310,18 @@
             </p>
 
 
-            <a href="mysetup.exe" class="download-button" download>
+            <!--
+            =====================================
+            DÜZELTİLMİŞ DOWNLOAD BUTONU
+            =====================================
+            -->
 
+            <a href="./mysetup.exe" class="download-button" download="LoliMod-Studio-1.0.0.exe"
+                type="application/octet-stream" target="_self">
 
                 <span>
                     ⬇
                 </span>
-
 
                 <span data-en="Download LoliMod Studio" data-tr="LoliMod Studio'yu İndir">
 
@@ -1398,9 +1329,7 @@
 
                 </span>
 
-
             </a>
-
 
         </div>
 
@@ -1408,12 +1337,9 @@
 
 
 
-    <!-- =========================
-         CTA
-    ========================= -->
+    <!-- CTA -->
 
     <section class="cta reveal">
-
 
         <h2 data-en="Build. Create. Mod." data-tr="Geliştir. Oluştur. Modla.">
 
@@ -1436,21 +1362,18 @@
 
         </a>
 
-
     </section>
 
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+    <!-- FOOTER -->
 
     <footer>
-
 
         <div>
 
             © 2026
+
             <strong>
                 LoliMod Studio
             </strong>
@@ -1461,7 +1384,6 @@
         <div>
             Version 1.0.0
         </div>
-
 
     </footer>
 
@@ -1476,17 +1398,14 @@
 
         function setLanguage(language) {
 
-
             document
                 .querySelectorAll("[data-en]")
                 .forEach(element => {
-
 
                     element.textContent =
                         element.getAttribute(
                             "data-" + language
                         );
-
 
                 });
 
@@ -1545,25 +1464,19 @@
 
                 entries => {
 
-
                     entries.forEach(entry => {
-
 
                         if (
                             entry.isIntersecting
                         ) {
 
-
                             entry.target
                                 .classList
                                 .add("show");
 
-
                         }
 
-
                     });
-
 
                 },
 
@@ -1578,9 +1491,7 @@
             .querySelectorAll(".reveal")
             .forEach(element => {
 
-
                 observer.observe(element);
-
 
             });
 
@@ -1598,11 +1509,9 @@
 
         if (preview) {
 
-
             preview.addEventListener(
                 "mousemove",
                 event => {
-
 
                     const rect =
                         preview.getBoundingClientRect();
@@ -1634,16 +1543,13 @@
                         scale(1.005)
                         `;
 
-
                 }
             );
-
 
 
             preview.addEventListener(
                 "mouseleave",
                 () => {
-
 
                     preview.style.transform =
                         `
@@ -1653,10 +1559,8 @@
                         scale(1)
                         `;
 
-
                 }
             );
-
 
         }
 

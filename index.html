@@ -7,7 +7,18 @@
 
     <title>LoliMod Studio</title>
 
+    <meta name="description"
+        content="LoliMod Studio is a modern Minecraft mod development studio designed to make mod creation easier, faster and more professional.">
+
+    <meta name="theme-color" content="#080812">
+
+    <link rel="icon" href="./icon.ico">
+
     <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -37,35 +48,50 @@
                     transparent 30%),
                 #07080d;
 
-            color: #fff;
+            color: white;
+
             overflow-x: hidden;
         }
 
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* =========================
+
+        /* =========================================================
            BACKGROUND
-        ========================= */
+        ========================================================= */
 
         .background {
             position: fixed;
             inset: 0;
+
             z-index: -10;
+
             overflow: hidden;
+
             pointer-events: none;
         }
 
         .glow {
             position: absolute;
+
             border-radius: 50%;
+
             filter: blur(100px);
-            opacity: .3;
-            animation: float 10s ease-in-out infinite;
+
+            opacity: .30;
+
+            animation:
+                float 10s ease-in-out infinite;
         }
 
         .glow.one {
             width: 500px;
             height: 500px;
+
             background: #743cff;
+
             left: -180px;
             top: 100px;
         }
@@ -73,18 +99,24 @@
         .glow.two {
             width: 450px;
             height: 450px;
+
             background: #168cff;
+
             right: -180px;
             top: 300px;
+
             animation-delay: 2s;
         }
 
         .glow.three {
             width: 400px;
             height: 400px;
+
             background: #b13cff;
+
             left: 40%;
             bottom: -250px;
+
             animation-delay: 4s;
         }
 
@@ -92,34 +124,46 @@
 
             0%,
             100% {
-                transform: translateY(0) scale(1);
+                transform:
+                    translateY(0) scale(1);
             }
 
             50% {
-                transform: translateY(-40px) scale(1.08);
+                transform:
+                    translateY(-40px) scale(1.08);
             }
         }
 
 
-        /* =========================
+        /* =========================================================
            NAVBAR
-        ========================= */
+        ========================================================= */
 
         .navbar {
             position: fixed;
+
             top: 0;
             left: 0;
             right: 0;
+
             height: 76px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             padding: 0 6%;
 
-            background: rgba(7, 8, 13, .72);
-            backdrop-filter: blur(20px);
+            background:
+                rgba(7, 8, 13, .72);
+
+            backdrop-filter:
+                blur(20px);
+
+            -webkit-backdrop-filter:
+                blur(20px);
 
             border-bottom:
                 1px solid rgba(255, 255, 255, .07);
@@ -129,7 +173,9 @@
 
         .brand {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
         }
 
@@ -144,22 +190,27 @@
 
         .brand-text {
             display: flex;
+
             flex-direction: column;
         }
 
         .brand-name {
             font-size: 17px;
+
             font-weight: 800;
         }
 
         .version {
             color: #9b9ca8;
+
             font-size: 11px;
         }
 
         .nav-right {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
         }
 
@@ -169,6 +220,7 @@
             text-decoration: none;
 
             font-size: 14px;
+
             font-weight: 600;
 
             padding: 9px 13px;
@@ -184,6 +236,11 @@
             background:
                 rgba(255, 255, 255, .06);
         }
+
+
+        /* =========================================================
+           LANGUAGE
+        ========================================================= */
 
         .language {
             display: flex;
@@ -221,6 +278,10 @@
             transition: .25s;
         }
 
+        .language button:hover {
+            color: white;
+        }
+
         .language button.active {
             color: white;
 
@@ -231,9 +292,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            HERO
-        ========================= */
+        ========================================================= */
 
         .hero {
             min-height: 100vh;
@@ -241,6 +302,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -264,7 +326,7 @@
             margin-bottom: 28px;
 
             box-shadow:
-                0 0 60px rgba(124, 92, 255, .3);
+                0 0 60px rgba(124, 92, 255, .30);
 
             animation:
                 iconFloat 4s ease-in-out infinite;
@@ -274,11 +336,13 @@
 
             0%,
             100% {
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
 
             50% {
-                transform: translateY(-10px);
+                transform:
+                    translateY(-10px);
             }
         }
 
@@ -301,6 +365,7 @@
                     #72b9ff);
 
             -webkit-background-clip: text;
+
             background-clip: text;
 
             color: transparent;
@@ -361,10 +426,11 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px);
 
             box-shadow:
-                0 20px 50px rgba(91, 70, 255, .4);
+                0 20px 50px rgba(91, 70, 255, .40);
         }
 
         .btn-secondary {
@@ -386,9 +452,9 @@
         }
 
 
-        /* =========================
-           GENERAL
-        ========================= */
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
 
         .section {
             max-width: 1250px;
@@ -418,9 +484,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            PREVIEW
-        ========================= */
+        ========================================================= */
 
         .preview-wrapper {
             width: 100%;
@@ -452,7 +518,15 @@
                 0 0 70px rgba(124, 92, 255, .10);
 
             transition:
+                transform .15s ease,
                 box-shadow .4s ease;
+        }
+
+        .preview-window:hover {
+            box-shadow:
+                0 45px 110px rgba(0, 0, 0, .60),
+
+                0 0 80px rgba(124, 92, 255, .15);
         }
 
         .preview-window img {
@@ -508,9 +582,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            FEATURES
-        ========================= */
+        ========================================================= */
 
         .features {
             display: grid;
@@ -557,6 +631,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             border-radius: 13px;
@@ -589,90 +664,9 @@
         }
 
 
-        /* =========================
-           DOWNLOAD
-        ========================= */
-
-        .download-card {
-            position: relative;
-
-            overflow: hidden;
-
-            padding: 60px 40px;
-
-            text-align: center;
-
-            border:
-                1px solid rgba(255, 255, 255, .10);
-
-            border-radius: 25px;
-
-            background:
-                radial-gradient(circle at center,
-                    rgba(124, 92, 255, .14),
-                    transparent 65%),
-                rgba(255, 255, 255, .025);
-
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, .35);
-        }
-
-        .download-card h2 {
-            font-size: 40px;
-
-            margin-bottom: 15px;
-        }
-
-        .download-card p {
-            color: #8e8f9b;
-
-            margin-bottom: 30px;
-        }
-
-        .download-button {
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 10px;
-
-            padding: 16px 30px;
-
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 12px;
-
-            font-weight: 900;
-
-            background:
-                linear-gradient(135deg,
-                    #7147ff,
-                    #397dff);
-
-            box-shadow:
-                0 15px 40px rgba(91, 70, 255, .3);
-
-            transition: .3s;
-
-            cursor: pointer;
-        }
-
-        .download-button:hover {
-            transform:
-                translateY(-4px) scale(1.02);
-
-            box-shadow:
-                0 20px 55px rgba(91, 70, 255, .45);
-        }
-
-
-        /* =========================
+        /* =========================================================
            VERSION
-        ========================= */
+        ========================================================= */
 
         .version-box {
             display: flex;
@@ -741,9 +735,113 @@
         }
 
 
-        /* =========================
+        /* =========================================================
+           DOWNLOAD
+        ========================================================= */
+
+        .download-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 60px 40px;
+
+            text-align: center;
+
+            border:
+                1px solid rgba(255, 255, 255, .10);
+
+            border-radius: 25px;
+
+            background:
+                radial-gradient(circle at center,
+                    rgba(124, 92, 255, .14),
+                    transparent 65%),
+
+                rgba(255, 255, 255, .025);
+
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, .35);
+        }
+
+        .download-card h2 {
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+        .download-card p {
+            color: #8e8f9b;
+
+            margin-bottom: 30px;
+        }
+
+        .download-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 16px 30px;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 12px;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(135deg,
+                    #7147ff,
+                    #397dff);
+
+            box-shadow:
+                0 15px 40px rgba(91, 70, 255, .30);
+
+            transition: .3s;
+
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            transform:
+                translateY(-4px) scale(1.02);
+
+            box-shadow:
+                0 20px 55px rgba(91, 70, 255, .45);
+        }
+
+        .download-button:active {
+            transform:
+                translateY(-1px) scale(.99);
+        }
+
+
+        /* =========================================================
+           DOWNLOAD STATUS
+        ========================================================= */
+
+        .download-info {
+            margin-top: 18px;
+
+            color: #656673;
+
+            font-size: 12px;
+        }
+
+        .download-info strong {
+            color: #858693;
+        }
+
+
+        /* =========================================================
            CTA
-        ========================= */
+        ========================================================= */
 
         .cta {
             text-align: center;
@@ -772,9 +870,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            FOOTER
-        ========================= */
+        ========================================================= */
 
         footer {
             border-top:
@@ -798,9 +896,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            REVEAL
-        ========================= */
+        ========================================================= */
 
         .reveal {
             opacity: 0;
@@ -821,9 +919,9 @@
         }
 
 
-        /* =========================
+        /* =========================================================
            MOBILE
-        ========================= */
+        ========================================================= */
 
         @media(max-width: 850px) {
 
@@ -869,9 +967,33 @@
 
         @media(max-width: 500px) {
 
+            .navbar {
+                height: 68px;
+            }
+
+            .brand img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .brand-name {
+                font-size: 15px;
+            }
+
+            .hero {
+                padding:
+                    110px 18px 80px;
+            }
+
             .hero-icon {
                 width: 80px;
                 height: 80px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+
+                letter-spacing: -3px;
             }
 
             .hero p {
@@ -888,7 +1010,8 @@
             }
 
             .download-card {
-                padding: 45px 20px;
+                padding:
+                    45px 20px;
             }
 
             .download-card h2 {
@@ -899,15 +1022,43 @@
                 border-radius: 12px;
             }
 
+            .download-button {
+                width: 100%;
+            }
+
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media(prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
         }
     </style>
+
 </head>
 
 
 <body>
 
 
-    <!-- BACKGROUND -->
+    <!-- =========================================================
+         BACKGROUND
+    ========================================================= -->
 
     <div class="background">
 
@@ -920,14 +1071,15 @@
     </div>
 
 
-
-    <!-- NAVBAR -->
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
 
     <nav class="navbar">
 
         <div class="brand">
 
-            <img src="icon.ico" alt="LoliMod Studio">
+            <img src="./icon.ico" alt="LoliMod Studio">
 
             <div class="brand-text">
 
@@ -949,9 +1101,7 @@
             <a href="#preview">
 
                 <span data-en="Preview" data-tr="Önizleme">
-
                     Preview
-
                 </span>
 
             </a>
@@ -960,9 +1110,7 @@
             <a href="#features">
 
                 <span data-en="Features" data-tr="Özellikler">
-
                     Features
-
                 </span>
 
             </a>
@@ -971,9 +1119,7 @@
             <a href="#download">
 
                 <span data-en="Download" data-tr="İndir">
-
                     Download
-
                 </span>
 
             </a>
@@ -982,16 +1128,11 @@
             <div class="language">
 
                 <button id="enBtn" class="active" onclick="setLanguage('en')">
-
                     EN
-
                 </button>
 
-
                 <button id="trBtn" onclick="setLanguage('tr')">
-
                     TR
-
                 </button>
 
             </div>
@@ -1001,14 +1142,15 @@
     </nav>
 
 
-
-    <!-- HERO -->
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
     <section class="hero">
 
         <div class="hero-content">
 
-            <img src="icon.ico" class="hero-icon" alt="LoliMod Studio Icon">
+            <img src="./icon.ico" class="hero-icon" alt="LoliMod Studio Icon">
 
 
             <h1>
@@ -1018,26 +1160,20 @@
 
             <p data-en="A powerful and modern Minecraft mod development studio designed to make mod creation easier, faster and more professional."
                 data-tr="Minecraft mod geliştirmeyi daha kolay, hızlı ve profesyonel hale getirmek için tasarlanmış güçlü ve modern bir geliştirme stüdyosu.">
-
                 A powerful and modern Minecraft mod development studio designed to make mod creation easier, faster and
                 more professional.
-
             </p>
 
 
             <div class="buttons">
 
                 <a href="#download" class="btn btn-primary" data-en="Download Now" data-tr="Hemen İndir">
-
                     Download Now
-
                 </a>
 
 
                 <a href="#preview" class="btn btn-secondary" data-en="View Preview" data-tr="Önizlemeyi Gör">
-
                     View Preview
-
                 </a>
 
             </div>
@@ -1047,24 +1183,21 @@
     </section>
 
 
-
-    <!-- PREVIEW -->
+    <!-- =========================================================
+         PREVIEW
+    ========================================================= -->
 
     <section class="section reveal" id="preview">
 
         <div class="section-title">
 
             <h2 data-en="Studio Preview" data-tr="Studio Önizlemesi">
-
                 Studio Preview
-
             </h2>
 
 
             <p data-en="Take a look at the LoliMod Studio interface." data-tr="LoliMod Studio arayüzüne göz at.">
-
                 Take a look at the LoliMod Studio interface.
-
             </p>
 
         </div>
@@ -1074,7 +1207,7 @@
 
             <div class="preview-window">
 
-                <img src="lolimod-studio-preview.png" alt="LoliMod Studio Preview">
+                <img src="./lolimod-studio-preview.png" alt="LoliMod Studio Preview">
 
             </div>
 
@@ -1083,25 +1216,22 @@
     </section>
 
 
-
-    <!-- FEATURES -->
+    <!-- =========================================================
+         FEATURES
+    ========================================================= -->
 
     <section class="section reveal" id="features">
 
         <div class="section-title">
 
             <h2 data-en="Powerful Features" data-tr="Güçlü Özellikler">
-
                 Powerful Features
-
             </h2>
 
 
             <p data-en="Everything you need to start creating Minecraft mods."
                 data-tr="Minecraft modları oluşturmaya başlamak için ihtiyacın olan her şey.">
-
                 Everything you need to start creating Minecraft mods.
-
             </p>
 
         </div>
@@ -1117,20 +1247,15 @@
                 </div>
 
                 <h3 data-en="Fast Workflow" data-tr="Hızlı Çalışma">
-
                     Fast Workflow
-
                 </h3>
 
                 <p data-en="Create and manage your Minecraft mod projects quickly with a streamlined workflow."
                     data-tr="Minecraft mod projelerini düzenli ve hızlı bir çalışma sistemiyle oluştur ve yönet.">
-
                     Create and manage your Minecraft mod projects quickly with a streamlined workflow.
-
                 </p>
 
             </div>
-
 
 
             <div class="feature">
@@ -1140,20 +1265,15 @@
                 </div>
 
                 <h3 data-en="Fabric Support" data-tr="Fabric Desteği">
-
                     Fabric Support
-
                 </h3>
 
                 <p data-en="Generate and work with modern Fabric based Minecraft projects."
                     data-tr="Modern Fabric tabanlı Minecraft projeleri oluştur ve geliştir.">
-
                     Generate and work with modern Fabric based Minecraft projects.
-
                 </p>
 
             </div>
-
 
 
             <div class="feature">
@@ -1163,20 +1283,15 @@
                 </div>
 
                 <h3 data-en="Code Editor" data-tr="Kod Editörü">
-
                     Code Editor
-
                 </h3>
 
                 <p data-en="A clean development environment for editing your mod source files."
                     data-tr="Mod kaynak dosyalarını düzenlemek için temiz ve kullanışlı bir geliştirme ortamı.">
-
                     A clean development environment for editing your mod source files.
-
                 </p>
 
             </div>
-
 
 
             <div class="feature">
@@ -1186,20 +1301,15 @@
                 </div>
 
                 <h3 data-en="Build & Run" data-tr="Derle ve Çalıştır">
-
                     Build & Run
-
                 </h3>
 
                 <p data-en="Build your project and launch the Minecraft development client directly from the studio."
                     data-tr="Projeni derle ve Minecraft geliştirme istemcisini doğrudan stüdyodan çalıştır.">
-
                     Build your project and launch the Minecraft development client directly from the studio.
-
                 </p>
 
             </div>
-
 
 
             <div class="feature">
@@ -1209,20 +1319,15 @@
                 </div>
 
                 <h3 data-en="Project Explorer" data-tr="Proje Gezgini">
-
                     Project Explorer
-
                 </h3>
 
                 <p data-en="Browse your project files from a clean and organized project explorer."
                     data-tr="Proje dosyalarını temiz ve düzenli bir proje gezgininden yönet.">
-
                     Browse your project files from a clean and organized project explorer.
-
                 </p>
 
             </div>
-
 
 
             <div class="feature">
@@ -1232,27 +1337,25 @@
                 </div>
 
                 <h3 data-en="Modern Interface" data-tr="Modern Arayüz">
-
                     Modern Interface
-
                 </h3>
 
                 <p data-en="A dark, modern and professional interface inspired by modern development tools."
                     data-tr="Modern geliştirme araçlarından ilham alan karanlık, modern ve profesyonel arayüz.">
-
                     A dark, modern and professional interface inspired by modern development tools.
-
                 </p>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-
-    <!-- VERSION -->
+    <!-- =========================================================
+         VERSION
+    ========================================================= -->
 
     <section class="section reveal">
 
@@ -1260,7 +1363,7 @@
 
             <div class="version-left">
 
-                <img src="icon.ico" class="version-logo" alt="LoliMod Studio">
+                <img src="./icon.ico" class="version-logo" alt="LoliMod Studio">
 
                 <div class="version-info">
 
@@ -1269,9 +1372,7 @@
                     </h3>
 
                     <span data-en="Latest stable release" data-tr="En son kararlı sürüm">
-
                         Latest stable release
-
                     </span>
 
                 </div>
@@ -1288,85 +1389,86 @@
     </section>
 
 
-
-    <!-- DOWNLOAD -->
+    <!-- =========================================================
+         DOWNLOAD
+    ========================================================= -->
 
     <section class="section reveal" id="download">
 
         <div class="download-card">
 
             <h2 data-en="Ready to Create?" data-tr="Üretmeye Hazır mısın?">
-
                 Ready to Create?
-
             </h2>
 
 
             <p data-en="Download LoliMod Studio and start building your Minecraft mods."
                 data-tr="LoliMod Studio'yu indir ve Minecraft modlarını oluşturmaya başla.">
-
                 Download LoliMod Studio and start building your Minecraft mods.
-
             </p>
 
 
             <!--
-            =====================================
-            DÜZELTİLMİŞ DOWNLOAD BUTONU
-            =====================================
+                IMPORTANT:
+
+                Put this EXACT file next to index.html:
+
+                lolimod-studio-1.0.0.exe
             -->
 
-            <a href="./mysetup.exe" class="download-button" download="LoliMod-Studio-1.0.0.exe"
-                type="application/octet-stream" target="_self">
+            <a href="./lolimod-İDEA.exe" class="download-button" download="LoliMod-Studio-1.0.0.exe">
 
                 <span>
                     ⬇
                 </span>
 
                 <span data-en="Download LoliMod Studio" data-tr="LoliMod Studio'yu İndir">
-
                     Download LoliMod Studio
-
                 </span>
 
             </a>
+
+
+            <div class="download-info">
+
+                <span data-en="Windows Installer • Version 1.0.0" data-tr="Windows Kurulum Dosyası • Sürüm 1.0.0">
+                    Windows Installer • Version 1.0.0
+                </span>
+
+            </div>
 
         </div>
 
     </section>
 
 
-
-    <!-- CTA -->
+    <!-- =========================================================
+         CTA
+    ========================================================= -->
 
     <section class="cta reveal">
 
         <h2 data-en="Build. Create. Mod." data-tr="Geliştir. Oluştur. Modla.">
-
             Build. Create. Mod.
-
         </h2>
 
 
         <p data-en="Your Minecraft development journey starts here."
             data-tr="Minecraft geliştirme yolculuğun burada başlıyor.">
-
             Your Minecraft development journey starts here.
-
         </p>
 
 
         <a href="#download" class="btn btn-primary" data-en="Get LoliMod Studio" data-tr="LoliMod Studio'yu Al">
-
             Get LoliMod Studio
-
         </a>
 
     </section>
 
 
-
-    <!-- FOOTER -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
 
     <footer>
 
@@ -1388,13 +1490,15 @@
     </footer>
 
 
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
 
     <script>
 
-
-        /* =========================
-           LANGUAGE
-        ========================= */
+        /* =========================================================
+           LANGUAGE SYSTEM
+        ========================================================= */
 
         function setLanguage(language) {
 
@@ -1402,10 +1506,16 @@
                 .querySelectorAll("[data-en]")
                 .forEach(element => {
 
-                    element.textContent =
+                    const text =
                         element.getAttribute(
                             "data-" + language
                         );
+
+                    if (text !== null) {
+
+                        element.textContent = text;
+
+                    }
 
                 });
 
@@ -1428,36 +1538,64 @@
                 );
 
 
-            localStorage.setItem(
-                "lolimod-language",
-                language
-            );
+            document.documentElement.lang =
+                language;
+
+
+            try {
+
+                localStorage.setItem(
+                    "lolimod-language",
+                    language
+                );
+
+            } catch (error) {
+
+                console.log(
+                    "Language preference could not be saved."
+                );
+
+            }
 
         }
 
 
+        /* =========================================================
+           LOAD SAVED LANGUAGE
+        ========================================================= */
 
-        /* =========================
-           LOAD LANGUAGE
-        ========================= */
+        let savedLanguage = "en";
 
-        const savedLanguage =
-            localStorage.getItem(
-                "lolimod-language"
-            );
+        try {
 
+            savedLanguage =
+                localStorage.getItem(
+                    "lolimod-language"
+                ) || "en";
 
-        if (savedLanguage) {
+        } catch (error) {
 
-            setLanguage(savedLanguage);
+            savedLanguage = "en";
 
         }
 
 
+        if (
+            savedLanguage !== "en" &&
+            savedLanguage !== "tr"
+        ) {
 
-        /* =========================
+            savedLanguage = "en";
+
+        }
+
+
+        setLanguage(savedLanguage);
+
+
+        /* =========================================================
            SCROLL REVEAL
-        ========================= */
+        ========================================================= */
 
         const observer =
             new IntersectionObserver(
@@ -1496,10 +1634,9 @@
             });
 
 
-
-        /* =========================
+        /* =========================================================
            PREVIEW MOUSE EFFECT
-        ========================= */
+        ========================================================= */
 
         const preview =
             document.querySelector(
@@ -1564,6 +1701,62 @@
 
         }
 
+
+        /* =========================================================
+           DOWNLOAD ERROR CHECK
+        ========================================================= */
+
+        const downloadButton =
+            document.querySelector(
+                ".download-button"
+            );
+
+
+        if (downloadButton) {
+
+            downloadButton.addEventListener(
+                "click",
+                async event => {
+
+                    const url =
+                        downloadButton.getAttribute(
+                            "href"
+                        );
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                url,
+                                {
+                                    method: "HEAD"
+                                }
+                            );
+
+
+                        if (!response.ok) {
+
+                            console.warn(
+                                "Installer file was not found:",
+                                url
+                            );
+
+                        }
+
+                    } catch (error) {
+
+                        console.warn(
+                            "Could not verify installer:",
+                            error
+                        );
+
+                    }
+
+                }
+            );
+
+        }
 
     </script>
 

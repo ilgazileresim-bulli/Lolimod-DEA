@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>LoliMod-İDEA — Help Center</title>
 
     <link rel="icon" type="image/x-icon" href="icon.ico">
@@ -69,6 +70,8 @@
             cursor: pointer;
         }
 
+        /* TOPBAR */
+
         .topbar {
             position: fixed;
             top: 0;
@@ -76,12 +79,16 @@
             right: 0;
             height: 72px;
             z-index: 1000;
+
             display: flex;
             align-items: center;
             gap: 18px;
+
             padding: 0 24px;
+
             background: rgba(8, 12, 19, .82);
             backdrop-filter: blur(20px);
+
             border-bottom: 1px solid var(--border);
         }
 
@@ -95,8 +102,11 @@
         .brand img {
             width: 42px;
             height: 42px;
+
             object-fit: contain;
+
             border-radius: 11px;
+
             filter: drop-shadow(0 0 15px rgba(85, 167, 255, .18));
         }
 
@@ -117,6 +127,8 @@
             margin-top: 2px;
         }
 
+        /* SEARCH */
+
         .search-wrap {
             flex: 1;
             max-width: 720px;
@@ -128,37 +140,51 @@
             position: absolute;
             left: 15px;
             top: 50%;
+
             transform: translateY(-50%);
+
             color: #718096;
             font-size: 17px;
+
             pointer-events: none;
         }
 
         #searchInput {
             width: 100%;
             height: 43px;
+
             border-radius: 13px;
             border: 1px solid var(--border);
+
             outline: none;
+
             background: rgba(255, 255, 255, .045);
             color: #fff;
+
             padding: 0 48px 0 43px;
+
             transition: .2s;
         }
 
         #searchInput:focus {
             border-color: rgba(85, 167, 255, .45);
-            box-shadow: 0 0 0 4px rgba(85, 167, 255, .07);
+
+            box-shadow:
+                0 0 0 4px rgba(85, 167, 255, .07);
         }
 
         .search-count {
             position: absolute;
             right: 12px;
             top: 50%;
+
             transform: translateY(-50%);
+
             color: #64748b;
             font-size: 11px;
         }
+
+        /* BUTTONS */
 
         .top-actions {
             display: flex;
@@ -168,24 +194,35 @@
 
         .top-btn {
             height: 40px;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
             gap: 8px;
+
             padding: 0 13px;
+
             border-radius: 11px;
             border: 1px solid var(--border);
+
             background: rgba(255, 255, 255, .045);
+
             color: #dce4ef;
+
             text-decoration: none;
+
             font-size: 12px;
             font-weight: 750;
+
             transition: .2s;
         }
 
         .top-btn:hover {
             transform: translateY(-1px);
+
             border-color: var(--border2);
+
             background: rgba(255, 255, 255, .075);
         }
 
@@ -202,47 +239,69 @@
             min-width: 44px;
         }
 
+        /* LAYOUT */
+
         .layout {
             display: flex;
             min-height: 100vh;
             padding-top: 72px;
         }
 
+        /* SIDEBAR */
+
         .sidebar {
             position: fixed;
+
             left: 0;
             top: 72px;
             bottom: 0;
+
             width: 275px;
+
             overflow-y: auto;
+
             padding: 22px 14px 30px;
+
             border-right: 1px solid var(--border);
+
             background: rgba(8, 12, 19, .7);
+
             backdrop-filter: blur(16px);
         }
 
         .sidebar-title {
             color: #68758a;
+
             font-size: 10px;
             font-weight: 900;
+
             text-transform: uppercase;
             letter-spacing: 1.3px;
+
             padding: 0 12px 12px;
         }
 
         .category {
             width: 100%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 10px 12px;
             margin-bottom: 3px;
+
             border: 1px solid transparent;
             border-radius: 10px;
+
             background: transparent;
+
             color: #aeb9c9;
+
             text-align: left;
+
             font-size: 12px;
+
             transition: .18s;
         }
 
@@ -253,7 +312,12 @@
 
         .category.active {
             color: #fff;
-            background: linear-gradient(90deg, rgba(85, 167, 255, .13), rgba(124, 92, 255, .08));
+
+            background:
+                linear-gradient(90deg,
+                    rgba(85, 167, 255, .13),
+                    rgba(124, 92, 255, .08));
+
             border-color: rgba(85, 167, 255, .13);
         }
 
@@ -262,22 +326,37 @@
             font-size: 10px;
         }
 
+        /* MAIN */
+
         .main {
             margin-left: 275px;
+
             width: calc(100% - 275px);
+
             padding: 38px 40px 60px;
         }
 
+        /* HERO */
+
         .hero {
             max-width: 1200px;
+
             margin: 0 auto 25px;
+
             padding: 30px;
+
             border: 1px solid var(--border);
             border-radius: 22px;
+
             background:
-                radial-gradient(circle at 100% 0, rgba(124, 92, 255, .11), transparent 35%),
-                radial-gradient(circle at 0 100%, rgba(85, 167, 255, .08), transparent 35%),
+                radial-gradient(circle at 100% 0,
+                    rgba(124, 92, 255, .11),
+                    transparent 35%),
+                radial-gradient(circle at 0 100%,
+                    rgba(85, 167, 255, .08),
+                    transparent 35%),
                 rgba(16, 23, 34, .72);
+
             box-shadow: var(--shadow);
         }
 
@@ -296,50 +375,75 @@
 
         .hero p {
             max-width: 760px;
+
             margin-top: 11px;
+
             color: var(--muted);
+
             line-height: 1.65;
+
             font-size: 13px;
         }
 
         .hero-badges {
             display: flex;
             flex-wrap: wrap;
+
             gap: 8px;
+
             margin-top: 20px;
         }
 
         .badge {
             padding: 7px 10px;
+
             border-radius: 9px;
+
             background: rgba(255, 255, 255, .045);
+
             border: 1px solid var(--border);
+
             color: #aeb9c9;
+
             font-size: 10px;
             font-weight: 750;
         }
 
         .badge.blue {
             color: #86c4ff;
+
             border-color: rgba(85, 167, 255, .2);
+
             background: rgba(85, 167, 255, .07);
         }
 
+        /* CONTROLS */
+
         .controls {
             max-width: 1200px;
+
             margin: 0 auto 20px;
+
             display: flex;
+
             gap: 10px;
+
             flex-wrap: wrap;
         }
 
         .control {
             height: 39px;
+
             padding: 0 12px;
+
             border-radius: 10px;
+
             border: 1px solid var(--border);
+
             background: rgba(255, 255, 255, .04);
+
             color: #bdc8d8;
+
             outline: none;
         }
 
@@ -351,141 +455,227 @@
             border-color: rgba(85, 167, 255, .4);
         }
 
+        /* RESULTS */
+
         .results-info {
             max-width: 1200px;
+
             margin: 0 auto 13px;
+
             color: #66758a;
+
             font-size: 11px;
         }
 
+        /* CARDS */
+
         .cards {
             max-width: 1200px;
+
             margin: 0 auto;
+
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
             gap: 13px;
         }
 
         .code-card {
             position: relative;
+
             min-height: 205px;
+
             padding: 19px;
+
             border: 1px solid var(--border);
+
             border-radius: 16px;
-            background: linear-gradient(145deg, rgba(18, 26, 38, .92), rgba(12, 17, 26, .9));
+
+            background:
+                linear-gradient(145deg,
+                    rgba(18, 26, 38, .92),
+                    rgba(12, 17, 26, .9));
+
             transition: .22s;
+
             overflow: hidden;
         }
 
         .code-card:before {
             content: "";
+
             position: absolute;
+
             left: 0;
             top: 0;
+
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, var(--blue), var(--blue2));
+
+            background:
+                linear-gradient(90deg,
+                    var(--blue),
+                    var(--blue2));
+
             opacity: .25;
         }
 
         .code-card:hover {
             transform: translateY(-3px);
-            border-color: rgba(85, 167, 255, .2);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, .25);
+
+            border-color:
+                rgba(85, 167, 255, .2);
+
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, .25);
         }
 
         .card-id {
             color: #5e6c80;
+
             font-size: 10px;
+
             font-family: Consolas, monospace;
         }
 
         .card-category {
             display: inline-block;
+
             margin-top: 9px;
+
             padding: 5px 8px;
+
             border-radius: 7px;
+
             color: #7dbbff;
+
             background: rgba(85, 167, 255, .08);
+
             border: 1px solid rgba(85, 167, 255, .12);
+
             font-size: 9px;
             font-weight: 850;
         }
 
         .code-card h3 {
             margin-top: 12px;
+
             font-size: 15px;
+
             letter-spacing: -.25px;
         }
 
         .card-desc {
             margin-top: 8px;
+
             color: #8491a4;
+
             line-height: 1.55;
+
             font-size: 11px;
         }
 
         .card-path {
             margin-top: 12px;
+
             color: #64748b;
+
             font-family: Consolas, monospace;
+
             font-size: 9px;
+
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
         }
 
         .view-btn {
             margin-top: 15px;
+
             width: 100%;
             height: 35px;
+
             border: 1px solid var(--border);
+
             border-radius: 9px;
+
             color: #d8e2ef;
+
             background: rgba(255, 255, 255, .045);
+
             font-size: 11px;
             font-weight: 750;
+
             transition: .18s;
         }
 
         .view-btn:hover {
             background: rgba(85, 167, 255, .1);
-            border-color: rgba(85, 167, 255, .25);
+
+            border-color:
+                rgba(85, 167, 255, .25);
         }
+
+        /* EMPTY */
 
         .empty {
             max-width: 1200px;
+
             margin: 50px auto;
+
             padding: 55px 20px;
+
             text-align: center;
+
             border: 1px dashed var(--border2);
+
             border-radius: 18px;
+
             color: #69768a;
         }
 
         .empty-icon {
             font-size: 35px;
+
             margin-bottom: 12px;
         }
 
+        /* PAGINATION */
+
         .pagination {
             max-width: 1200px;
+
             margin: 25px auto 0;
+
             display: flex;
+
             justify-content: center;
             align-items: center;
+
             gap: 6px;
+
             flex-wrap: wrap;
         }
 
         .page-btn {
             min-width: 34px;
+
             height: 34px;
+
             padding: 0 9px;
+
             border-radius: 8px;
+
             border: 1px solid var(--border);
+
             background: rgba(255, 255, 255, .04);
+
             color: #8c99ab;
+
             font-size: 10px;
             font-weight: 750;
         }
@@ -496,9 +686,15 @@
         }
 
         .page-btn.active {
-            background: linear-gradient(135deg, rgba(85, 167, 255, .2), rgba(124, 92, 255, .16));
+            background:
+                linear-gradient(135deg,
+                    rgba(85, 167, 255, .2),
+                    rgba(124, 92, 255, .16));
+
             color: #fff;
-            border-color: rgba(85, 167, 255, .3);
+
+            border-color:
+                rgba(85, 167, 255, .3);
         }
 
         .page-dots {
@@ -510,13 +706,20 @@
 
         .modal {
             position: fixed;
+
             inset: 0;
+
             z-index: 3000;
+
             display: none;
+
             align-items: center;
             justify-content: center;
+
             padding: 25px;
+
             background: rgba(0, 0, 0, .7);
+
             backdrop-filter: blur(10px);
         }
 
@@ -526,24 +729,40 @@
 
         .modal-box {
             width: min(1000px, 100%);
+
             max-height: 90vh;
+
             overflow: auto;
+
             border: 1px solid var(--border2);
+
             border-radius: 20px;
+
             background: #0d141e;
-            box-shadow: 0 35px 100px rgba(0, 0, 0, .65);
+
+            box-shadow:
+                0 35px 100px rgba(0, 0, 0, .65);
         }
 
         .modal-head {
             position: sticky;
+
             top: 0;
+
             z-index: 3;
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 15px;
+
             padding: 20px 22px;
+
             border-bottom: 1px solid var(--border);
+
             background: rgba(13, 20, 30, .94);
+
             backdrop-filter: blur(16px);
         }
 
@@ -554,23 +773,32 @@
 
         .modal-subtitle {
             color: #65748a;
+
             margin-top: 5px;
+
             font-size: 10px;
+
             font-family: Consolas, monospace;
         }
 
         .close-btn {
             width: 34px;
             height: 34px;
+
             border: 1px solid var(--border);
+
             border-radius: 9px;
+
             background: rgba(255, 255, 255, .045);
+
             color: #9ba8b9;
+
             font-size: 17px;
         }
 
         .close-btn:hover {
             color: #fff;
+
             background: rgba(255, 255, 255, .08);
         }
 
@@ -580,131 +808,198 @@
 
         .meta-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 10px;
+
             margin-bottom: 18px;
         }
 
         .meta {
             padding: 12px;
+
             border: 1px solid var(--border);
+
             border-radius: 11px;
+
             background: rgba(255, 255, 255, .025);
         }
 
         .meta-label {
             color: #59677b;
+
             font-size: 9px;
+
             text-transform: uppercase;
+
             letter-spacing: .8px;
+
             font-weight: 800;
         }
 
         .meta-value {
             margin-top: 6px;
+
             color: #cbd5e1;
+
             font-size: 11px;
+
             word-break: break-word;
         }
 
         .section-title {
             margin: 18px 0 9px;
+
             color: #cbd5e1;
+
             font-size: 12px;
+
             font-weight: 850;
         }
 
         .description-box,
         .usage-box {
             padding: 14px;
+
             border: 1px solid var(--border);
+
             border-radius: 11px;
+
             background: rgba(255, 255, 255, .025);
+
             color: #91a0b3;
+
             font-size: 11px;
+
             line-height: 1.65;
         }
 
         .code-container {
             position: relative;
+
             border: 1px solid var(--border);
+
             border-radius: 12px;
+
             overflow: hidden;
+
             background: #070a0f;
         }
 
         .code-top {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             padding: 9px 11px;
+
             border-bottom: 1px solid var(--border);
+
             background: #0b1018;
         }
 
         .code-language {
             color: #607087;
+
             font-size: 9px;
+
             font-family: Consolas, monospace;
         }
 
         .copy-btn {
             height: 29px;
+
             padding: 0 10px;
+
             border: 1px solid var(--border);
+
             border-radius: 7px;
+
             color: #b9c6d7;
+
             background: rgba(255, 255, 255, .04);
+
             font-size: 9px;
+
             font-weight: 750;
         }
 
         .copy-btn:hover {
             color: #fff;
+
             background: rgba(85, 167, 255, .1);
         }
 
         pre {
             margin: 0;
+
             padding: 17px;
+
             max-height: 430px;
+
             overflow: auto;
+
             color: #d5dfeb;
-            font: 11px/1.7 Consolas, "Cascadia Code", monospace;
+
+            font:
+                11px/1.7 Consolas,
+                "Cascadia Code",
+                monospace;
+
             white-space: pre;
         }
 
+        /* FOOTER */
+
         footer {
             max-width: 1200px;
+
             margin: 35px auto 0;
+
             padding: 22px 0;
+
             border-top: 1px solid var(--border);
+
             display: flex;
+
             align-items: center;
             justify-content: space-between;
+
             gap: 15px;
+
             color: #56657a;
+
             font-size: 10px;
         }
 
         .footer-brand {
             display: flex;
+
             align-items: center;
+
             gap: 8px;
         }
 
         .footer-brand img {
             width: 25px;
             height: 25px;
+
             border-radius: 7px;
+
             object-fit: contain;
         }
 
         /* RESPONSIVE */
 
         @media(max-width:1150px) {
+
             .cards {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
             }
 
             .brand {
@@ -717,22 +1012,26 @@
         }
 
         @media(max-width:850px) {
+
             .topbar {
                 padding: 0 12px;
+
                 gap: 9px;
+
+                height: 126px;
+
+                flex-wrap: wrap;
+
+                padding-top: 8px;
+                padding-bottom: 8px;
             }
 
             .search-wrap {
                 order: 3;
-                flex-basis: 100%;
-                max-width: none;
-            }
 
-            .topbar {
-                height: 126px;
-                flex-wrap: wrap;
-                padding-top: 8px;
-                padding-bottom: 8px;
+                flex-basis: 100%;
+
+                max-width: none;
             }
 
             .layout {
@@ -745,8 +1044,11 @@
 
             .main {
                 margin-left: 0;
+
                 width: 100%;
-                padding: 25px 15px 45px;
+
+                padding:
+                    25px 15px 45px;
             }
 
             .hero {
@@ -765,12 +1067,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .youtube-btn span {
+            .youtube-btn span:last-child {
                 display: none;
             }
         }
 
         @media(max-width:500px) {
+
             .top-actions {
                 margin-left: auto;
             }
@@ -785,6 +1088,7 @@
 
             .controls {
                 display: grid;
+
                 grid-template-columns: 1fr;
             }
 
@@ -801,21 +1105,38 @@
     <header class="topbar">
 
         <div class="brand">
+
             <img src="45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" alt="LoliMod-İDEA Logo">
 
             <div class="brand-text">
-                <div class="brand-title">LoliMod-İDEA</div>
-                <div class="brand-sub">Developer Help Center</div>
+
+                <div class="brand-title">
+                    LoliMod-İDEA
+                </div>
+
+                <div class="brand-sub">
+                    Developer Help Center
+                </div>
+
             </div>
+
         </div>
 
+
         <div class="search-wrap">
-            <span class="search-icon">⌕</span>
+
+            <span class="search-icon">
+                ⌕
+            </span>
 
             <input id="searchInput" type="text" placeholder="Kod, kategori veya açıklama ara..." autocomplete="off">
 
-            <span class="search-count" id="searchCount">10.000</span>
+            <span class="search-count" id="searchCount">
+                10.000
+            </span>
+
         </div>
+
 
         <div class="top-actions">
 
@@ -825,15 +1146,18 @@
                 <span>YouTube</span>
             </a>
 
+
             <button class="top-btn lang-btn" id="langBtn" type="button">
-                TR
+                EN
             </button>
 
-            <a class="top-btn" href="index.html">
+
+            <a class="top-btn" href="index.html" id="homeBtn">
                 ← Ana Sayfa
             </a>
 
         </div>
+
     </header>
 
 
@@ -857,22 +1181,44 @@
                 <div class="hero-top">
 
                     <div>
-                        <h1>LoliMod-İDEA Help Center</h1>
 
-                        <p>
-                            Minecraft mod geliştirme için hazırlanmış kapsamlı
-                            kod kütüphanesi. Java, Fabric API, registries,
-                            itemler, bloklar, entityler, GUI, networking,
-                            world generation ve daha fazlasını hızlıca bul.
+                        <h1 id="heroTitle">
+                            LoliMod-İDEA Help Center
+                        </h1>
+
+                        <p id="heroDescription">
+                            Minecraft mod geliştirme için hazırlanmış
+                            kapsamlı kod kütüphanesi. Java, Fabric API,
+                            registries, itemler, bloklar, entityler,
+                            GUI, networking, world generation ve daha
+                            fazlasını hızlıca bul.
                         </p>
 
+
                         <div class="hero-badges">
-                            <span class="badge blue">10.000 Kod</span>
-                            <span class="badge">100 Kategori</span>
-                            <span class="badge">100 İşlem</span>
-                            <span class="badge">Fabric</span>
-                            <span class="badge">Java</span>
+
+                            <span class="badge blue" id="badgeCodes">
+                                10.000 Kod
+                            </span>
+
+                            <span class="badge" id="badgeCategories">
+                                100 Kategori
+                            </span>
+
+                            <span class="badge" id="badgeOperations">
+                                100 İşlem
+                            </span>
+
+                            <span class="badge">
+                                Fabric
+                            </span>
+
+                            <span class="badge">
+                                Java
+                            </span>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -883,18 +1229,33 @@
             <div class="controls">
 
                 <select class="control" id="categoryFilter">
-                    <option value="all">Tüm Kategoriler</option>
+                    <option value="all">
+                        Tüm Kategoriler
+                    </option>
                 </select>
+
 
                 <select class="control" id="operationFilter">
-                    <option value="all">Tüm İşlemler</option>
+                    <option value="all">
+                        Tüm İşlemler
+                    </option>
                 </select>
 
+
                 <select class="control" id="sortFilter">
-                    <option value="id">ID Sırası</option>
-                    <option value="title">İsme Göre</option>
-                    <option value="category">Kategoriye Göre</option>
+                    <option value="id">
+                        ID Sırası
+                    </option>
+
+                    <option value="title">
+                        İsme Göre
+                    </option>
+
+                    <option value="category">
+                        Kategoriye Göre
+                    </option>
                 </select>
+
 
                 <button class="control" id="clearBtn" type="button">
                     Filtreleri Temizle
@@ -912,8 +1273,15 @@
 
 
             <div class="empty" id="emptyState" style="display:none">
-                <div class="empty-icon">⌕</div>
-                <div>Aramana uygun kod bulunamadı.</div>
+
+                <div class="empty-icon">
+                    ⌕
+                </div>
+
+                <div id="emptyText">
+                    Aramana uygun kod bulunamadı.
+                </div>
+
             </div>
 
 
@@ -923,11 +1291,16 @@
             <footer>
 
                 <div class="footer-brand">
+
                     <img src="45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" alt="LoliMod">
-                    <span>LoliMod-İDEA Help Center</span>
+
+                    <span id="footerTitle">
+                        LoliMod-İDEA Help Center
+                    </span>
+
                 </div>
 
-                <span>
+                <span id="footerText">
                     Minecraft Mod Development Toolkit
                 </span>
 
@@ -938,7 +1311,7 @@
     </div>
 
 
-    <!-- DETAIL MODAL -->
+    <!-- MODAL -->
 
     <div class="modal" id="detailModal">
 
@@ -947,6 +1320,7 @@
             <div class="modal-head">
 
                 <div>
+
                     <div class="modal-title" id="modalTitle">
                         Kod
                     </div>
@@ -954,7 +1328,9 @@
                     <div class="modal-subtitle" id="modalSubtitle">
                         CODE-00001
                     </div>
+
                 </div>
+
 
                 <button class="close-btn" id="closeModal" type="button">
                     ×
@@ -968,33 +1344,51 @@
                 <div class="meta-grid">
 
                     <div class="meta">
-                        <div class="meta-label">Kategori</div>
+
+                        <div class="meta-label" id="metaCategoryLabel">
+                            Kategori
+                        </div>
+
                         <div class="meta-value" id="modalCategory"></div>
+
                     </div>
 
+
                     <div class="meta">
-                        <div class="meta-label">İşlem</div>
+
+                        <div class="meta-label" id="metaOperationLabel">
+                            İşlem
+                        </div>
+
                         <div class="meta-value" id="modalOperation"></div>
+
                     </div>
 
+
                     <div class="meta">
-                        <div class="meta-label">Dosya</div>
+
+                        <div class="meta-label" id="metaFileLabel">
+                            Dosya
+                        </div>
+
                         <div class="meta-value" id="modalFile"></div>
+
                     </div>
 
                 </div>
 
 
-                <div class="section-title">
+                <div class="section-title" id="descriptionTitle">
                     Açıklama
                 </div>
 
                 <div class="description-box" id="modalDescription"></div>
 
 
-                <div class="section-title">
+                <div class="section-title" id="codeTitle">
                     Kaynak Kod
                 </div>
+
 
                 <div class="code-container">
 
@@ -1010,14 +1404,16 @@
 
                     </div>
 
+
                     <pre><code id="modalCode"></code></pre>
 
                 </div>
 
 
-                <div class="section-title">
+                <div class="section-title" id="usageTitle">
                     Kullanım
                 </div>
+
 
                 <div class="usage-box" id="modalUsage"></div>
 
@@ -1031,8 +1427,7 @@
     <script>
 
         /* =========================================================
-           LOLIMOD-IDEA HELP CENTER
-           10.000 CODE RECORD SYSTEM
+           DATA
         ========================================================= */
 
         const categories = [
@@ -1252,16 +1647,20 @@
 
         let allCodes = [];
         let filteredCodes = [];
+
         let currentPage = 1;
         let selectedCategory = "all";
         let currentCode = null;
 
+        let english = false;
+
 
         /* =========================================================
-           UTILITY
+           HELPERS
         ========================================================= */
 
         function escapeHtml(value) {
+
             return String(value)
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
@@ -1272,6 +1671,7 @@
 
 
         function slug(value) {
+
             return value
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "_")
@@ -1280,27 +1680,45 @@
 
 
         function titleCase(value) {
+
             return value
                 .split(" ")
-                .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+                .map(
+                    x =>
+                        x.charAt(0).toUpperCase() +
+                        x.slice(1)
+                )
                 .join(" ");
         }
 
 
         /* =========================================================
-           CODE GENERATORS
+           CODE GENERATOR
         ========================================================= */
 
-        function generateCode(category, operation, index) {
+        function generateCode(
+            category,
+            operation,
+            index
+        ) {
 
             const className =
-                category.replace(/[^A-Za-z0-9]/g, "") +
-                operation.replace(/[^A-Za-z0-9]/g, "") +
+                category.replace(
+                    /[^A-Za-z0-9]/g,
+                    ""
+                ) +
+                operation.replace(
+                    /[^A-Za-z0-9]/g,
+                    ""
+                ) +
                 index;
+
 
             const modId = "lolimod";
 
+
             if (operation === "Create Class") {
+
                 return `package com.example.${slug(category)};
 
 public class ${className} {
@@ -1312,7 +1730,9 @@ public class ${className} {
 }`;
             }
 
+
             if (operation === "Create Interface") {
+
                 return `package com.example.${slug(category)};
 
 public interface ${className} {
@@ -1322,17 +1742,23 @@ public interface ${className} {
 }`;
             }
 
+
             if (operation === "Create Enum") {
+
                 return `package com.example.${slug(category)};
 
 public enum ${className} {
+
     DEFAULT,
     ENABLED,
     DISABLED
+
 }`;
             }
 
+
             if (operation === "Create Record") {
+
                 return `package com.example.${slug(category)};
 
 public record ${className}(
@@ -1341,7 +1767,9 @@ public record ${className}(
 ) {}`;
             }
 
+
             if (operation === "Add Field") {
+
                 return `private String value = "example";
 
 public String getValue() {
@@ -1353,71 +1781,98 @@ public void setValue(String value) {
 }`;
             }
 
+
             if (operation === "Add Constant") {
-                return `public static final String ${slug(category).toUpperCase()}_ID =
-        "${modId}:${slug(category)}";`;
+
+                return `public static final String
+    ${slug(category).toUpperCase()}_ID =
+    "${modId}:${slug(category)}";`;
             }
 
+
             if (operation === "Add Constructor") {
+
                 return `public ${className}() {
+
     // Constructor başlangıç işlemleri
+
 }`;
             }
 
-            if (operation === "Add Method" ||
-                operation === "Add Static Method") {
+
+            if (
+                operation === "Add Method" ||
+                operation === "Add Static Method"
+            ) {
+
                 const prefix =
                     operation === "Add Static Method"
                         ? "public static"
                         : "public";
 
+
                 return `${prefix} void execute() {
-    System.out.println("LoliMod-İDEA: ${category} işlemi çalıştırıldı.");
+
+    System.out.println(
+        "LoliMod-İDEA: ${category} işlemi çalıştırıldı."
+    );
+
 }`;
             }
 
+
             if (operation === "Add Debug Log") {
+
                 return `System.out.println(
     "[LoliMod-İDEA] ${category} sistemi aktif."
 );`;
             }
 
+
             if (operation === "Add Error Handler") {
+
                 return `try {
+
     // ${category} işlemi
+
 } catch (Exception e) {
+
     System.err.println(
-        "[LoliMod-İDEA] Hata: " + e.getMessage()
+        "[LoliMod-İDEA] Hata: " +
+        e.getMessage()
     );
+
 }`;
             }
 
+
             if (operation === "Add Performance Timer") {
+
                 return `long start = System.nanoTime();
 
 try {
+
     // Ölçülecek ${category} işlemi
+
 } finally {
-    long elapsed = System.nanoTime() - start;
+
+    long elapsed =
+        System.nanoTime() - start;
+
     System.out.println(
-        "${category} süresi: " + elapsed + " ns"
+        "${category} süresi: " +
+        elapsed +
+        " ns"
     );
+
 }`;
             }
 
-            if (operation === "Add Game Rule") {
-                return `// Game rule tanımlaması için kullanılacak alan.
-// Fabric API / Minecraft sürümüne göre
-// ilgili GameRules API'si kullanılmalıdır.`;
-            }
 
-            if (operation === "Add Language Key") {
-                return `{
-    "${modId}.${slug(category)}.title": "${titleCase(category)}"
-}`;
-            }
+            if (
+                operation === "Add Model JSON"
+            ) {
 
-            if (operation.includes("Model JSON")) {
                 return `{
   "parent": "minecraft:item/generated",
   "textures": {
@@ -1426,7 +1881,11 @@ try {
 }`;
             }
 
-            if (operation.includes("Blockstate JSON")) {
+
+            if (
+                operation === "Add Blockstate JSON"
+            ) {
+
                 return `{
   "variants": {
     "": {
@@ -1436,7 +1895,11 @@ try {
 }`;
             }
 
-            if (operation.includes("Sound Definition")) {
+
+            if (
+                operation === "Add Sound Definition"
+            ) {
+
                 return `{
   "sounds": [
     "${modId}:${slug(category)}"
@@ -1444,7 +1907,11 @@ try {
 }`;
             }
 
-            if (operation.includes("Particle Definition")) {
+
+            if (
+                operation === "Add Particle Definition"
+            ) {
+
                 return `{
   "textures": [
     "${modId}:${slug(category)}"
@@ -1452,7 +1919,20 @@ try {
 }`;
             }
 
+
+            if (
+                operation === "Add Language Key"
+            ) {
+
+                return `{
+  "${modId}.${slug(category)}.title":
+    "${titleCase(category)}"
+}`;
+            }
+
+
             if (operation.includes("Tag")) {
+
                 return `{
   "replace": false,
   "values": [
@@ -1461,102 +1941,145 @@ try {
 }`;
             }
 
+
             if (operation.includes("Recipe")) {
+
                 return `{
   "type": "minecraft:crafting_shaped",
+
   "pattern": [
     "XX",
     "XX"
   ],
+
   "key": {
     "X": {
       "item": "${modId}:${slug(category)}"
     }
   },
+
   "result": {
     "id": "${modId}:${slug(category)}"
   }
 }`;
             }
 
+
             if (operation === "Add Utility") {
-                return `public static void ${slug(category)}Utility() {
+
+                return `public static void
+${slug(category)}Utility() {
+
     System.out.println(
         "Utility: ${category}"
     );
+
 }`;
             }
 
+
             if (operation === "Add Action Bar") {
-                return `// Oyuncuya action bar mesajı göndermek için
-// Minecraft/Fabric sürümüne uygun Player API kullanılır.`;
+
+                return `// Action bar mesajı
+// Minecraft/Fabric sürümünüze göre
+// ilgili Player API kullanılmalıdır.`;
             }
+
 
             if (operation === "Add Server Message") {
-                return `// Sunucu mesajı örneği.
-// Server-side kod içerisinde ilgili
-// player/server API kullanılmalıdır.`;
+
+                return `// Server message örneği.
+// Server-side kod içerisinde
+// ilgili server/player API kullanılmalıdır.`;
             }
+
 
             if (operation === "Add Command") {
-                return `// Komut kaydı için CommandRegistrationCallback
-// veya kullandığınız Fabric API sürümündeki
-// güncel command registration API kullanılmalıdır.`;
+
+                return `// Command registration örneği.
+// Fabric API sürümünüze göre
+// güncel command registration API'sini kullanın.`;
             }
 
-            if (operation === "Add Event" ||
+
+            if (
+                operation === "Add Event" ||
                 operation === "Add Client Event" ||
                 operation === "Add Server Event" ||
-                operation === "Add Tick Hook") {
+                operation === "Add Tick Hook"
+            ) {
+
                 return `// ${operation}
-// ${category}
+// Category: ${category}
 //
-// Fabric API sürümünüze göre ilgili callback'i
-// burada kaydedebilirsiniz.`;
+// Fabric API sürümünüze göre
+// ilgili callback'i kaydedin.`;
             }
+
 
             return `// LoliMod-İDEA Code Template
 // Category: ${category}
 // Operation: ${operation}
 
 public void execute() {
-    // ${category} işlemini burada gerçekleştir.
+
+    // ${category} işlemi
+
     System.out.println(
         "${category} / ${operation}"
     );
+
 }`;
         }
 
 
         /* =========================================================
-           DESCRIPTIONS
+           DESCRIPTION
         ========================================================= */
 
-        function generateDescription(category, operation) {
+        function generateDescription(
+            category,
+            operation
+        ) {
 
-            return `${category} kategorisinde "${operation}" işlemini
-başlatmak veya bu işlem için temel bir kod yapısı oluşturmak
-amacıyla kullanılabilecek örnek şablondur.
+            return `${category} kategorisinde "${operation}"
+işlemini başlatmak veya bu işlem için temel
+bir kod yapısı oluşturmak amacıyla kullanılabilecek
+örnek şablondur.
 
-Kod, LoliMod-İDEA içerisinde başlangıç noktası olarak
-kullanılabilir. Minecraft ve Fabric API sürümüne göre
-gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
+Kod, LoliMod-İDEA içerisinde başlangıç noktası
+olarak kullanılabilir. Minecraft ve Fabric API
+sürümüne göre gerekli importlar, mappings ve
+API isimleri kontrol edilmelidir.`;
         }
 
 
-        function generateUsage(category, operation) {
+        function generateUsage(
+            category,
+            operation
+        ) {
 
             return `1. LoliMod projenizde ${category} ile ilgili dosyayı açın.
+
 2. "${operation}" için verilen kodu kopyalayın.
-3. Kodun içindeki örnek ID, class veya değerleri projenize göre değiştirin.
-4. Kullanılan Minecraft/Fabric sürümündeki API isimlerini kontrol edin.
+
+3. Kodun içindeki örnek ID, class veya değerleri
+   projenize göre değiştirin.
+
+4. Kullandığınız Minecraft/Fabric sürümündeki
+   API isimlerini kontrol edin.
+
 5. Gradle build işlemiyle projeyi test edin.`;
         }
 
 
-        function generatePath(category, operation) {
+        function generatePath(
+            category,
+            operation
+        ) {
 
             const jsonOperations = [
+
                 "Add Model JSON",
                 "Add Blockstate JSON",
                 "Add Texture",
@@ -1580,18 +2103,24 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 "Add Loot Table",
                 "Add Advancement",
                 "Add Predicate"
+
             ];
 
-            if (jsonOperations.includes(operation)) {
+
+            if (
+                jsonOperations.includes(operation)
+            ) {
+
                 return `src/main/resources/data/lolimod/${slug(category)}/`;
             }
+
 
             return `src/main/java/com/example/${slug(category)}/`;
         }
 
 
         /* =========================================================
-           BUILD 10.000 RECORDS
+           DATABASE
         ========================================================= */
 
         function buildDatabase() {
@@ -1600,24 +2129,42 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
             let id = 1;
 
-            for (let c = 0; c < categories.length; c++) {
 
-                for (let o = 0; o < operations.length; o++) {
+            for (
+                let c = 0;
+                c < categories.length;
+                c++
+            ) {
+
+                for (
+                    let o = 0;
+                    o < operations.length;
+                    o++
+                ) {
 
                     if (id > TOTAL_CODES) {
                         break;
                     }
 
-                    const category = categories[c];
-                    const operation = operations[o];
+
+                    const category =
+                        categories[c];
+
+                    const operation =
+                        operations[o];
+
 
                     allCodes.push({
+
                         id,
+
                         codeId:
                             "CODE-" +
-                            String(id).padStart(5, "0"),
+                            String(id)
+                                .padStart(5, "0"),
 
                         category,
+
                         operation,
 
                         title:
@@ -1647,228 +2194,371 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                                 operation,
                                 id
                             )
+
                     });
+
 
                     id++;
                 }
             }
 
-            /*
-               100 × 100 = 10.000
-               Güvenlik kontrolü
-            */
 
-            if (allCodes.length < TOTAL_CODES) {
+            while (
+                allCodes.length <
+                TOTAL_CODES
+            ) {
 
-                while (allCodes.length < TOTAL_CODES) {
+                const index =
+                    allCodes.length + 1;
 
-                    const index = allCodes.length + 1;
 
-                    const category =
-                        categories[(index - 1) % categories.length];
+                const category =
+                    categories[
+                    (index - 1) %
+                    categories.length
+                    ];
 
-                    const operation =
-                        operations[(index - 1) % operations.length];
 
-                    allCodes.push({
-                        id: index,
-                        codeId:
-                            "CODE-" +
-                            String(index).padStart(5, "0"),
+                const operation =
+                    operations[
+                    (index - 1) %
+                    operations.length
+                    ];
 
-                        category,
-                        operation,
 
-                        title:
-                            `${operation} — ${category}`,
+                allCodes.push({
 
-                        description:
-                            generateDescription(
-                                category,
-                                operation
-                            ),
+                    id: index,
 
-                        path:
-                            generatePath(
-                                category,
-                                operation
-                            ),
+                    codeId:
+                        "CODE-" +
+                        String(index)
+                            .padStart(5, "0"),
 
-                        usage:
-                            generateUsage(
-                                category,
-                                operation
-                            ),
+                    category,
 
-                        code:
-                            generateCode(
-                                category,
-                                operation,
-                                index
-                            )
-                    });
-                }
+                    operation,
+
+                    title:
+                        `${operation} — ${category}`,
+
+                    description:
+                        generateDescription(
+                            category,
+                            operation
+                        ),
+
+                    path:
+                        generatePath(
+                            category,
+                            operation
+                        ),
+
+                    usage:
+                        generateUsage(
+                            category,
+                            operation
+                        ),
+
+                    code:
+                        generateCode(
+                            category,
+                            operation,
+                            index
+                        )
+
+                });
             }
         }
 
 
         /* =========================================================
-           SIDEBAR
+           CATEGORIES
         ========================================================= */
 
         function buildCategories() {
 
             const container =
-                document.getElementById("categoryList");
+                document.getElementById(
+                    "categoryList"
+                );
+
 
             container.innerHTML = "";
 
-            categories.forEach(category => {
 
-                const count =
-                    allCodes.filter(
-                        item => item.category === category
-                    ).length;
+            categories.forEach(
+                category => {
 
-                const button =
-                    document.createElement("button");
+                    const count =
+                        allCodes.filter(
+                            item =>
+                                item.category ===
+                                category
+                        ).length;
 
-                button.className = "category";
 
-                button.dataset.category = category;
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
 
-                button.innerHTML = `
-            <span>${escapeHtml(category)}</span>
-            <span class="category-count">${count}</span>
-        `;
 
-                button.addEventListener("click", () => {
+                    button.className =
+                        "category";
 
-                    selectedCategory = category;
 
-                    document
-                        .querySelectorAll(".category")
-                        .forEach(x => x.classList.remove("active"));
-
-                    button.classList.add("active");
-
-                    document.getElementById("categoryFilter").value =
+                    button.dataset.category =
                         category;
 
-                    currentPage = 1;
 
-                    applyFilters();
-                });
+                    button.innerHTML = `
 
-                container.appendChild(button);
-            });
+                <span>
+                    ${escapeHtml(category)}
+                </span>
+
+                <span class="category-count">
+                    ${count}
+                </span>
+
+            `;
+
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            selectedCategory =
+                                category;
+
+
+                            document
+                                .querySelectorAll(
+                                    ".category"
+                                )
+                                .forEach(
+                                    x =>
+                                        x.classList
+                                            .remove(
+                                                "active"
+                                            )
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            document
+                                .getElementById(
+                                    "categoryFilter"
+                                )
+                                .value =
+                                category;
+
+
+                            currentPage = 1;
+
+                            applyFilters();
+
+                        }
+                    );
+
+
+                    container.appendChild(
+                        button
+                    );
+
+                }
+            );
         }
 
 
         /* =========================================================
-           FILTER OPTIONS
+           FILTERS
         ========================================================= */
 
         function buildFilters() {
 
             const categoryFilter =
-                document.getElementById("categoryFilter");
+                document.getElementById(
+                    "categoryFilter"
+                );
+
 
             const operationFilter =
-                document.getElementById("operationFilter");
+                document.getElementById(
+                    "operationFilter"
+                );
 
-            categories.forEach(category => {
 
-                const option =
-                    document.createElement("option");
+            categories.forEach(
+                category => {
 
-                option.value = category;
-                option.textContent = category;
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
 
-                categoryFilter.appendChild(option);
-            });
+                    option.value =
+                        category;
 
-            operations.forEach(operation => {
+                    option.textContent =
+                        category;
 
-                const option =
-                    document.createElement("option");
+                    categoryFilter.appendChild(
+                        option
+                    );
 
-                option.value = operation;
-                option.textContent = operation;
+                }
+            );
 
-                operationFilter.appendChild(option);
-            });
+
+            operations.forEach(
+                operation => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        operation;
+
+                    option.textContent =
+                        operation;
+
+                    operationFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
         }
 
 
         /* =========================================================
-           FILTERING
+           APPLY FILTERS
         ========================================================= */
 
         function applyFilters() {
 
             const search =
-                document.getElementById("searchInput")
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
                     .value
                     .trim()
                     .toLowerCase();
 
+
             const category =
-                document.getElementById("categoryFilter").value;
+                document
+                    .getElementById(
+                        "categoryFilter"
+                    )
+                    .value;
+
 
             const operation =
-                document.getElementById("operationFilter").value;
+                document
+                    .getElementById(
+                        "operationFilter"
+                    )
+                    .value;
+
 
             const sort =
-                document.getElementById("sortFilter").value;
+                document
+                    .getElementById(
+                        "sortFilter"
+                    )
+                    .value;
+
 
             filteredCodes =
-                allCodes.filter(item => {
+                allCodes.filter(
+                    item => {
 
-                    const matchesSearch =
-                        !search ||
-                        item.title.toLowerCase().includes(search) ||
-                        item.category.toLowerCase().includes(search) ||
-                        item.operation.toLowerCase().includes(search) ||
-                        item.description.toLowerCase().includes(search) ||
-                        item.path.toLowerCase().includes(search) ||
-                        item.code.toLowerCase().includes(search);
+                        const matchesSearch =
+                            !search ||
 
-                    const matchesCategory =
-                        category === "all" ||
-                        item.category === category;
+                            item.title
+                                .toLowerCase()
+                                .includes(search) ||
 
-                    const matchesOperation =
-                        operation === "all" ||
-                        item.operation === operation;
+                            item.category
+                                .toLowerCase()
+                                .includes(search) ||
 
-                    return (
-                        matchesSearch &&
-                        matchesCategory &&
-                        matchesOperation
-                    );
-                });
+                            item.operation
+                                .toLowerCase()
+                                .includes(search) ||
+
+                            item.description
+                                .toLowerCase()
+                                .includes(search) ||
+
+                            item.path
+                                .toLowerCase()
+                                .includes(search) ||
+
+                            item.code
+                                .toLowerCase()
+                                .includes(search);
+
+
+                        const matchesCategory =
+                            category === "all" ||
+                            item.category ===
+                            category;
+
+
+                        const matchesOperation =
+                            operation === "all" ||
+                            item.operation ===
+                            operation;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesCategory &&
+                            matchesOperation
+                        );
+
+                    }
+                );
 
 
             if (sort === "title") {
 
                 filteredCodes.sort(
                     (a, b) =>
-                        a.title.localeCompare(b.title)
+                        a.title.localeCompare(
+                            b.title
+                        )
                 );
 
             } else if (sort === "category") {
 
                 filteredCodes.sort(
                     (a, b) =>
-                        a.category.localeCompare(b.category) ||
-                        a.title.localeCompare(b.title)
+                        a.category.localeCompare(
+                            b.category
+                        ) ||
+                        a.title.localeCompare(
+                            b.title
+                        )
                 );
 
             } else {
 
                 filteredCodes.sort(
-                    (a, b) => a.id - b.id
+                    (a, b) =>
+                        a.id - b.id
                 );
             }
 
@@ -1877,24 +2567,51 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 Math.max(
                     1,
                     Math.ceil(
-                        filteredCodes.length / PER_PAGE
+                        filteredCodes.length /
+                        PER_PAGE
                     )
                 );
 
-            if (currentPage > maxPage) {
-                currentPage = maxPage;
+
+            if (
+                currentPage >
+                maxPage
+            ) {
+
+                currentPage =
+                    maxPage;
             }
 
+
             renderCards();
+
             renderPagination();
 
-            document.getElementById("searchCount").textContent =
-                filteredCodes.length.toLocaleString("tr-TR");
 
-            document.getElementById("resultsInfo").textContent =
-                `${filteredCodes.length.toLocaleString("tr-TR")} sonuç gösteriliyor`;
+            document
+                .getElementById(
+                    "searchCount"
+                )
+                .textContent =
+                filteredCodes.length
+                    .toLocaleString("tr-TR");
 
-            document.getElementById("emptyState").style.display =
+
+            document
+                .getElementById(
+                    "resultsInfo"
+                )
+                .textContent =
+                english
+                    ? `${filteredCodes.length.toLocaleString()} results found`
+                    : `${filteredCodes.length.toLocaleString("tr-TR")} sonuç gösteriliyor`;
+
+
+            document
+                .getElementById(
+                    "emptyState"
+                )
+                .style.display =
                 filteredCodes.length === 0
                     ? "block"
                     : "none";
@@ -1908,66 +2625,97 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
         function renderCards() {
 
             const container =
-                document.getElementById("cards");
+                document.getElementById(
+                    "cards"
+                );
+
 
             container.innerHTML = "";
 
+
             const start =
-                (currentPage - 1) * PER_PAGE;
+                (currentPage - 1) *
+                PER_PAGE;
+
 
             const end =
                 start + PER_PAGE;
 
+
             const pageItems =
-                filteredCodes.slice(start, end);
+                filteredCodes.slice(
+                    start,
+                    end
+                );
 
-            pageItems.forEach(item => {
 
-                const card =
-                    document.createElement("article");
+            pageItems.forEach(
+                item => {
 
-                card.className = "code-card";
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
 
-                card.innerHTML = `
-            <div class="card-id">
-                ${item.codeId}
-            </div>
 
-            <span class="card-category">
-                ${escapeHtml(item.category)}
-            </span>
+                    card.className =
+                        "code-card";
 
-            <h3>
-                ${escapeHtml(item.operation)}
-            </h3>
 
-            <div class="card-desc">
-                ${escapeHtml(
-                    item.description.substring(0, 125)
-                )}...
-            </div>
+                    card.innerHTML = `
 
-            <div class="card-path">
-                ${escapeHtml(item.path)}
-            </div>
+                <div class="card-id">
+                    ${item.codeId}
+                </div>
 
-            <button
-                class="view-btn"
-                type="button"
-            >
-                Kodu Görüntüle →
-            </button>
-        `;
+                <span class="card-category">
+                    ${escapeHtml(item.category)}
+                </span>
 
-                card
-                    .querySelector(".view-btn")
-                    .addEventListener(
-                        "click",
-                        () => openModal(item)
+                <h3>
+                    ${escapeHtml(item.operation)}
+                </h3>
+
+                <div class="card-desc">
+                    ${escapeHtml(
+                        item.description
+                            .substring(0, 125)
+                    )}...
+                </div>
+
+                <div class="card-path">
+                    ${escapeHtml(item.path)}
+                </div>
+
+                <button
+                    class="view-btn"
+                    type="button"
+                >
+                    ${english
+                            ? "View Code →"
+                            : "Kodu Görüntüle →"}
+                </button>
+
+            `;
+
+
+                    card
+                        .querySelector(
+                            ".view-btn"
+                        )
+                        .addEventListener(
+                            "click",
+                            () =>
+                                openModal(item)
+                        );
+
+
+                    container.appendChild(
+                        card
                     );
 
-                container.appendChild(card);
-            });
+                }
+            );
         }
 
 
@@ -1978,14 +2726,20 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
         function renderPagination() {
 
             const container =
-                document.getElementById("pagination");
+                document.getElementById(
+                    "pagination"
+                );
+
 
             container.innerHTML = "";
 
+
             const totalPages =
                 Math.ceil(
-                    filteredCodes.length / PER_PAGE
+                    filteredCodes.length /
+                    PER_PAGE
                 );
+
 
             if (totalPages <= 1) {
                 return;
@@ -1993,18 +2747,32 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
             const previous =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
-            previous.className = "page-btn";
-            previous.textContent = "‹";
-            previous.disabled = currentPage === 1;
+
+            previous.className =
+                "page-btn";
+
+
+            previous.textContent =
+                "‹";
+
+
+            previous.disabled =
+                currentPage === 1;
+
 
             previous.onclick = () => {
 
                 if (currentPage > 1) {
+
                     currentPage--;
+
                     renderCards();
                     renderPagination();
+
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
@@ -2012,14 +2780,23 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 }
             };
 
-            container.appendChild(previous);
+
+            container.appendChild(
+                previous
+            );
 
 
             const pages = [];
 
+
             if (totalPages <= 8) {
 
-                for (let i = 1; i <= totalPages; i++) {
+                for (
+                    let i = 1;
+                    i <= totalPages;
+                    i++
+                ) {
+
                     pages.push(i);
                 }
 
@@ -2027,9 +2804,11 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
                 pages.push(1);
 
+
                 if (currentPage > 4) {
                     pages.push("...");
                 }
+
 
                 const start =
                     Math.max(
@@ -2037,79 +2816,141 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                         currentPage - 2
                     );
 
+
                 const end =
                     Math.min(
                         totalPages - 1,
                         currentPage + 2
                     );
 
-                for (let i = start; i <= end; i++) {
+
+                for (
+                    let i = start;
+                    i <= end;
+                    i++
+                ) {
+
                     pages.push(i);
                 }
 
-                if (currentPage < totalPages - 3) {
+
+                if (
+                    currentPage <
+                    totalPages - 3
+                ) {
+
                     pages.push("...");
                 }
 
-                pages.push(totalPages);
+
+                pages.push(
+                    totalPages
+                );
             }
 
 
-            pages.forEach(page => {
+            pages.forEach(
+                page => {
 
-                if (page === "...") {
+                    if (page === "...") {
 
-                    const dots =
-                        document.createElement("span");
+                        const dots =
+                            document.createElement(
+                                "span"
+                            );
 
-                    dots.className = "page-dots";
-                    dots.textContent = "...";
 
-                    container.appendChild(dots);
+                        dots.className =
+                            "page-dots";
 
-                    return;
+
+                        dots.textContent =
+                            "...";
+
+
+                        container.appendChild(
+                            dots
+                        );
+
+
+                        return;
+                    }
+
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "page-btn";
+
+
+                    if (
+                        page ===
+                        currentPage
+                    ) {
+
+                        button.classList.add(
+                            "active"
+                        );
+                    }
+
+
+                    button.textContent =
+                        page;
+
+
+                    button.onclick = () => {
+
+                        currentPage =
+                            page;
+
+                        renderCards();
+                        renderPagination();
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+
+                    };
+
+
+                    container.appendChild(
+                        button
+                    );
+
                 }
-
-
-                const button =
-                    document.createElement("button");
-
-                button.className = "page-btn";
-
-                if (page === currentPage) {
-                    button.classList.add("active");
-                }
-
-                button.textContent = page;
-
-                button.onclick = () => {
-
-                    currentPage = page;
-
-                    renderCards();
-                    renderPagination();
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-                };
-
-                container.appendChild(button);
-            });
+            );
 
 
             const next =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
-            next.className = "page-btn";
-            next.textContent = "›";
+
+            next.className =
+                "page-btn";
+
+
+            next.textContent =
+                "›";
+
+
             next.disabled =
-                currentPage === totalPages;
+                currentPage ===
+                totalPages;
+
 
             next.onclick = () => {
 
-                if (currentPage < totalPages) {
+                if (
+                    currentPage <
+                    totalPages
+                ) {
 
                     currentPage++;
 
@@ -2123,7 +2964,10 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 }
             };
 
-            container.appendChild(next);
+
+            container.appendChild(
+                next
+            );
         }
 
 
@@ -2133,47 +2977,105 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
         function openModal(item) {
 
-            currentCode = item;
+            currentCode =
+                item;
 
-            document.getElementById("modalTitle")
-                .textContent = item.title;
 
-            document.getElementById("modalSubtitle")
-                .textContent = item.codeId;
+            document
+                .getElementById(
+                    "modalTitle"
+                )
+                .textContent =
+                item.title;
 
-            document.getElementById("modalCategory")
-                .textContent = item.category;
 
-            document.getElementById("modalOperation")
-                .textContent = item.operation;
+            document
+                .getElementById(
+                    "modalSubtitle"
+                )
+                .textContent =
+                item.codeId;
 
-            document.getElementById("modalFile")
-                .textContent = item.path;
 
-            document.getElementById("modalDescription")
-                .textContent = item.description;
+            document
+                .getElementById(
+                    "modalCategory"
+                )
+                .textContent =
+                item.category;
 
-            document.getElementById("modalCode")
-                .textContent = item.code;
 
-            document.getElementById("modalUsage")
-                .textContent = item.usage;
+            document
+                .getElementById(
+                    "modalOperation"
+                )
+                .textContent =
+                item.operation;
 
-            document.getElementById("detailModal")
-                .classList.add("show");
 
-            document.body.style.overflow = "hidden";
+            document
+                .getElementById(
+                    "modalFile"
+                )
+                .textContent =
+                item.path;
+
+
+            document
+                .getElementById(
+                    "modalDescription"
+                )
+                .textContent =
+                item.description;
+
+
+            document
+                .getElementById(
+                    "modalCode"
+                )
+                .textContent =
+                item.code;
+
+
+            document
+                .getElementById(
+                    "modalUsage"
+                )
+                .textContent =
+                item.usage;
+
+
+            document
+                .getElementById(
+                    "detailModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+
+            document.body.style.overflow =
+                "hidden";
         }
 
 
         function closeModal() {
 
-            document.getElementById("detailModal")
-                .classList.remove("show");
+            document
+                .getElementById(
+                    "detailModal"
+                )
+                .classList.remove(
+                    "show"
+                );
 
-            document.body.style.overflow = "";
 
-            currentCode = null;
+            document.body.style.overflow =
+                "";
+
+
+            currentCode =
+                null;
         }
 
 
@@ -2187,47 +3089,502 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 return;
             }
 
+
             const button =
-                document.getElementById("copyBtn");
+                document.getElementById(
+                    "copyBtn"
+                );
+
 
             try {
 
-                await navigator.clipboard.writeText(
-                    currentCode.code
-                );
+                await navigator.clipboard
+                    .writeText(
+                        currentCode.code
+                    );
+
 
                 button.textContent =
-                    "✓ Kopyalandı";
+                    english
+                        ? "✓ Copied"
+                        : "✓ Kopyalandı";
 
-                setTimeout(() => {
-                    button.textContent =
-                        "Kodu Kopyala";
-                }, 1500);
+
+                setTimeout(
+                    () => {
+
+                        button.textContent =
+                            english
+                                ? "Copy Code"
+                                : "Kodu Kopyala";
+
+                    },
+                    1500
+                );
 
             } catch (error) {
 
                 const textarea =
-                    document.createElement("textarea");
+                    document.createElement(
+                        "textarea"
+                    );
+
 
                 textarea.value =
                     currentCode.code;
 
-                document.body.appendChild(textarea);
+
+                document.body.appendChild(
+                    textarea
+                );
+
 
                 textarea.select();
 
-                document.execCommand("copy");
+
+                document.execCommand(
+                    "copy"
+                );
+
 
                 textarea.remove();
 
-                button.textContent =
-                    "✓ Kopyalandı";
 
-                setTimeout(() => {
-                    button.textContent =
-                        "Kodu Kopyala";
-                }, 1500);
+                button.textContent =
+                    english
+                        ? "✓ Copied"
+                        : "✓ Kopyalandı";
+
+
+                setTimeout(
+                    () => {
+
+                        button.textContent =
+                            english
+                                ? "Copy Code"
+                                : "Kodu Kopyala";
+
+                    },
+                    1500
+                );
             }
+        }
+
+
+        /* =========================================================
+           LANGUAGE SYSTEM
+        ========================================================= */
+
+        function updateLanguage() {
+
+            const homeBtn =
+                document.getElementById(
+                    "homeBtn"
+                );
+
+
+            const searchInput =
+                document.getElementById(
+                    "searchInput"
+                );
+
+
+            const clearBtn =
+                document.getElementById(
+                    "clearBtn"
+                );
+
+
+            const categoryFilter =
+                document.getElementById(
+                    "categoryFilter"
+                );
+
+
+            const operationFilter =
+                document.getElementById(
+                    "operationFilter"
+                );
+
+
+            const sortFilter =
+                document.getElementById(
+                    "sortFilter"
+                );
+
+
+            const sidebarTitle =
+                document.querySelector(
+                    ".sidebar-title"
+                );
+
+
+            const youtube =
+                document.querySelector(
+                    ".youtube-btn span:last-child"
+                );
+
+
+            if (english) {
+
+                /* TOP */
+
+                homeBtn.textContent =
+                    "← Back to Home";
+
+
+                if (youtube) {
+                    youtube.textContent =
+                        "YouTube";
+                }
+
+
+                searchInput.placeholder =
+                    "Search code, category or description...";
+
+
+                /* HERO */
+
+                document
+                    .getElementById(
+                        "heroTitle"
+                    )
+                    .textContent =
+                    "LoliMod-İDEA Help Center";
+
+
+                document
+                    .getElementById(
+                        "heroDescription"
+                    )
+                    .textContent =
+                    "A comprehensive code library for Minecraft mod development. Quickly find Java, Fabric API, registries, items, blocks, entities, GUI, networking, world generation and more.";
+
+
+                document
+                    .getElementById(
+                        "badgeCodes"
+                    )
+                    .textContent =
+                    "10,000 Codes";
+
+
+                document
+                    .getElementById(
+                        "badgeCategories"
+                    )
+                    .textContent =
+                    "100 Categories";
+
+
+                document
+                    .getElementById(
+                        "badgeOperations"
+                    )
+                    .textContent =
+                    "100 Operations";
+
+
+                /* SIDEBAR */
+
+                sidebarTitle.textContent =
+                    "Categories";
+
+
+                /* FILTERS */
+
+                categoryFilter.options[0]
+                    .textContent =
+                    "All Categories";
+
+
+                operationFilter.options[0]
+                    .textContent =
+                    "All Operations";
+
+
+                sortFilter.options[0]
+                    .textContent =
+                    "ID Order";
+
+
+                sortFilter.options[1]
+                    .textContent =
+                    "By Name";
+
+
+                sortFilter.options[2]
+                    .textContent =
+                    "By Category";
+
+
+                clearBtn.textContent =
+                    "Clear Filters";
+
+
+                /* EMPTY */
+
+                document
+                    .getElementById(
+                        "emptyText"
+                    )
+                    .textContent =
+                    "No code found matching your search.";
+
+
+                /* FOOTER */
+
+                document
+                    .getElementById(
+                        "footerText"
+                    )
+                    .textContent =
+                    "Minecraft Mod Development Toolkit";
+
+
+                /* MODAL */
+
+                document
+                    .getElementById(
+                        "metaCategoryLabel"
+                    )
+                    .textContent =
+                    "Category";
+
+
+                document
+                    .getElementById(
+                        "metaOperationLabel"
+                    )
+                    .textContent =
+                    "Operation";
+
+
+                document
+                    .getElementById(
+                        "metaFileLabel"
+                    )
+                    .textContent =
+                    "File";
+
+
+                document
+                    .getElementById(
+                        "descriptionTitle"
+                    )
+                    .textContent =
+                    "Description";
+
+
+                document
+                    .getElementById(
+                        "codeTitle"
+                    )
+                    .textContent =
+                    "Source Code";
+
+
+                document
+                    .getElementById(
+                        "usageTitle"
+                    )
+                    .textContent =
+                    "Usage";
+
+
+                document
+                    .getElementById(
+                        "copyBtn"
+                    )
+                    .textContent =
+                    "Copy Code";
+
+
+            } else {
+
+                /* TOP */
+
+                homeBtn.textContent =
+                    "← Ana Sayfa";
+
+
+                if (youtube) {
+                    youtube.textContent =
+                        "YouTube";
+                }
+
+
+                searchInput.placeholder =
+                    "Kod, kategori veya açıklama ara...";
+
+
+                /* HERO */
+
+                document
+                    .getElementById(
+                        "heroTitle"
+                    )
+                    .textContent =
+                    "LoliMod-İDEA Help Center";
+
+
+                document
+                    .getElementById(
+                        "heroDescription"
+                    )
+                    .textContent =
+                    "Minecraft mod geliştirme için hazırlanmış kapsamlı kod kütüphanesi. Java, Fabric API, registries, itemler, bloklar, entityler, GUI, networking, world generation ve daha fazlasını hızlıca bul.";
+
+
+                document
+                    .getElementById(
+                        "badgeCodes"
+                    )
+                    .textContent =
+                    "10.000 Kod";
+
+
+                document
+                    .getElementById(
+                        "badgeCategories"
+                    )
+                    .textContent =
+                    "100 Kategori";
+
+
+                document
+                    .getElementById(
+                        "badgeOperations"
+                    )
+                    .textContent =
+                    "100 İşlem";
+
+
+                /* SIDEBAR */
+
+                sidebarTitle.textContent =
+                    "Kategoriler";
+
+
+                /* FILTERS */
+
+                categoryFilter.options[0]
+                    .textContent =
+                    "Tüm Kategoriler";
+
+
+                operationFilter.options[0]
+                    .textContent =
+                    "Tüm İşlemler";
+
+
+                sortFilter.options[0]
+                    .textContent =
+                    "ID Sırası";
+
+
+                sortFilter.options[1]
+                    .textContent =
+                    "İsme Göre";
+
+
+                sortFilter.options[2]
+                    .textContent =
+                    "Kategoriye Göre";
+
+
+                clearBtn.textContent =
+                    "Filtreleri Temizle";
+
+
+                /* EMPTY */
+
+                document
+                    .getElementById(
+                        "emptyText"
+                    )
+                    .textContent =
+                    "Aramana uygun kod bulunamadı.";
+
+
+                /* FOOTER */
+
+                document
+                    .getElementById(
+                        "footerText"
+                    )
+                    .textContent =
+                    "Minecraft Mod Development Toolkit";
+
+
+                /* MODAL */
+
+                document
+                    .getElementById(
+                        "metaCategoryLabel"
+                    )
+                    .textContent =
+                    "Kategori";
+
+
+                document
+                    .getElementById(
+                        "metaOperationLabel"
+                    )
+                    .textContent =
+                    "İşlem";
+
+
+                document
+                    .getElementById(
+                        "metaFileLabel"
+                    )
+                    .textContent =
+                    "Dosya";
+
+
+                document
+                    .getElementById(
+                        "descriptionTitle"
+                    )
+                    .textContent =
+                    "Açıklama";
+
+
+                document
+                    .getElementById(
+                        "codeTitle"
+                    )
+                    .textContent =
+                    "Kaynak Kod";
+
+
+                document
+                    .getElementById(
+                        "usageTitle"
+                    )
+                    .textContent =
+                    "Kullanım";
+
+
+                document
+                    .getElementById(
+                        "copyBtn"
+                    )
+                    .textContent =
+                    "Kodu Kopyala";
+            }
+
+
+            /*
+               Kartları da yeniden çiziyoruz.
+               Böylece "View Code" / "Kodu Görüntüle"
+               de dile göre değişiyor.
+            */
+
+            renderCards();
+
+            applyFilters();
         }
 
 
@@ -2236,18 +3593,24 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
         ========================================================= */
 
         document
-            .getElementById("searchInput")
+            .getElementById(
+                "searchInput"
+            )
             .addEventListener(
                 "input",
                 () => {
+
                     currentPage = 1;
+
                     applyFilters();
                 }
             );
 
 
         document
-            .getElementById("categoryFilter")
+            .getElementById(
+                "categoryFilter"
+            )
             .addEventListener(
                 "change",
                 event => {
@@ -2255,16 +3618,23 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                     selectedCategory =
                         event.target.value;
 
+
                     document
-                        .querySelectorAll(".category")
-                        .forEach(button => {
+                        .querySelectorAll(
+                            ".category"
+                        )
+                        .forEach(
+                            button => {
 
-                            button.classList.toggle(
-                                "active",
-                                button.dataset.category ===
-                                selectedCategory
-                            );
-                        });
+                                button.classList.toggle(
+                                    "active",
+                                    button.dataset.category ===
+                                    selectedCategory
+                                );
+
+                            }
+                        );
+
 
                     currentPage = 1;
 
@@ -2274,7 +3644,9 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("operationFilter")
+            .getElementById(
+                "operationFilter"
+            )
             .addEventListener(
                 "change",
                 () => {
@@ -2287,7 +3659,9 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("sortFilter")
+            .getElementById(
+                "sortFilter"
+            )
             .addEventListener(
                 "change",
                 () => {
@@ -2300,31 +3674,60 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("clearBtn")
+            .getElementById(
+                "clearBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
 
-                    document.getElementById("searchInput")
+                    document
+                        .getElementById(
+                            "searchInput"
+                        )
                         .value = "";
 
-                    document.getElementById("categoryFilter")
-                        .value = "all";
-
-                    document.getElementById("operationFilter")
-                        .value = "all";
-
-                    document.getElementById("sortFilter")
-                        .value = "id";
-
-                    selectedCategory = "all";
-                    currentPage = 1;
 
                     document
-                        .querySelectorAll(".category")
-                        .forEach(button =>
-                            button.classList.remove("active")
+                        .getElementById(
+                            "categoryFilter"
+                        )
+                        .value = "all";
+
+
+                    document
+                        .getElementById(
+                            "operationFilter"
+                        )
+                        .value = "all";
+
+
+                    document
+                        .getElementById(
+                            "sortFilter"
+                        )
+                        .value = "id";
+
+
+                    selectedCategory =
+                        "all";
+
+
+                    currentPage = 1;
+
+
+                    document
+                        .querySelectorAll(
+                            ".category"
+                        )
+                        .forEach(
+                            button =>
+                                button.classList
+                                    .remove(
+                                        "active"
+                                    )
                         );
+
 
                     applyFilters();
                 }
@@ -2332,7 +3735,9 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("closeModal")
+            .getElementById(
+                "closeModal"
+            )
             .addEventListener(
                 "click",
                 closeModal
@@ -2340,7 +3745,9 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("copyBtn")
+            .getElementById(
+                "copyBtn"
+            )
             .addEventListener(
                 "click",
                 copyCurrentCode
@@ -2348,7 +3755,9 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
 
 
         document
-            .getElementById("detailModal")
+            .getElementById(
+                "detailModal"
+            )
             .addEventListener(
                 "click",
                 event => {
@@ -2357,6 +3766,7 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                         event.target.id ===
                         "detailModal"
                     ) {
+
                         closeModal();
                     }
                 }
@@ -2370,9 +3780,14 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
                 if (
                     event.key === "Escape" &&
                     document
-                        .getElementById("detailModal")
-                        .classList.contains("show")
+                        .getElementById(
+                            "detailModal"
+                        )
+                        .classList.contains(
+                            "show"
+                        )
                 ) {
+
                     closeModal();
                 }
 
@@ -2384,56 +3799,35 @@ gerekli importlar, mappings ve API isimleri kontrol edilmelidir.`;
            LANGUAGE BUTTON
         ========================================================= */
 
-        let english = false;
-
         document
-            .getElementById("langBtn")
+            .getElementById(
+                "langBtn"
+            )
             .addEventListener(
                 "click",
                 () => {
 
-                    english = !english;
+                    english =
+                        !english;
 
-                    document.getElementById("langBtn")
+
+                    /*
+                       Butonun üzerinde gösterilen dil:
+                       İngilizce modundaysa TR,
+                       Türkçe modundaysa EN.
+                    */
+
+                    document
+                        .getElementById(
+                            "langBtn"
+                        )
                         .textContent =
-                        english ? "EN" : "TR";
+                        english
+                            ? "TR"
+                            : "EN";
 
-                    if (english) {
 
-                        document.getElementById("searchInput")
-                            .placeholder =
-                            "Search code, category or description...";
-
-                        document.getElementById("clearBtn")
-                            .textContent =
-                            "Clear Filters";
-
-                        document.querySelector(".hero h1")
-                            .textContent =
-                            "LoliMod-İDEA Help Center";
-
-                        document.querySelector(".hero p")
-                            .textContent =
-                            "A comprehensive code library for Minecraft mod development. Quickly find Java, Fabric API, registries, items, blocks, entities, GUI, networking, world generation and more.";
-
-                    } else {
-
-                        document.getElementById("searchInput")
-                            .placeholder =
-                            "Kod, kategori veya açıklama ara...";
-
-                        document.getElementById("clearBtn")
-                            .textContent =
-                            "Filtreleri Temizle";
-
-                        document.querySelector(".hero h1")
-                            .textContent =
-                            "LoliMod-İDEA Help Center";
-
-                        document.querySelector(".hero p")
-                            .textContent =
-                            "Minecraft mod geliştirme için hazırlanmış kapsamlı kod kütüphanesi. Java, Fabric API, registries, itemler, bloklar, entityler, GUI, networking, world generation ve daha fazlasını hızlıca bul.";
-                    }
+                    updateLanguage();
                 }
             );
 

@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LoliMod Studio — Minecraft Modding IDE</title>
+    <title>LoliMod-İDEA — Minecraft Mod Development Studio</title>
 
-    <link rel="icon" type="image/x-icon" href="./icon.ico">
+    <link rel="icon" href="icon.ico">
 
-    <meta name="theme-color" content="#070910">
-    <meta name="description" content="LoliMod Studio — Minecraft mod geliştirme için modern ve güçlü IDE.">
+    <meta name="description" content="LoliMod-İDEA ile Minecraft Fabric modlarını daha kolay geliştirin.">
 
     <style>
         * {
@@ -19,30 +18,9 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg: #070910;
-            --bg2: #0b0e18;
-            --panel: rgba(18, 21, 34, 0.82);
-            --panel2: rgba(25, 29, 47, 0.8);
-
-            --purple: #8b5cf6;
-            --purple2: #6d3df5;
-            --blue: #4f8cff;
-            --cyan: #38bdf8;
-
-            --text: #f4f5ff;
-            --muted: #9ca3b8;
-
-            --border: rgba(255, 255, 255, 0.09);
-            --border2: rgba(139, 92, 246, 0.25);
-
-            --shadow:
-                0 25px 80px rgba(0, 0, 0, 0.45),
-                0 0 50px rgba(111, 65, 255, 0.08);
-        }
-
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
@@ -56,18 +34,15 @@
                 sans-serif;
 
             background:
-                radial-gradient(circle at 15% 10%,
-                    rgba(104, 70, 255, 0.16),
-                    transparent 32%),
-                radial-gradient(circle at 85% 20%,
-                    rgba(49, 125, 255, 0.13),
+                radial-gradient(circle at 20% 10%,
+                    rgba(124, 92, 255, .14),
                     transparent 30%),
-                radial-gradient(circle at 50% 80%,
-                    rgba(141, 53, 255, 0.09),
-                    transparent 35%),
-                var(--bg);
+                radial-gradient(circle at 80% 20%,
+                    rgba(85, 167, 255, .10),
+                    transparent 28%),
+                #07090e;
 
-            color: var(--text);
+            color: #f4f5fb;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -76,22 +51,18 @@
             content: "";
             position: fixed;
             inset: 0;
-
+            pointer-events: none;
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.018) 1px,
+                linear-gradient(rgba(255, 255, 255, .018) 1px,
                     transparent 1px),
                 linear-gradient(90deg,
-                    rgba(255, 255, 255, 0.018) 1px,
+                    rgba(255, 255, 255, .018) 1px,
                     transparent 1px);
-
-            background-size: 55px 55px;
-            pointer-events: none;
+            background-size: 50px 50px;
+            mask-image: linear-gradient(to bottom,
+                    black,
+                    transparent 80%);
             z-index: -1;
-        }
-
-        ::selection {
-            background: rgba(139, 92, 246, 0.35);
-            color: white;
         }
 
         a {
@@ -103,6 +74,11 @@
             font-family: inherit;
         }
 
+        ::selection {
+            background: #7c5cff;
+            color: white;
+        }
+
         /* =========================
            NAVBAR
         ========================= */
@@ -112,7 +88,6 @@
             top: 0;
             left: 0;
             right: 0;
-
             height: 76px;
 
             display: flex;
@@ -121,104 +96,80 @@
 
             padding: 0 6%;
 
-            background: rgba(7, 9, 16, 0.72);
-            backdrop-filter: blur(20px);
+            background: rgba(7, 9, 14, .72);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
 
             z-index: 1000;
         }
 
-        .brand {
+        .logo-area {
             display: flex;
             align-items: center;
             gap: 12px;
-
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -.5px;
         }
 
-        .brand-logo {
+        .logo-area img {
             width: 40px;
             height: 40px;
-
             object-fit: contain;
-
-            filter:
-                drop-shadow(0 0 14px rgba(139, 92, 246, 0.45));
-
-            border-radius: 10px;
+            border-radius: 11px;
         }
 
-        .brand-text {
+        .logo-text {
             font-size: 18px;
         }
 
-        .brand-version {
-            font-size: 11px;
-            color: #aaaec2;
-
-            background: rgba(255, 255, 255, 0.06);
-
-            border: 1px solid var(--border);
-
-            padding: 4px 8px;
-            border-radius: 7px;
+        .logo-text span {
+            color: #8c6cff;
         }
 
-        .nav-right {
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 7px;
         }
 
-        .nav-link {
-            color: #b7bbcd;
-            font-size: 14px;
-            padding: 10px 13px;
-            border-radius: 9px;
-
-            transition: 0.2s;
-        }
-
-        .nav-link:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .lang-switch {
-            display: flex;
-            gap: 4px;
-
-            padding: 4px;
-
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.04);
-
+        .nav-links a {
+            padding: 10px 15px;
             border-radius: 10px;
+            color: #9fa5b7;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .2s ease;
         }
 
-        .lang-btn {
-            border: 0;
-            background: transparent;
-
-            color: #8f94aa;
-
-            padding: 6px 9px;
-
-            border-radius: 7px;
-
-            cursor: pointer;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            transition: 0.2s;
-        }
-
-        .lang-btn.active {
-            background: rgba(139, 92, 246, 0.2);
+        .nav-links a:hover {
             color: white;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .nav-links .nav-help {
+            color: #c8bcff;
+            background: rgba(124, 92, 255, .10);
+            border: 1px solid rgba(124, 92, 255, .16);
+        }
+
+        .nav-download {
+            background:
+                linear-gradient(135deg,
+                    #7358ff,
+                    #9b67ff) !important;
+
+            color: white !important;
+
+            box-shadow:
+                0 7px 25px rgba(124, 92, 255, .25);
+        }
+
+        .nav-download:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 10px 35px rgba(124, 92, 255, .35);
         }
 
         /* =========================
@@ -226,493 +177,223 @@
         ========================= */
 
         .hero {
-            min-height: 900px;
+            min-height: 850px;
+            padding: 160px 6% 100px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            padding:
-                130px 20px 80px;
-
             position: relative;
+        }
+
+        .hero-inner {
+            width: min(1180px, 100%);
             text-align: center;
         }
 
-        .hero-glow {
-            position: absolute;
-
-            width: 600px;
-            height: 600px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(circle,
-                    rgba(112, 70, 255, 0.14),
-                    transparent 65%);
-
-            filter: blur(20px);
-
-            pointer-events: none;
-        }
-
-        /*
-            HERO İÇERİĞİ TAM ORTALI
-        */
-
-        .hero-content {
-            width: 100%;
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-            display: flex;
-            flex-direction: column;
-
+        .version-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
 
-            text-align: center;
+            padding: 8px 13px;
 
-            position: relative;
-            z-index: 2;
-        }
-
-        /*
-            ANA LOGO
-        */
-
-        .hero-logo {
-            width: 105px;
-            height: 105px;
-
-            object-fit: contain;
-
-            display: block;
-
-            margin:
-                0 auto 30px;
-
-            filter:
-                drop-shadow(0 0 30px rgba(139, 92, 246, 0.4));
-
-            animation:
-                logoFloat 5s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-9px);
-            }
-        }
-
-        /*
-            BADGE
-        */
-
-        .badge {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            width: fit-content;
-
-            margin:
-                0 auto 25px;
-
-            padding:
-                8px 14px;
+            border: 1px solid rgba(124, 92, 255, .25);
+            background: rgba(124, 92, 255, .08);
 
             border-radius: 999px;
 
-            border:
-                1px solid rgba(139, 92, 246, 0.28);
-
-            background:
-                rgba(139, 92, 246, 0.09);
-
-            color: #c9b9ff;
-
+            color: #c8bcff;
             font-size: 13px;
             font-weight: 700;
 
-            white-space: nowrap;
+            margin-bottom: 28px;
         }
 
-        .badge-dot {
+        .version-dot {
             width: 7px;
             height: 7px;
-
-            flex-shrink: 0;
-
             border-radius: 50%;
-
-            background: #8b5cf6;
-
-            box-shadow:
-                0 0 12px #8b5cf6;
-
-            margin-right: 8px;
+            background: #8c6cff;
+            box-shadow: 0 0 12px #8c6cff;
         }
 
-        /*
-            BAŞLIK
-        */
-
         .hero h1 {
-            width: 100%;
-
-            text-align: center;
+            max-width: 950px;
+            margin: auto;
 
             font-size:
-                clamp(48px, 7vw, 86px);
+                clamp(48px, 8vw, 92px);
 
-            line-height: 0.98;
-
-            letter-spacing: -4px;
-
-            margin:
-                0 auto 28px;
-
+            line-height: .98;
+            letter-spacing: -5px;
             font-weight: 900;
         }
 
         .gradient-text {
             background:
-                linear-gradient(90deg,
+                linear-gradient(110deg,
                     #ffffff,
-                    #b9a1ff 45%,
-                    #6ca9ff);
+                    #a990ff 45%,
+                    #66b8ff);
 
             -webkit-background-clip: text;
             background-clip: text;
-
             color: transparent;
         }
 
-        /*
-            AÇIKLAMA
-        */
-
         .hero-description {
-            width: 100%;
             max-width: 720px;
+            margin: 30px auto 0;
 
-            margin:
-                0 auto;
-
-            color: #a4a9bc;
-
+            color: #9ba2b4;
             font-size: 18px;
-            line-height: 1.75;
-
-            text-align: center;
+            line-height: 1.7;
         }
 
-        /*
-            BUTONLAR
-        */
-
         .hero-buttons {
-            width: 100%;
+            margin-top: 38px;
 
             display: flex;
-
             justify-content: center;
-            align-items: center;
-
-            gap: 14px;
-
-            margin-top: 36px;
-
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .btn {
+        .primary-btn,
+        .secondary-btn {
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
             gap: 9px;
 
-            border:
-                1px solid transparent;
+            min-height: 50px;
+            padding: 0 22px;
 
-            padding:
-                14px 21px;
-
-            border-radius: 12px;
+            border-radius: 13px;
 
             font-size: 14px;
             font-weight: 800;
 
+            transition: .2s ease;
             cursor: pointer;
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s,
-                border-color 0.2s,
-                background 0.2s;
         }
 
-        .btn:hover {
+        .primary-btn {
+            color: white;
+
+            background:
+                linear-gradient(135deg,
+                    #7054ff,
+                    #a064ff);
+
+            border: 1px solid rgba(255, 255, 255, .12);
+
+            box-shadow:
+                0 15px 45px rgba(124, 92, 255, .22);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 20px 55px rgba(124, 92, 255, .35);
+        }
+
+        .secondary-btn {
+            color: #d7d9e3;
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, .07);
             transform: translateY(-2px);
         }
 
-        .btn-primary {
-            background:
-                linear-gradient(135deg,
-                    #8b5cf6,
-                    #5d82ff);
-
-            color: white;
-
-            box-shadow:
-                0 12px 35px rgba(105, 76, 255, 0.25);
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 65px;
+            flex-wrap: wrap;
         }
 
-        .btn-primary:hover {
-            box-shadow:
-                0 18px 45px rgba(105, 76, 255, 0.4);
+        .stat strong {
+            display: block;
+            font-size: 26px;
+            font-weight: 900;
         }
 
-        .btn-secondary {
-            background:
-                rgba(255, 255, 255, 0.045);
-
-            border-color:
-                var(--border);
-
-            color: #e7e9f4;
-        }
-
-        .btn-secondary:hover {
-            background:
-                rgba(255, 255, 255, 0.075);
-
-            border-color:
-                rgba(255, 255, 255, 0.15);
-        }
-
-        .btn-premium {
-            background:
-                linear-gradient(135deg,
-                    rgba(139, 92, 246, 0.18),
-                    rgba(79, 140, 255, 0.13));
-
-            border-color:
-                rgba(139, 92, 246, 0.35);
-
-            color: #ddd3ff;
+        .stat span {
+            display: block;
+            margin-top: 5px;
+            color: #747b8f;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         /* =========================
            PREVIEW
         ========================= */
 
-        .preview-section {
-            width: 100%;
-
-            padding:
-                60px 20px 130px;
-
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-        }
-
-        .preview-container {
-            width: 100%;
-            max-width: 1250px;
-
-            margin:
-                0 auto;
-
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            position: relative;
-        }
-
-        .preview-container::before {
-            content: "";
-
-            position: absolute;
-
-            left: 10%;
-            right: 10%;
-            bottom: -70px;
-
-            height: 180px;
-
-            background:
-                radial-gradient(ellipse,
-                    rgba(103, 69, 255, 0.22),
-                    transparent 70%);
-
-            filter: blur(20px);
-
-            z-index: -1;
-        }
-
-        .preview-window {
-            width: 100%;
-            max-width: 1250px;
-
-            margin:
-                0 auto;
-
-            border-radius: 18px;
-
-            overflow: hidden;
-
-            border:
-                1px solid rgba(255, 255, 255, 0.12);
-
-            background:
-                linear-gradient(145deg,
-                    rgba(25, 28, 44, 0.95),
-                    rgba(10, 12, 21, 0.95));
-
-            box-shadow:
-                0 50px 120px rgba(0, 0, 0, 0.6),
-                0 0 80px rgba(102, 74, 255, 0.13);
-
-            transform:
-                perspective(1500px) rotateX(2deg);
-
-            transition:
-                transform 0.5s;
-        }
-
-        .preview-window:hover {
-            transform:
-                perspective(1500px) rotateX(0deg) translateY(-4px);
-        }
-
-        .window-top {
-            height: 48px;
-
-            display: flex;
-
-            align-items: center;
-
-            padding:
-                0 17px;
-
-            border-bottom:
-                1px solid rgba(255, 255, 255, 0.07);
-
-            background:
-                rgba(255, 255, 255, 0.025);
-        }
-
-        .window-dots {
-            display: flex;
-
-            gap: 7px;
-        }
-
-        .window-dot {
-            width: 10px;
-            height: 10px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255, 255, 255, 0.18);
-        }
-
-        .window-title {
-            margin:
-                0 auto;
-
-            color: #8f94a8;
-
-            font-size: 12px;
-        }
-
-        .preview-image {
-            display: block;
-
-            width: 100%;
-
-            height: auto;
-
-            max-height: 720px;
-
-            object-fit: cover;
-
-            margin:
-                0 auto;
-        }
-
-        /* =========================
-           SECTIONS
-        ========================= */
-
         .section {
-            width: 100%;
-            max-width: 1200px;
-
-            margin:
-                0 auto;
-
-            padding:
-                100px 20px;
+            width: min(1180px, 88%);
+            margin: 0 auto;
+            padding: 110px 0;
         }
 
         .section-heading {
-            width: 100%;
-
             text-align: center;
-
-            max-width: 720px;
-
-            margin:
-                0 auto 55px;
+            margin-bottom: 55px;
         }
 
-        .section-heading span {
-            color: #9d83ff;
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-
+        .section-label {
+            color: #947cff;
+            font-size: 12px;
             letter-spacing: 2px;
+            font-weight: 900;
         }
 
         .section-heading h2 {
-            font-size:
-                clamp(32px, 5vw, 52px);
-
+            margin-top: 13px;
+            font-size: clamp(32px, 5vw, 52px);
             letter-spacing: -2px;
-
-            margin:
-                12px 0 16px;
         }
 
         .section-heading p {
-            color: #9298ad;
-
+            max-width: 650px;
+            margin: 16px auto 0;
+            color: #858c9f;
             line-height: 1.7;
+        }
 
-            font-size: 16px;
+        .preview-card {
+            position: relative;
+
+            border-radius: 22px;
+
+            padding: 10px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(124, 92, 255, .30),
+                    rgba(85, 167, 255, .12));
+
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, .45);
+        }
+
+        .preview-inner {
+            overflow: hidden;
+            border-radius: 16px;
+            background: #0c1018;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .preview-inner img {
+            width: 100%;
+            display: block;
         }
 
         /* =========================
@@ -721,359 +402,310 @@
 
         .features-grid {
             display: grid;
-
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(3, minmax(0, 1fr));
 
             gap: 16px;
         }
 
         .feature-card {
-            position: relative;
-
             padding: 27px;
 
-            min-height: 225px;
+            min-height: 210px;
 
-            border-radius: 17px;
+            border-radius: 18px;
 
             background:
                 linear-gradient(145deg,
-                    rgba(23, 27, 43, 0.78),
-                    rgba(12, 15, 25, 0.78));
+                    rgba(255, 255, 255, .045),
+                    rgba(255, 255, 255, .018));
 
-            border:
-                1px solid var(--border);
+            border: 1px solid rgba(255, 255, 255, .07);
 
-            box-shadow:
-                var(--shadow);
-
-            overflow: hidden;
-
-            transition:
-                transform 0.25s,
-                border-color 0.25s;
-        }
-
-        .feature-card::after {
-            content: "";
-
-            position: absolute;
-
-            width: 150px;
-            height: 150px;
-
-            right: -70px;
-            bottom: -80px;
-
-            background:
-                radial-gradient(circle,
-                    rgba(139, 92, 246, 0.18),
-                    transparent 70%);
+            transition: .25s ease;
         }
 
         .feature-card:hover {
-            transform:
-                translateY(-6px);
-
-            border-color:
-                rgba(139, 92, 246, 0.28);
+            transform: translateY(-5px);
+            border-color: rgba(124, 92, 255, .35);
+            background:
+                linear-gradient(145deg,
+                    rgba(124, 92, 255, .10),
+                    rgba(255, 255, 255, .025));
         }
 
         .feature-icon {
-            width: 48px;
-            height: 48px;
+            width: 45px;
+            height: 45px;
 
             display: grid;
-
             place-items: center;
 
             border-radius: 13px;
 
-            background:
-                linear-gradient(135deg,
-                    rgba(139, 92, 246, 0.2),
-                    rgba(79, 140, 255, 0.13));
+            background: rgba(124, 92, 255, .12);
+            border: 1px solid rgba(124, 92, 255, .18);
 
-            border:
-                1px solid rgba(139, 92, 246, 0.2);
-
-            font-size: 22px;
+            font-size: 21px;
 
             margin-bottom: 20px;
         }
 
         .feature-card h3 {
-            font-size: 18px;
-
+            font-size: 17px;
             margin-bottom: 9px;
         }
 
         .feature-card p {
-            color: #8f95aa;
-
-            line-height: 1.65;
-
+            color: #858c9f;
             font-size: 14px;
+            line-height: 1.65;
         }
 
         /* =========================
-           VERSION
+           HELP
         ========================= */
 
-        .version-card {
-            display: grid;
-
-            grid-template-columns:
-                auto 1fr auto;
-
-            align-items: center;
-
-            gap: 28px;
-
-            padding: 30px;
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(120deg,
-                    rgba(28, 31, 50, 0.85),
-                    rgba(14, 17, 28, 0.85));
-
-            border:
-                1px solid var(--border);
-
-            box-shadow:
-                var(--shadow);
+        #help {
+            position: relative;
         }
 
-        .version-logo {
-            width: 74px;
-            height: 74px;
+        .help-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
 
-            object-fit: contain;
+        .help-title h2 {
+            font-size: clamp(32px, 5vw, 54px);
+            letter-spacing: -2px;
+        }
+
+        .help-title p {
+            margin-top: 10px;
+            color: #858c9f;
+            line-height: 1.7;
+        }
+
+        .help-search {
+            width: 330px;
+            max-width: 100%;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 15px;
+
+            height: 49px;
+
+            border-radius: 13px;
+
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .09);
+        }
+
+        .help-search span {
+            color: #747b8f;
+        }
+
+        .help-search input {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: white;
+            font-size: 14px;
+        }
+
+        .help-search input::placeholder {
+            color: #62697a;
+        }
+
+        .help-categories {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .category-btn {
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .035);
+            color: #8f96a8;
+
+            padding: 9px 13px;
+            border-radius: 9px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            color: white;
+            background: rgba(124, 92, 255, .16);
+            border-color: rgba(124, 92, 255, .35);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .help-card {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 235px;
+
+            padding: 21px;
 
             border-radius: 16px;
 
-            filter:
-                drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .045),
+                    rgba(255, 255, 255, .015));
+
+            border: 1px solid rgba(255, 255, 255, .07);
+
+            cursor: pointer;
+
+            transition: .2s ease;
         }
 
-        .version-info h3 {
-            font-size: 24px;
-
-            margin-bottom: 6px;
+        .help-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 92, 255, .35);
         }
 
-        .version-info p {
-            color: #8e94a8;
+        .help-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
 
-            font-size: 14px;
+        .code-type {
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
 
+            color: #a58fff;
+
+            padding: 6px 8px;
+            border-radius: 7px;
+
+            background: rgba(124, 92, 255, .10);
+        }
+
+        .help-category {
+            color: #697084;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .help-card h3 {
+            margin-top: 18px;
+            font-size: 16px;
+        }
+
+        .help-card p {
+            margin-top: 9px;
+
+            color: #858c9f;
+            font-size: 13px;
             line-height: 1.6;
         }
 
-        .version-tag {
-            display: inline-block;
+        .path-preview {
+            margin-top: auto;
 
-            margin-top: 10px;
+            padding: 9px 10px;
 
-            font-size: 11px;
+            border-radius: 8px;
 
-            color: #c5b9ff;
+            background: rgba(0, 0, 0, .25);
+            border: 1px solid rgba(255, 255, 255, .05);
 
-            padding: 5px 9px;
+            color: #737b8f;
 
-            border-radius: 7px;
+            font-family: Consolas, monospace;
+            font-size: 10px;
 
-            background:
-                rgba(139, 92, 246, 0.11);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-            border:
-                1px solid rgba(139, 92, 246, 0.2);
+        .help-empty {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            color: #747b8f;
         }
 
         /* =========================
            DOWNLOAD
         ========================= */
 
-        .download-area {
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 18px;
-        }
-
-        .download-card {
-            padding: 35px;
-
-            border-radius: 20px;
-
-            border:
-                1px solid var(--border);
-
-            background:
-                linear-gradient(145deg,
-                    rgba(22, 25, 40, 0.9),
-                    rgba(10, 13, 22, 0.9));
-
+        .download-box {
             position: relative;
-
             overflow: hidden;
-        }
 
-        .download-card.premium {
-            border-color:
-                rgba(139, 92, 246, 0.3);
+            padding: 70px 40px;
 
-            background:
-                linear-gradient(145deg,
-                    rgba(46, 32, 79, 0.4),
-                    rgba(13, 16, 28, 0.95));
-        }
+            text-align: center;
 
-        .download-card.premium::before {
-            content: "PREMIUM";
-
-            position: absolute;
-
-            top: 20px;
-            right: -32px;
-
-            transform:
-                rotate(45deg);
-
-            padding:
-                6px 40px;
-
-            font-size: 9px;
-
-            font-weight: 900;
-
-            letter-spacing: 1px;
+            border-radius: 25px;
 
             background:
-                linear-gradient(90deg,
-                    #7c3aed,
-                    #4f8cff);
+                radial-gradient(circle at 50% 0%,
+                    rgba(124, 92, 255, .22),
+                    transparent 50%),
+                rgba(255, 255, 255, .025);
 
-            color: white;
+            border: 1px solid rgba(124, 92, 255, .18);
         }
 
-        .download-icon {
-            width: 55px;
-            height: 55px;
-
-            object-fit: contain;
-
-            margin-bottom: 20px;
-
-            border-radius: 13px;
+        .download-box h2 {
+            font-size: clamp(34px, 5vw, 55px);
+            letter-spacing: -2px;
         }
 
-        .download-card h3 {
-            font-size: 24px;
-
-            margin-bottom: 10px;
-        }
-
-        .download-card p {
-            color: #9096aa;
-
-            line-height: 1.65;
-
-            font-size: 14px;
-
-            margin-bottom: 25px;
+        .download-box p {
+            max-width: 650px;
+            margin: 15px auto 30px;
+            color: #858c9f;
+            line-height: 1.7;
         }
 
         .download-meta {
             display: flex;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 23px;
-        }
-
-        .meta {
-            padding:
-                6px 9px;
-
-            font-size: 11px;
-
-            color: #999fb2;
-
-            background:
-                rgba(255, 255, 255, 0.045);
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 7px;
-        }
-
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
-            text-align: center;
-
-            margin:
-                40px 20px 100px;
-
-            padding:
-                75px 25px;
-
-            border-radius: 25px;
-
-            border:
-                1px solid rgba(139, 92, 246, 0.22);
-
-            background:
-                radial-gradient(circle at 50% 0%,
-                    rgba(139, 92, 246, 0.17),
-                    transparent 55%),
-                rgba(17, 20, 32, 0.72);
-
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.35);
-        }
-
-        .cta h2 {
-            font-size:
-                clamp(32px, 5vw, 55px);
-
-            letter-spacing: -2px;
-
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: #9298ad;
-
-            max-width: 620px;
-
-            margin:
-                0 auto;
-
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-
             justify-content: center;
-
-            gap: 12px;
-
-            margin-top: 28px;
-
+            gap: 10px;
             flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .download-meta span {
+            padding: 7px 10px;
+            border-radius: 8px;
+
+            background: rgba(255, 255, 255, .035);
+            border: 1px solid rgba(255, 255, 255, .06);
+
+            color: #747b8f;
+            font-size: 11px;
         }
 
         /* =========================
@@ -1081,157 +713,306 @@
         ========================= */
 
         footer {
-            border-top:
-                1px solid rgba(255, 255, 255, 0.06);
+            width: min(1180px, 88%);
+            margin: auto;
 
-            padding:
-                30px 6%;
+            padding: 35px 0 45px;
+
+            border-top: 1px solid rgba(255, 255, 255, .06);
 
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
 
             gap: 20px;
+        }
 
-            color: #70768a;
-
+        footer p {
+            color: #5f6678;
             font-size: 12px;
         }
 
-        .footer-brand {
+        .footer-links {
             display: flex;
-
-            align-items: center;
-
-            gap: 9px;
+            gap: 15px;
         }
 
-        .footer-logo {
-            width: 27px;
-            height: 27px;
+        .footer-links a {
+            color: #747b8f;
+            font-size: 12px;
+        }
 
-            object-fit: contain;
-
-            border-radius: 7px;
+        .footer-links a:hover {
+            color: white;
         }
 
         /* =========================
-           MODAL
+           CODE MODAL
         ========================= */
 
         .modal {
             position: fixed;
-
             inset: 0;
 
             display: none;
-
             align-items: center;
             justify-content: center;
 
             padding: 20px;
 
-            background:
-                rgba(0, 0, 0, 0.72);
+            background: rgba(0, 0, 0, .72);
+            backdrop-filter: blur(16px);
 
-            backdrop-filter:
-                blur(14px);
-
-            z-index: 3000;
+            z-index: 5000;
         }
 
         .modal.show {
             display: flex;
-
-            animation:
-                modalFade 0.2s ease;
         }
 
-        @keyframes modalFade {
-            from {
-                opacity: 0;
-            }
+        .code-modal {
+            width: min(1050px, 100%);
+            max-height: 90vh;
 
-            to {
-                opacity: 1;
-            }
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #0c1018;
+            border: 1px solid rgba(255, 255, 255, .10);
+
+            box-shadow:
+                0 50px 150px rgba(0, 0, 0, .65);
         }
 
-        .modal-box {
-            width:
-                min(470px, 100%);
+        .modal-header {
+            padding: 20px 22px;
 
-            padding: 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .modal-title-area h2 {
+            font-size: 20px;
+        }
+
+        .modal-title-area p {
+            color: #747b8f;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .close-modal {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            color: #9da4b6;
+
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .close-modal:hover {
+            color: white;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .modal-body {
+            overflow: auto;
+            padding: 22px;
+        }
+
+        .file-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            padding: 14px;
+
+            border-radius: 11px;
+
+            background: rgba(255, 255, 255, .025);
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .info-box small {
+            display: block;
+            color: #666e80;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .info-box code {
+            color: #b8c0d2;
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+
+        .action-new {
+            color: #73d99c !important;
+        }
+
+        .action-edit {
+            color: #71b7ff !important;
+        }
+
+        .code-wrapper {
+            position: relative;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, .07);
+            background: #080b11;
+        }
+
+        .code-toolbar {
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 12px;
+
+            background: rgba(255, 255, 255, .025);
+
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #303747;
+        }
+
+        .copy-code {
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .04);
+            color: #aeb5c7;
+
+            padding: 6px 10px;
+            border-radius: 7px;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .copy-code:hover {
+            color: white;
+            background: rgba(124, 92, 255, .15);
+        }
+
+        pre {
+            margin: 0;
+            padding: 20px;
+
+            max-height: 480px;
+            overflow: auto;
+
+            color: #d5d9e4;
+
+            font-family:
+                Consolas,
+                "Cascadia Code",
+                monospace;
+
+            font-size: 12px;
+            line-height: 1.65;
+
+            tab-size: 4;
+        }
+
+        .modal-note {
+            margin-top: 15px;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            background: rgba(124, 92, 255, .055);
+            border: 1px solid rgba(124, 92, 255, .12);
+
+            color: #898fa2;
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PREMIUM MODAL
+        ========================= */
+
+        .premium-modal-content {
+            width: min(500px, 100%);
+            padding: 40px;
+
+            border-radius: 22px;
 
             text-align: center;
 
-            border-radius: 24px;
-
-            border:
-                1px solid rgba(139, 92, 246, 0.25);
-
             background:
-                linear-gradient(145deg,
-                    rgba(28, 31, 49, 0.98),
-                    rgba(11, 14, 23, 0.98));
+                radial-gradient(circle at top,
+                    rgba(124, 92, 255, .18),
+                    transparent 55%),
+                #0c1018;
 
-            box-shadow:
-                0 40px 120px rgba(0, 0, 0, 0.65);
-
-            animation:
-                modalPop 0.25s ease;
+            border: 1px solid rgba(124, 92, 255, .20);
         }
 
-        @keyframes modalPop {
-            from {
-                opacity: 0;
+        .premium-icon {
+            width: 70px;
+            height: 70px;
 
-                transform:
-                    scale(0.94) translateY(10px);
-            }
+            display: grid;
+            place-items: center;
 
-            to {
-                opacity: 1;
+            margin: 0 auto 20px;
 
-                transform:
-                    scale(1) translateY(0);
-            }
+            border-radius: 20px;
+
+            background: rgba(124, 92, 255, .12);
+            border: 1px solid rgba(124, 92, 255, .2);
+
+            font-size: 32px;
         }
 
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-
-            object-fit: contain;
-
-            border-radius: 18px;
-
-            margin-bottom: 20px;
-
-            filter:
-                drop-shadow(0 0 25px rgba(139, 92, 246, 0.4));
+        .premium-modal-content h2 {
+            font-size: 28px;
         }
 
-        .modal-box h2 {
-            font-size: 29px;
-
-            margin-bottom: 12px;
-        }
-
-        .modal-box p {
-            color: #9298ad;
-
+        .premium-modal-content p {
+            margin: 12px 0 25px;
+            color: #838a9c;
             line-height: 1.7;
-
             font-size: 14px;
-
-            margin-bottom: 25px;
-        }
-
-        .modal-close {
-            width: 100%;
         }
 
         /* =========================
@@ -1240,133 +1021,81 @@
 
         .reveal {
             opacity: 0;
-
-            transform:
-                translateY(25px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease;
+            transform: translateY(20px);
+            transition: .7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
-
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
         /* =========================
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 950px) {
 
-            .navbar {
-                padding:
-                    0 20px;
+            .features-grid,
+            .help-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .nav-link {
+            .help-top {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .help-search {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .nav-links a:not(.nav-download) {
                 display: none;
             }
 
             .hero {
-                min-height: 780px;
-
-                padding-left: 20px;
-                padding-right: 20px;
+                padding-top: 130px;
             }
 
             .hero h1 {
-                letter-spacing:
-                    -2px;
-            }
-
-            .features-grid {
-                grid-template-columns:
-                    1fr;
-            }
-
-            .download-area {
-                grid-template-columns:
-                    1fr;
-            }
-
-            .version-card {
-                grid-template-columns:
-                    1fr;
-
-                text-align: center;
-            }
-
-            .version-logo {
-                margin:
-                    0 auto;
-            }
-
-            .version-card .btn {
-                width: 100%;
-            }
-
-            .preview-section {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-
-            .section {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            footer {
-                flex-direction: column;
-
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .brand-version {
-                display: none;
-            }
-
-            .brand-text {
-                font-size: 15px;
-            }
-
-            .brand-logo {
-                width: 34px;
-                height: 34px;
-            }
-
-            .hero-logo {
-                width: 82px;
-                height: 82px;
+                letter-spacing: -3px;
             }
 
             .hero-description {
                 font-size: 15px;
             }
 
-            .hero-buttons {
+            .hero-stats {
+                gap: 28px;
+            }
+
+            .features-grid,
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                width: 90%;
+            }
+
+            .file-info {
+                grid-template-columns: 1fr;
+            }
+
+            .download-box {
+                padding: 50px 22px;
+            }
+
+            footer {
                 flex-direction: column;
-
-                width: 100%;
-            }
-
-            .hero-buttons .btn {
-                width: 100%;
-            }
-
-            .badge {
-                font-size: 11px;
-            }
-
-            .modal-box {
-                padding:
-                    27px 21px;
+                text-align: center;
             }
         }
     </style>
@@ -1375,591 +1104,546 @@
 <body>
 
     <!-- =========================
-         NAVBAR
-    ========================= -->
+     NAVBAR
+========================= -->
 
-    <nav class="navbar">
+    <header class="navbar">
 
-        <a href="#" class="brand">
+        <a href="#" class="logo-area">
 
-            <img src="./45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" class="brand-logo" alt="LoliMod Studio">
+            <img src="icon.ico" alt="LoliMod">
 
-            <span class="brand-text">
-                LoliMod Studio
-            </span>
-
-            <span class="brand-version">
-                v1.0
-            </span>
+            <div class="logo-text">
+                LoliMod<span>-İDEA</span>
+            </div>
 
         </a>
 
-        <div class="nav-right">
+        <nav class="nav-links">
 
-            <a href="#features" class="nav-link" data-tr="Özellikler" data-en="Features">
-                Özellikler
+            <a href="#preview">
+                Preview
             </a>
 
-            <a href="#download" class="nav-link" data-tr="İndir" data-en="Download">
-                İndir
+            <a href="#features">
+                Features
             </a>
 
-            <div class="lang-switch">
+            <!-- HELP -> #help -->
+            <a href="#help" class="nav-help">
+                Help
+            </a>
 
-                <button class="lang-btn active" id="trBtn" onclick="setLanguage('tr')">
-                    TR
-                </button>
+            <!-- DOWNLOAD -> #download -->
+            <a href="#download" class="nav-download">
+                Download
+            </a>
 
-                <button class="lang-btn" id="enBtn" onclick="setLanguage('en')">
-                    EN
-                </button>
+        </nav>
 
-            </div>
-
-        </div>
-
-    </nav>
+    </header>
 
 
     <!-- =========================
-         HERO
-    ========================= -->
+     HERO
+========================= -->
 
-    <section class="hero">
+    <main>
 
-        <div class="hero-glow"></div>
+        <section class="hero">
 
-        <div class="hero-content">
+            <div class="hero-inner reveal">
 
-            <!-- ANA LOGO -->
-            <img src="./45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" class="hero-logo" alt="LoliMod Studio Logo">
+                <div class="version-badge">
+                    <span class="version-dot"></span>
+                    LoliMod-İDEA v1.0.0
+                </div>
 
-            <!-- BADGE -->
-            <div class="badge">
-
-                <span class="badge-dot"></span>
-
-                <span data-tr="Minecraft Mod Geliştirme IDE" data-en="Minecraft Mod Development IDE">
-                    Minecraft Mod Geliştirme IDE
-                </span>
-
-            </div>
-
-            <!-- ANA BAŞLIK -->
-            <h1>
-
-                <span class="gradient-text" data-tr="Minecraft Modlarını" data-en="Build Minecraft Mods">
+                <h1>
                     Minecraft Modlarını
-                </span>
-
-                <br>
-
-                <span data-tr="Daha Kolay Geliştir." data-en="With Less Effort.">
-                    Daha Kolay Geliştir.
-                </span>
-
-            </h1>
-
-            <!-- AÇIKLAMA -->
-            <p class="hero-description"
-                data-tr="LoliMod Studio, Minecraft mod geliştirmeyi kolaylaştırmak için tasarlanmış modern, hızlı ve kullanımı kolay bir geliştirme ortamıdır."
-                data-en="LoliMod Studio is a modern, fast and easy-to-use development environment designed to make Minecraft mod development easier.">
-                LoliMod Studio, Minecraft mod geliştirmeyi
-                kolaylaştırmak için tasarlanmış modern,
-                hızlı ve kullanımı kolay bir geliştirme ortamıdır.
-            </p>
-
-            <!-- BUTONLAR -->
-            <div class="hero-buttons">
-
-                <a href="#download" class="btn btn-primary">
-                    ↓
-
-                    <span data-tr="Windows için İndir" data-en="Download for Windows">
-                        Windows için İndir
+                    <span class="gradient-text">
+                        Daha Kolay Geliştir.
                     </span>
+                </h1>
 
-                </a>
+                <p class="hero-description">
+                    Fabric mod geliştirme sürecini daha kolay,
+                    daha hızlı ve daha profesyonel hale getiren
+                    modern bir geliştirme stüdyosu.
+                </p>
 
-                <button class="btn btn-premium" onclick="openPremium()">
-                    ♛
+                <div class="hero-buttons">
 
-                    <span data-tr="Windows için Premium Al" data-en="Get Premium for Windows">
-                        Windows için Premium Al
-                    </span>
+                    <!-- DOWNLOAD -> #download -->
+                    <a href="#download" class="primary-btn">
+                        ↓ Windows için İndir
+                    </a>
 
+                    <!-- HELP -> #help -->
+                    <a href="#help" class="secondary-btn">
+                        ? Yardım Merkezi
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="stat">
+                        <strong>Fabric</strong>
+                        <span>MOD DEVELOPMENT</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>100+</strong>
+                        <span>CODE EXAMPLES</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>IDE</strong>
+                        <span>WORKFLOW</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     PREVIEW
+========================= -->
+
+        <section class="section" id="preview">
+
+            <div class="section-heading reveal">
+
+                <div class="section-label">
+                    PREVIEW
+                </div>
+
+                <h2>
+                    Geliştirme ortamını keşfet.
+                </h2>
+
+                <p>
+                    Proje dosyalarını, kodlarını ve geliştirme araçlarını
+                    tek bir modern arayüz üzerinden yönet.
+                </p>
+
+            </div>
+
+            <div class="preview-card reveal">
+
+                <div class="preview-inner">
+
+                    <img src="lolimod-studio-preview.png" alt="LoliMod-İDEA Preview">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     FEATURES
+========================= -->
+
+        <section class="section" id="features">
+
+            <div class="section-heading reveal">
+
+                <div class="section-label">
+                    FEATURES
+                </div>
+
+                <h2>
+                    Mod geliştirme için gerekenler.
+                </h2>
+
+                <p>
+                    Tek bir yerde proje yönetimi, kod yardımı,
+                    Fabric dosyaları ve geliştirme araçları.
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Hızlı Geliştirme
+                    </h3>
+
+                    <p>
+                        Hazır kod örnekleri ve proje araçları
+                        sayesinde mod geliştirme sürecini hızlandır.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        🧩
+                    </div>
+
+                    <h3>
+                        Fabric Desteği
+                    </h3>
+
+                    <p>
+                        Fabric modlarının temel Java ve resource
+                        dosyalarını daha kolay yönet.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        Kod Kütüphanesi
+                    </h3>
+
+                    <p>
+                        Item, block, command, event, client,
+                        JSON ve daha birçok örneğe ulaş.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        🗂️
+                    </div>
+
+                    <h3>
+                        Dosya Yolları
+                    </h3>
+
+                    <p>
+                        Her örneğin hangi klasöre ve hangi dosyaya
+                        yazılacağını doğrudan görebil.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        🛠️
+                    </div>
+
+                    <h3>
+                        Build & Run
+                    </h3>
+
+                    <p>
+                        Gradle build ve runClient süreçlerini
+                        daha kolay yönet.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card reveal">
+
+                    <div class="feature-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        Modern Studio
+                    </h3>
+
+                    <p>
+                        Klasik editörlerden farklı olarak
+                        profesyonel bir geliştirme deneyimi.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     HELP
+========================= -->
+
+        <section class="section" id="help">
+
+            <div class="help-top reveal">
+
+                <div class="help-title">
+
+                    <div class="section-label">
+                        HELP CENTER
+                    </div>
+
+                    <h2>
+                        Fabric Code Library
+                    </h2>
+
+                    <p>
+                        Kodunu seç, dosya yolunu öğren ve doğrudan kopyala.
+                    </p>
+
+                </div>
+
+                <div class="help-search">
+
+                    <span>⌕</span>
+
+                    <input id="helpSearch" type="text" placeholder="Kod ara... örn. item, block, command">
+
+                </div>
+
+            </div>
+
+
+            <div class="help-categories reveal">
+
+                <button class="category-btn active" data-category="all">
+                    Tümü
                 </button>
 
-                <a href="#features" class="btn btn-secondary">
-                    ✦
+                <button class="category-btn" data-category="Başlangıç">
+                    Başlangıç
+                </button>
 
-                    <span data-tr="Özellikleri Gör" data-en="Explore Features">
-                        Özellikleri Gör
-                    </span>
+                <button class="category-btn" data-category="Item">
+                    Item
+                </button>
 
+                <button class="category-btn" data-category="Block">
+                    Block
+                </button>
+
+                <button class="category-btn" data-category="Event">
+                    Event
+                </button>
+
+                <button class="category-btn" data-category="Command">
+                    Command
+                </button>
+
+                <button class="category-btn" data-category="Client">
+                    Client
+                </button>
+
+                <button class="category-btn" data-category="Resource">
+                    Resource
+                </button>
+
+                <button class="category-btn" data-category="Gradle">
+                    Gradle
+                </button>
+
+                <button class="category-btn" data-category="İleri">
+                    İleri
+                </button>
+
+            </div>
+
+
+            <div id="helpGrid" class="help-grid reveal"></div>
+
+            <div id="helpEmpty" class="help-empty">
+                Aradığın kod bulunamadı.
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     DOWNLOAD
+========================= -->
+
+        <section class="section" id="download">
+
+            <div class="download-box reveal">
+
+                <div class="section-label">
+                    DOWNLOAD
+                </div>
+
+                <h2>
+                    LoliMod-İDEA'yı indir.
+                </h2>
+
+                <p>
+                    Windows bilgisayarında Minecraft mod geliştirmeye
+                    hemen başla.
+                </p>
+
+                <a href="lolimod-İDEA.exe" download class="primary-btn">
+                    ↓ Windows için İndir
                 </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PREVIEW IMAGE
-    ========================= -->
-
-    <section class="preview-section">
-
-        <div class="preview-container reveal">
-
-            <div class="preview-window">
-
-                <div class="window-top">
-
-                    <div class="window-dots">
-
-                        <span class="window-dot"></span>
-                        <span class="window-dot"></span>
-                        <span class="window-dot"></span>
-
-                    </div>
-
-                    <div class="window-title">
-                        LoliMod Studio
-                    </div>
-
-                </div>
-
-                <img src="./lolimod-studio-preview.png" class="preview-image" alt="LoliMod Studio Preview">
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FEATURES
-    ========================= -->
-
-    <section class="section" id="features">
-
-        <div class="section-heading reveal">
-
-            <span data-tr="GÜÇLÜ ARAÇLAR" data-en="POWERFUL TOOLS">
-                GÜÇLÜ ARAÇLAR
-            </span>
-
-            <h2 data-tr="Mod geliştirme artık daha kolay." data-en="Mod development, simplified.">
-                Mod geliştirme artık daha kolay.
-            </h2>
-
-            <p data-tr="İhtiyacın olan geliştirme araçlarını tek bir modern uygulamada bir araya getir."
-                data-en="Everything you need for Minecraft mod development in one modern application.">
-                İhtiyacın olan geliştirme araçlarını tek bir
-                modern uygulamada bir araya getir.
-            </p>
-
-        </div>
-
-
-        <div class="features-grid">
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ◈
-                </div>
-
-                <h3 data-tr="Modern Kod Editörü" data-en="Modern Code Editor">
-                    Modern Kod Editörü
-                </h3>
-
-                <p data-tr="Java dosyalarını düzenle, projelerini yönet ve kodunu modern bir geliştirme ortamında yaz."
-                    data-en="Edit Java files, manage projects and write code inside a modern development environment.">
-                    Java dosyalarını düzenle, projelerini yönet
-                    ve kodunu modern bir geliştirme ortamında yaz.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ⚙
-                </div>
-
-                <h3 data-tr="Kolay Proje Oluşturma" data-en="Easy Project Creation">
-                    Kolay Proje Oluşturma
-                </h3>
-
-                <p data-tr="Yeni Minecraft mod projelerini hızlı şekilde oluştur ve geliştirmeye hemen başla."
-                    data-en="Create new Minecraft mod projects quickly and start developing immediately.">
-                    Yeni Minecraft mod projelerini hızlı şekilde
-                    oluştur ve geliştirmeye hemen başla.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ▶
-                </div>
-
-                <h3 data-tr="Run Client" data-en="Run Client">
-                    Run Client
-                </h3>
-
-                <p data-tr="Projen üzerinde çalışırken Minecraft geliştirme istemcisini doğrudan uygulama içerisinden çalıştır."
-                    data-en="Launch the Minecraft development client directly from the application.">
-                    Projen üzerinde çalışırken Minecraft geliştirme
-                    istemcisini doğrudan uygulama içerisinden çalıştır.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ◉
-                </div>
-
-                <h3 data-tr="Build Sistemi" data-en="Build System">
-                    Build Sistemi
-                </h3>
-
-                <p data-tr="Gradle projelerini kolayca build ederek mod dosyalarını oluştur."
-                    data-en="Build your Gradle projects easily and generate your mod files.">
-                    Gradle projelerini kolayca build ederek
-                    mod dosyalarını oluştur.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ☁
-                </div>
-
-                <h3 data-tr="Proje Yönetimi" data-en="Project Management">
-                    Proje Yönetimi
-                </h3>
-
-                <p data-tr="Dosyalarını, Java sınıflarını ve proje yapını tek bir yerde düzenli şekilde yönet."
-                    data-en="Manage files, Java classes and your project structure in one organized workspace.">
-                    Dosyalarını, Java sınıflarını ve proje yapını
-                    tek bir yerde düzenli şekilde yönet.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card reveal">
-
-                <div class="feature-icon">
-                    ✨
-                </div>
-
-                <h3 data-tr="Premium Özellikler" data-en="Premium Features">
-                    Premium Özellikler
-                </h3>
-
-                <p data-tr="Premium sürüm gelecekte daha gelişmiş araçlar ve profesyonel özellikler sunacak."
-                    data-en="The Premium edition will bring more advanced tools and professional features in the future.">
-                    Premium sürüm gelecekte daha gelişmiş
-                    araçlar ve profesyonel özellikler sunacak.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         VERSION
-    ========================= -->
-
-    <section class="section">
-
-        <div class="section-heading reveal">
-
-            <span data-tr="SÜRÜM" data-en="VERSION">
-                SÜRÜM
-            </span>
-
-            <h2 data-tr="LoliMod Studio 1.0" data-en="LoliMod Studio 1.0">
-                LoliMod Studio 1.0
-            </h2>
-
-            <p data-tr="Minecraft mod geliştirme yolculuğunun başlangıç noktası."
-                data-en="The starting point for your Minecraft modding journey.">
-                Minecraft mod geliştirme yolculuğunun
-                başlangıç noktası.
-            </p>
-
-        </div>
-
-
-        <div class="version-card reveal">
-
-            <img src="./45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" class="version-logo" alt="LoliMod Studio">
-
-            <div class="version-info">
-
-                <h3>
-                    LoliMod Studio
-                </h3>
-
-                <p data-tr="Windows için ilk stabil sürüm." data-en="The first stable release for Windows.">
-                    Windows için ilk stabil sürüm.
-                </p>
-
-                <span class="version-tag">
-                    Windows 10 / 11
-                </span>
-
-                <span class="version-tag">
-                    v1.0.0
-                </span>
-
-            </div>
-
-
-            <a href="#download" class="btn btn-primary">
-                ↓
-
-                <span data-tr="İndir" data-en="Download">
-                    İndir
-                </span>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         DOWNLOAD
-    ========================= -->
-
-    <section class="section" id="download">
-
-        <div class="section-heading reveal">
-
-            <span data-tr="İNDİR" data-en="DOWNLOAD">
-                İNDİR
-            </span>
-
-            <h2 data-tr="LoliMod Studio'yu edin." data-en="Get LoliMod Studio.">
-                LoliMod Studio'yu edin.
-            </h2>
-
-            <p data-tr="Windows bilgisayarında Minecraft mod geliştirmeye hemen başla."
-                data-en="Start developing Minecraft mods on your Windows PC.">
-                Windows bilgisayarında Minecraft mod geliştirmeye
-                hemen başla.
-            </p>
-
-        </div>
-
-
-        <div class="download-area">
-
-            <!-- STANDARD -->
-
-            <div class="download-card reveal">
-
-                <img src="./45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" class="download-icon" alt="LoliMod Studio">
-
-                <h3>
-                    LoliMod Studio
-                </h3>
-
-                <p data-tr="Minecraft mod geliştirmeye başlamak için Windows sürümünü ücretsiz indir."
-                    data-en="Download the Windows edition for free and start creating Minecraft mods.">
-                    Minecraft mod geliştirmeye başlamak için
-                    Windows sürümünü ücretsiz indir.
-                </p>
 
                 <div class="download-meta">
 
-                    <span class="meta">
+                    <span>
                         Windows
                     </span>
 
-                    <span class="meta">
+                    <span>
                         v1.0.0
                     </span>
 
-                    <span class="meta">
-                        .EXE
+                    <span>
+                        EXE
+                    </span>
+
+                    <span>
+                        Fabric
                     </span>
 
                 </div>
-
-                <a href="./lolimod-studio-1.0.0.exe" download class="btn btn-primary">
-                    ↓
-
-                    <span data-tr="Windows için İndir" data-en="Download for Windows">
-                        Windows için İndir
-                    </span>
-
-                </a>
 
             </div>
 
+        </section>
 
-            <!-- PREMIUM -->
+    </main>
 
-            <div class="download-card premium reveal">
 
-                <img src="./icon.ico" class="download-icon" alt="LoliMod Premium">
+    <!-- =========================
+     CODE MODAL
+========================= -->
 
-                <h3>
-                    LoliMod Premium
-                </h3>
+    <div class="modal" id="codeModal">
 
-                <p data-tr="Daha gelişmiş araçlar, profesyonel özellikler ve ekstra geliştirme imkanları için Premium sürüm."
-                    data-en="The Premium edition will bring advanced tools, professional features and additional development capabilities.">
-                    Daha gelişmiş araçlar, profesyonel özellikler
-                    ve ekstra geliştirme imkanları için Premium sürüm.
-                </p>
+        <div class="code-modal">
 
-                <div class="download-meta">
+            <div class="modal-header">
 
-                    <span class="meta">
-                        Windows
-                    </span>
+                <div class="modal-title-area">
 
-                    <span class="meta">
-                        Premium
-                    </span>
+                    <h2 id="modalTitle">
+                        Kod
+                    </h2>
 
-                    <span class="meta">
-                        Yakında
-                    </span>
+                    <p id="modalDescription">
+                        Açıklama
+                    </p>
 
                 </div>
 
-                <button class="btn btn-premium" onclick="openPremium()">
-                    ♛
-
-                    <span data-tr="Windows için Premium Al" data-en="Get Premium for Windows">
-                        Windows için Premium Al
-                    </span>
-
+                <button class="close-modal" id="closeCodeModal">
+                    ×
                 </button>
 
             </div>
 
+
+            <div class="modal-body">
+
+                <div class="file-info">
+
+                    <div class="info-box">
+
+                        <small>
+                            Dosya / Klasör
+                        </small>
+
+                        <code id="modalPath">
+                        -
+                    </code>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <small>
+                            İşlem
+                        </small>
+
+                        <code id="modalAction">
+                        -
+                    </code>
+
+                    </div>
+
+                </div>
+
+
+                <div class="code-wrapper">
+
+                    <div class="code-toolbar">
+
+                        <div class="dots">
+
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+
+                        </div>
+
+                        <button class="copy-code" id="copyCode">
+                            Kodu Kopyala
+                        </button>
+
+                    </div>
+
+                    <pre><code id="modalCode"></code></pre>
+
+                </div>
+
+
+                <div class="modal-note" id="modalNote">
+                    -
+                </div>
+
+            </div>
+
         </div>
 
-    </section>
+    </div>
 
 
     <!-- =========================
-         CTA
-    ========================= -->
+     PREMIUM MODAL
+========================= -->
 
-    <section class="cta reveal">
+    <div class="modal" id="premiumModal">
 
-        <h2 data-tr="Kodlamaya başlayalım." data-en="Let's start coding.">
-            Kodlamaya başlayalım.
-        </h2>
+        <div class="premium-modal-content">
 
-        <p data-tr="LoliMod Studio ile Minecraft mod geliştirme sürecini daha düzenli, hızlı ve modern hale getir."
-            data-en="Make your Minecraft mod development workflow cleaner, faster and more modern with LoliMod Studio.">
-            LoliMod Studio ile Minecraft mod geliştirme
-            sürecini daha düzenli, hızlı ve modern hale getir.
-        </p>
+            <div class="premium-icon">
+                ⭐
+            </div>
 
-        <div class="cta-buttons">
-
-            <a href="#download" class="btn btn-primary">
-                ↓
-
-                <span data-tr="Windows için İndir" data-en="Download for Windows">
-                    Windows için İndir
-                </span>
-
-            </a>
-
-            <button class="btn btn-premium" onclick="openPremium()">
-                ♛
-
-                <span data-tr="Premium'u Gör" data-en="View Premium">
-                    Premium'u Gör
-                </span>
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer>
-
-        <div class="footer-brand">
-
-            <img src="./45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" class="footer-logo" alt="LoliMod">
-
-            <span>
-                © 2026 LoliMod Studio
-            </span>
-
-        </div>
-
-        <div>
-            Minecraft is a trademark of Microsoft.
-        </div>
-
-    </footer>
-
-
-    <!-- =========================
-         PREMIUM MODAL
-    ========================= -->
-
-    <div class="modal" id="premiumModal" onclick="closePremiumOutside(event)">
-
-        <div class="modal-box">
-
-            <img src="./icon.ico" class="modal-icon" alt="LoliMod Premium">
-
-            <h2 data-tr="Premium Daha Sonra Gelecek" data-en="Premium Coming Later">
-                Premium Daha Sonra Gelecek
+            <h2>
+                Premium
             </h2>
 
-            <p data-tr="LoliMod Premium şu anda satışta değil. Premium sürüm hazır olduğunda buradan satın alabileceksin."
-                data-en="LoliMod Premium is not available for purchase yet. You will be able to purchase it here when it is ready.">
-                LoliMod Premium şu anda satışta değil.
-                Premium sürüm hazır olduğunda buradan satın alabileceksin.
+            <p>
+                LoliMod-İDEA Premium yakında gelecek.
+                Premium özellikleri kullanıma açıldığında
+                burada görebileceksin.
             </p>
 
-            <button class="btn btn-primary modal-close" onclick="closePremium()">
-                ✓
-
-                <span data-tr="Tamam" data-en="Got it">
-                    Tamam
-                </span>
-
+            <button class="primary-btn" onclick="closePremium()">
+                Tamam
             </button>
 
         </div>
@@ -1967,73 +1651,1567 @@
     </div>
 
 
+    <!-- =========================
+     FOOTER
+========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 LoliMod-İDEA. All rights reserved.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#preview">
+                Preview
+            </a>
+
+            <a href="#help">
+                Help
+            </a>
+
+            <a href="#download">
+                Download
+            </a>
+
+        </div>
+
+    </footer>
+
+
     <script>
 
-        /* =========================
-           LANGUAGE SYSTEM
-        ========================= */
+        /* =========================================
+           FABRIC HELP LIBRARY
+        ========================================= */
 
-        let currentLanguage =
-            localStorage.getItem(
-                "lolimod-language"
-            ) || "tr";
+        const helpItems = [
+
+            /* =========================
+               BAŞLANGIÇ
+            ========================= */
+
+            {
+                title: "Ana Mod Sınıfı",
+                category: "Başlangıç",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "YENİ DOSYA / MEVCUT DOSYAYI DÜZENLE",
+                description: "Modunun ana giriş noktası.",
+                note: "Package adını kendi projenin package adına göre değiştir.",
+                code: `package com.example.examplemod;
+
+import net.fabricmc.api.ModInitializer;
+
+public class ExampleMod implements ModInitializer {
+
+    public static final String MOD_ID = "examplemod";
+
+    @Override
+    public void onInitialize() {
+
+        System.out.println("ExampleMod başlatıldı!");
+
+    }
+}`
+            },
+
+            {
+                title: "Client Mod Sınıfı",
+                category: "Başlangıç",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ExampleModClient.java",
+                action: "YENİ DOSYA",
+                description: "Sadece Minecraft client tarafında çalışacak kodlar.",
+                note: "Template'inde src/client yoksa projenin kullandığı client source-set yapısını kontrol et.",
+                code: `package com.example.examplemod;
+
+import net.fabricmc.api.ClientModInitializer;
+
+public class ExampleModClient implements ClientModInitializer {
+
+    @Override
+    public void onInitializeClient() {
+
+        System.out.println("Client başlatıldı!");
+
+    }
+}`
+            },
+
+            {
+                title: "fabric.mod.json",
+                category: "Başlangıç",
+                type: "JSON",
+                path: "src/main/resources/fabric.mod.json",
+                action: "MEVCUT DOSYAYI DÜZENLE",
+                description: "Mod metadata ve entrypoint bilgileri.",
+                note: "Fabric template'indeki mevcut dependencies bölümünü korumak gerekebilir.",
+                code: `{
+    "schemaVersion": 1,
+    "id": "examplemod",
+    "version": "1.0.0",
+    "name": "Example Mod",
+    "description": "My first Fabric mod",
+    "authors": [
+        "YourName"
+    ],
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.example.examplemod.ExampleMod"
+        ],
+        "client": [
+            "com.example.examplemod.ExampleModClient"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.16.0",
+        "minecraft": "*",
+        "fabric-api": "*"
+    }
+}`
+            },
+
+            {
+                title: "Gradle Properties",
+                category: "Gradle",
+                type: "PROPERTIES",
+                path: "gradle.properties",
+                action: "MEVCUT DOSYAYI DÜZENLE",
+                description: "Minecraft, loader, Fabric API ve proje sürümleri.",
+                note: "Buradaki sürümler kullandığın Minecraft/Fabric template ile uyumlu olmalı.",
+                code: `# Minecraft
+minecraft_version=1.21.1
+
+# Fabric
+loader_version=0.16.10
+
+# Fabric API
+fabric_version=0.116.0+1.21.1
+
+# Mod
+mod_version=1.0.0
+maven_group=com.example
+archives_base_name=examplemod`
+            },
+
+            {
+                title: "Gradle Build Komutları",
+                category: "Gradle",
+                type: "COMMAND",
+                path: "Proje klasörü",
+                action: "DOSYA OLUŞTURMAZ",
+                description: "Projeyi build etmek ve test client çalıştırmak için.",
+                note: "PowerShell kullanıyorsan Windows'ta genellikle .\\gradlew.bat build ve .\\gradlew.bat runClient kullanılabilir.",
+                code: `# Build
+./gradlew build
+
+# Temiz build
+./gradlew clean build
+
+# Minecraft Client
+./gradlew runClient
+
+# Windows CMD
+gradlew.bat build
+
+# Windows CMD
+gradlew.bat runClient`
+            },
 
 
-        function setLanguage(lang) {
+            /* =========================
+               ITEM
+            ========================= */
 
-            currentLanguage = lang;
+            {
+                title: "Custom Item Kaydı",
+                category: "Item",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModItems.java",
+                action: "YENİ DOSYA",
+                description: "Kendi item'ını register etmek için temel yapı.",
+                note: "Item API imzaları Minecraft/Fabric sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
 
-            localStorage.setItem(
-                "lolimod-language",
-                lang
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
+
+public class ModItems {
+
+    public static final Item RUBY =
+        Registry.register(
+            Registries.ITEM,
+            Identifier.of(ExampleMod.MOD_ID, "ruby"),
+            new Item(new Item.Settings())
+        );
+
+    public static void registerItems() {
+        System.out.println("Items registered!");
+    }
+}`
+            },
+
+            {
+                title: "Item Kullanma",
+                category: "Item",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/RubyItem.java",
+                action: "YENİ DOSYA",
+                description: "Item sağ tıklandığında özel işlem yapmak için.",
+                note: "Kullandığın Minecraft sürümündeki Item kullanım metodunun imzasını template mappings üzerinden kontrol et.",
+                code: `package com.example.examplemod;
+
+import net.minecraft.item.Item;
+
+public class RubyItem extends Item {
+
+    public RubyItem(Settings settings) {
+        super(settings);
+    }
+
+    // Buraya özel item davranışlarını ekleyebilirsin.
+}`
+            },
+
+            {
+                title: "Food Item",
+                category: "Item",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModItems.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Yiyecek item'ı oluşturmanın temel örneği.",
+                note: "FoodComponent API'si sürümler arasında değişebilir.",
+                code: `public static final Item MAGIC_APPLE =
+    Registry.register(
+        Registries.ITEM,
+        Identifier.of(ExampleMod.MOD_ID, "magic_apple"),
+        new Item(
+            new Item.Settings()
+        )
+    );`
+            },
+
+            {
+                title: "Tool Item",
+                category: "Item",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModItems.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Kazma, balta, kürek gibi araçların temel yapısı.",
+                note: "ToolMaterial ve tool constructorları sürüme göre değişebilir.",
+                code: `// Tool oluştururken kendi Minecraft/Fabric sürümündeki
+// ToolMaterial API'sini kullan.
+
+public static final Item CUSTOM_TOOL =
+    Registry.register(
+        Registries.ITEM,
+        Identifier.of(ExampleMod.MOD_ID, "custom_tool"),
+        new Item(new Item.Settings())
+    );`
+            },
+
+            {
+                title: "Item Texture",
+                category: "Resource",
+                type: "PNG",
+                path: "src/main/resources/assets/examplemod/textures/item/ruby.png",
+                action: "YENİ DOSYA",
+                description: "Item texture dosyasının yeri.",
+                note: "PNG dosyasının adı registry'deki item ID ile aynı olmalı.",
+                code: `Dosya adı:
+
+ruby.png
+
+Klasör:
+
+src/main/resources/assets/examplemod/textures/item/
+
+Örnek:
+
+src/main/resources/assets/examplemod/textures/item/ruby.png`
+            },
+
+            {
+                title: "Item Model JSON",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/models/item/ruby.json",
+                action: "YENİ DOSYA",
+                description: "Item texture/model bağlantısı.",
+                note: "examplemod yerine kendi mod ID'ni yaz.",
+                code: `{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "examplemod:item/ruby"
+    }
+}`
+            },
+
+
+            /* =========================
+               BLOCK
+            ========================= */
+
+            {
+                title: "Custom Block",
+                category: "Block",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModBlocks.java",
+                action: "YENİ DOSYA",
+                description: "Kendi bloğunu register etmek için temel yapı.",
+                note: "Block Settings API'si sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
+
+import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
+
+public class ModBlocks {
+
+    public static final Block RUBY_BLOCK =
+        Registry.register(
+            Registries.BLOCK,
+            Identifier.of(ExampleMod.MOD_ID, "ruby_block"),
+            new Block(Block.Settings.create())
+        );
+
+    public static void registerBlocks() {
+        System.out.println("Blocks registered!");
+    }
+}`
+            },
+
+            {
+                title: "Block Item",
+                category: "Block",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModBlocks.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Bloğun inventory'de item olarak görünmesini sağlar.",
+                note: "Item/Block registration API'si kullandığın sürüme göre değişebilir.",
+                code: `// Bloğun kendisi:
+public static final Block RUBY_BLOCK =
+    Registry.register(
+        Registries.BLOCK,
+        Identifier.of(ExampleMod.MOD_ID, "ruby_block"),
+        new Block(Block.Settings.create())
+    );
+
+// Ardından block item registration.
+// Buradaki Item.Settings kısmını kendi sürümüne göre ayarla.`
+            },
+
+            {
+                title: "Block Texture",
+                category: "Resource",
+                type: "PNG",
+                path: "src/main/resources/assets/examplemod/textures/block/ruby_block.png",
+                action: "YENİ DOSYA",
+                description: "Block texture dosyası.",
+                note: "PNG boyutunu Minecraft resource sistemine uygun tut.",
+                code: `Klasör:
+
+src/main/resources/assets/examplemod/textures/block/
+
+Dosya:
+
+ruby_block.png`
+            },
+
+            {
+                title: "Blockstate JSON",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/blockstates/ruby_block.json",
+                action: "YENİ DOSYA",
+                description: "Bloğun hangi model ile render edileceğini belirtir.",
+                note: "Model adı block model dosyan ile aynı olmalı.",
+                code: `{
+    "variants": {
+        "": {
+            "model": "examplemod:block/ruby_block"
+        }
+    }
+}`
+            },
+
+            {
+                title: "Block Model JSON",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/models/block/ruby_block.json",
+                action: "YENİ DOSYA",
+                description: "Block modelinin temel JSON'u.",
+                note: "Texture path'ini kendi mod ID'ne göre değiştir.",
+                code: `{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "examplemod:block/ruby_block"
+    }
+}`
+            },
+
+
+            /* =========================
+               RESOURCE
+            ========================= */
+
+            {
+                title: "Türkçe Dil Dosyası",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/lang/tr_tr.json",
+                action: "YENİ DOSYA",
+                description: "Minecraft içindeki item ve block isimlerini Türkçeleştirir.",
+                note: "JSON virgüllerine dikkat et.",
+                code: `{
+    "item.examplemod.ruby": "Yakut",
+    "block.examplemod.ruby_block": "Yakut Bloğu"
+}`
+            },
+
+            {
+                title: "İngilizce Dil Dosyası",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/lang/en_us.json",
+                action: "YENİ DOSYA",
+                description: "İngilizce item ve block isimleri.",
+                note: "Key'ler registry ID ile eşleşmeli.",
+                code: `{
+    "item.examplemod.ruby": "Ruby",
+    "block.examplemod.ruby_block": "Ruby Block"
+}`
+            },
+
+            {
+                title: "Shaped Recipe",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/recipe/ruby.json",
+                action: "YENİ DOSYA",
+                description: "Şekilli crafting tarifi.",
+                note: "Recipe JSON şeması Minecraft sürümüne göre değişebilir.",
+                code: `{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "RRR",
+        "R R",
+        "RRR"
+    ],
+    "key": {
+        "R": {
+            "item": "examplemod:ruby"
+        }
+    },
+    "result": {
+        "id": "examplemod:ruby_block",
+        "count": 1
+    }
+}`
+            },
+
+            {
+                title: "Shapeless Recipe",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/recipe/ruby_block.json",
+                action: "YENİ DOSYA",
+                description: "Şekilsiz crafting tarifi.",
+                note: "Güncel Minecraft sürümünün recipe result formatını kontrol et.",
+                code: `{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "examplemod:ruby"
+        },
+        {
+            "item": "examplemod:ruby"
+        }
+    ],
+    "result": {
+        "id": "examplemod:ruby_block",
+        "count": 1
+    }
+}`
+            },
+
+            {
+                title: "Smelting Recipe",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/recipe/ruby_smelting.json",
+                action: "YENİ DOSYA",
+                description: "Fırında eritme tarifi.",
+                note: "experience ve cookingtime değerlerini değiştirebilirsin.",
+                code: `{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "examplemod:ruby_ore"
+    },
+    "result": {
+        "id": "examplemod:ruby"
+    },
+    "experience": 1.0,
+    "cookingtime": 200
+}`
+            },
+
+            {
+                title: "Loot Table",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/loot_table/blocks/ruby_block.json",
+                action: "YENİ DOSYA",
+                description: "Block kırıldığında ne düşeceğini belirler.",
+                note: "Loot table formatı sürüme göre değişebilir.",
+                code: `{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "examplemod:ruby"
+                }
+            ]
+        }
+    ]
+}`
+            },
+
+            {
+                title: "Item Tag",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/tags/item/gems.json",
+                action: "YENİ DOSYA",
+                description: "Item'ları tag altında gruplandırır.",
+                note: "Tag kullanarak birden fazla itemı tek kategori altında yönetebilirsin.",
+                code: `{
+    "replace": false,
+    "values": [
+        "examplemod:ruby"
+    ]
+}`
+            },
+
+            {
+                title: "Block Tag",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/tags/block/ruby_blocks.json",
+                action: "YENİ DOSYA",
+                description: "Block tag oluşturur.",
+                note: "Vanilla veya mod tag'lerine de referans verebilirsin.",
+                code: `{
+    "replace": false,
+    "values": [
+        "examplemod:ruby_block"
+    ]
+}`
+            },
+
+
+            /* =========================
+               EVENT
+            ========================= */
+
+            {
+                title: "Oyuncu Join Event",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncu sunucuya katıldığında çalışır.",
+                note: "Event sınıfları ve method imzaları Fabric API sürümüne göre değişebilir.",
+                code: `ServerPlayConnectionEvents.JOIN.register(
+    (handler, sender, server) -> {
+
+        var player = handler.getPlayer();
+
+        player.sendMessage(
+            Text.literal("LoliMod'a hoş geldin!"),
+            false
+        );
+
+    }
+);`
+            },
+
+            {
+                title: "Block Kırma Event",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncu bir block kırdığında çalışır.",
+                note: "Event'in mevcut Fabric API imzasını kullandığın sürümde kontrol et.",
+                code: `PlayerBlockBreakEvents.AFTER.register(
+    (world, player, pos, state, blockEntity) -> {
+
+        player.sendMessage(
+            Text.literal("Block kırıldı!"),
+            true
+        );
+
+    }
+);`
+            },
+
+            {
+                title: "Oyuncu Saldırı Event",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncu bir entity'ye saldırdığında çalışır.",
+                note: "Fabric API event imzasını kullandığın sürüme göre kontrol et.",
+                code: `AttackEntityCallback.EVENT.register(
+    (player, world, hand, entity, hitResult) -> {
+
+        player.sendMessage(
+            Text.literal("Saldırı yaptın!"),
+            true
+        );
+
+        return ActionResult.PASS;
+
+    }
+);`
+            },
+
+            {
+                title: "Item Use Event",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncu item kullandığında yakalamak için.",
+                note: "ActionResult API'si sürüme göre değişebilir.",
+                code: `UseItemCallback.EVENT.register(
+    (player, world, hand) -> {
+
+        if (!world.isClient()) {
+            player.sendMessage(
+                Text.literal("Item kullanıldı!"),
+                true
             );
+        }
 
-            document.documentElement.lang =
-                lang;
+        return TypedActionResult.pass(
+            player.getStackInHand(hand)
+        );
+    }
+);`
+            },
 
-            document
-                .querySelectorAll(
-                    "[data-tr][data-en]"
-                )
-                .forEach(element => {
+            {
+                title: "Server Tick",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Sunucunun her tick'inde kod çalıştırır.",
+                note: "Tick başına ağır işlemler yapmak performansı düşürebilir.",
+                code: `ServerTickEvents.END_SERVER_TICK.register(
+    server -> {
 
-                    element.textContent =
-                        element.dataset[lang];
+        // Her server tick'inde çalışır.
+
+    }
+);`
+            },
+
+
+            /* =========================
+               COMMAND
+            ========================= */
+
+            {
+                title: "Basit Command",
+                category: "Command",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModCommands.java",
+                action: "YENİ DOSYA",
+                description: "/hello gibi basit bir komut oluşturur.",
+                note: "Command registration API'si sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
+
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+
+import static net.minecraft.server.command.CommandManager.literal;
+
+public class ModCommands {
+
+    public static void register() {
+
+        CommandRegistrationCallback.EVENT.register(
+            (dispatcher, registryAccess, environment) -> {
+
+                dispatcher.register(
+                    literal("hello")
+                        .executes(context -> {
+
+                            var source =
+                                context.getSource();
+
+                            source.sendFeedback(
+                                () -> net.minecraft.text.Text.literal(
+                                    "Merhaba Minecraft!"
+                                ),
+                                false
+                            );
+
+                            return 1;
+                        })
+                );
+
+            }
+        );
+    }
+}`
+            },
+
+            {
+                title: "Command Argument",
+                category: "Command",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModCommands.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "/sayhello <isim> gibi argument alan command.",
+                note: "ArgumentType sınıfları vanilla Brigadier API'sinden gelir.",
+                code: `dispatcher.register(
+    literal("sayhello")
+        .then(
+            argument(
+                "name",
+                StringArgumentType.word()
+            )
+            .executes(context -> {
+
+                String name =
+                    StringArgumentType.getString(
+                        context,
+                        "name"
+                    );
+
+                context.getSource()
+                    .sendFeedback(
+                        () -> Text.literal(
+                            "Merhaba " + name
+                        ),
+                        false
+                    );
+
+                return 1;
+            })
+        )
+);`
+            },
+
+
+            /* =========================
+               CLIENT
+            ========================= */
+
+            {
+                title: "Client Tick",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ExampleModClient.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Client tarafında her tick çalışan kod.",
+                note: "Client-only kodları common/server sınıflarına koymamaya dikkat et.",
+                code: `ClientTickEvents.END_CLIENT_TICK.register(
+    client -> {
+
+        // Client tick
+
+    }
+);`
+            },
+
+            {
+                title: "Keybind",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ModKeybinds.java",
+                action: "YENİ DOSYA",
+                description: "Klavyeye özel tuş atamak için başlangıç.",
+                note: "KeyBindingHelper Fabric API üzerinden gelir.",
+                code: `package com.example.examplemod;
+
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+
+public class ModKeybinds {
+
+    public static void register() {
+
+        // KeyBinding oluşturup
+        // ClientTickEvents içinde
+        // isPressed() kontrolü yapabilirsin.
+
+    }
+}`
+            },
+
+            {
+                title: "Chat Mesajı",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ExampleModClient.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncunun chat ekranına mesaj göndermek için.",
+                note: "Client player nesnesinin null olabileceği durumları kontrol et.",
+                code: `if (client.player != null) {
+
+    client.player.sendMessage(
+        Text.literal("LoliMod çalışıyor!"),
+        false
+    );
+
+}`
+            },
+
+            {
+                title: "Action Bar Mesajı",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ExampleModClient.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Ekranın alt kısmında geçici mesaj göstermek için.",
+                note: "Player API'si sürümüne göre farklı olabilir.",
+                code: `if (client.player != null) {
+
+    client.player.sendMessage(
+        Text.literal("Action Bar mesajı"),
+        true
+    );
+
+}`
+            },
+
+            {
+                title: "HUD Render",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ModHud.java",
+                action: "YENİ DOSYA",
+                description: "Minecraft HUD üzerine kendi yazını çizmek için başlangıç.",
+                note: "HUD render API'si Minecraft/Fabric sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
+
+// Fabric API'nin HudRenderCallback API'sini kullanarak
+// HUD üzerine kendi text veya texture'ını çizebilirsin.
+
+// Örnek fikir:
+//
+// HudRenderCallback.EVENT.register(
+//     (drawContext, tickCounter) -> {
+//         drawContext.drawText(...);
+//     }
+// );`
+            },
+
+
+            /* =========================
+               SOUND
+            ========================= */
+
+            {
+                title: "Sound JSON",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/assets/examplemod/sounds.json",
+                action: "YENİ DOSYA",
+                description: "Custom sesleri Minecraft resource sistemine bağlar.",
+                note: "OGG ses dosyasını sounds/examplemod klasörüne koy.",
+                code: `{
+    "ruby_sound": {
+        "sounds": [
+            "examplemod:ruby_sound"
+        ]
+    }
+}`
+            },
+
+            {
+                title: "Sound Dosyası",
+                category: "Resource",
+                type: "OGG",
+                path: "src/main/resources/assets/examplemod/sounds/ruby_sound.ogg",
+                action: "YENİ DOSYA",
+                description: "Custom ses dosyan.",
+                note: "Minecraft resource pack sesleri için OGG formatı kullanılır.",
+                code: `Klasör:
+
+src/main/resources/assets/examplemod/sounds/
+
+Dosya:
+
+ruby_sound.ogg`
+            },
+
+
+            /* =========================
+               ADVANCED
+            ========================= */
+
+            {
+                title: "Mixin Sınıfı",
+                category: "İleri",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/mixin/ExampleMixin.java",
+                action: "YENİ DOSYA",
+                description: "Vanilla Minecraft sınıflarına kontrollü şekilde müdahale etmek için.",
+                note: "Mixin kullanırken hedef class/method ve mappings sürümünün doğru olması çok önemlidir.",
+                code: `package com.example.examplemod.mixin;
+
+import org.spongepowered.asm.mixin.Mixin;
+
+@Mixin(net.minecraft.client.MinecraftClient.class)
+public class ExampleMixin {
+
+    // @Inject veya diğer Mixin injection
+    // annotation'larını burada kullanabilirsin.
+
+}`
+            },
+
+            {
+                title: "Mixin JSON",
+                category: "İleri",
+                type: "JSON",
+                path: "src/main/resources/examplemod.mixins.json",
+                action: "YENİ DOSYA",
+                description: "Mixin sınıflarını Fabric'e tanıtmak için.",
+                note: "fabric.mod.json içindeki mixin bölümünden bu dosyayı bağlaman gerekir.",
+                code: `{
+    "required": true,
+    "package": "com.example.examplemod.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [],
+    "client": [
+        "ExampleMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}`
+            },
+
+            {
+                title: "Custom Entity Başlangıcı",
+                category: "İleri",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModEntities.java",
+                action: "YENİ DOSYA",
+                description: "Kendi entity sisteminin registration başlangıcı.",
+                note: "EntityType builder ve registry API'leri Minecraft sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
+
+public class ModEntities {
+
+    public static void registerEntities() {
+
+        // EntityType registration
+        // ve kendi entity class'ın
+        // burada hazırlanır.
+
+    }
+}`
+            },
+
+            {
+                title: "Custom Screen Başlangıcı",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/ExampleScreen.java",
+                action: "YENİ DOSYA",
+                description: "Kendi GUI ekranını oluşturmak için başlangıç.",
+                note: "Screen API'si sürüme göre değişebilir.",
+                code: `package com.example.examplemod;
+
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+
+public class ExampleScreen extends Screen {
+
+    protected ExampleScreen() {
+        super(Text.literal("LoliMod Screen"));
+    }
+
+    @Override
+    protected void init() {
+
+        // Button ve widget'larını
+        // burada ekleyebilirsin.
+
+    }
+}`
+            },
+
+            {
+                title: "Title Screen Butonu",
+                category: "Client",
+                type: "JAVA",
+                path: "src/client/java/com/example/examplemod/TitleScreenMixin.java",
+                action: "YENİ DOSYA",
+                description: "Ana menüye kendi butonunu eklemek için başlangıç.",
+                note: "Screen API ve Mixin hedefleri Minecraft sürümüne göre değişebilir.",
+                code: `@Mixin(TitleScreen.class)
+public class TitleScreenMixin {
+
+    // TitleScreen'a button eklemek için
+    // Screen API + Mixin kullanılabilir.
+
+    // Örnek fikir:
+    //
+    // ButtonWidget.builder(
+    //     Text.literal("LoliMod"),
+    //     button -> {
+    //         // işlem
+    //     }
+    // );
+
+}`
+            },
+
+            {
+                title: "Gamerule Başlangıcı",
+                category: "İleri",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModGameRules.java",
+                action: "YENİ DOSYA",
+                description: "Kendi gamerule sistemini oluşturmak için başlangıç.",
+                note: "Gamerule registration API'si Minecraft sürümüne göre değişebilir.",
+                code: `package com.example.examplemod;
+
+public class ModGameRules {
+
+    public static void register() {
+
+        // GameRules.Category
+        // ve GameRules.Type kullanarak
+        // custom gamerule oluşturabilirsin.
+
+    }
+}`
+            },
+
+            {
+                title: "Persistent Data Başlangıcı",
+                category: "İleri",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ModWorldData.java",
+                action: "YENİ DOSYA",
+                description: "World üzerinde kalıcı mod verileri saklamak için başlangıç.",
+                note: "PersistentState API'sinin constructor ve save API'si sürüme göre değişebilir.",
+                code: `package com.example.examplemod;
+
+// PersistentState kullanarak
+// world seviyesinde kalıcı veriler
+// saklayabilirsin.
+//
+// Örnek veriler:
+// - toplam öldürme
+// - mod ayarları
+// - özel dünya değerleri
+// - ilerleme`
+            },
+
+
+            /* =========================
+               ADVANCEMENT
+            ========================= */
+
+            {
+                title: "Advancement JSON",
+                category: "Resource",
+                type: "JSON",
+                path: "src/main/resources/data/examplemod/advancement/root.json",
+                action: "YENİ DOSYA",
+                description: "Kendi advancement sistemini başlatmak için.",
+                note: "Advancement JSON formatı Minecraft sürümüne göre değişebilir.",
+                code: `{
+    "display": {
+        "icon": {
+            "id": "examplemod:ruby"
+        },
+        "title": {
+            "text": "İlk Yakut"
+        },
+        "description": {
+            "text": "Bir yakut elde et."
+        }
+    },
+    "criteria": {
+        "ruby": {
+            "trigger": "minecraft:inventory_changed"
+        }
+    }
+}`
+            },
+
+
+            /* =========================
+               PROJECT STRUCTURE
+            ========================= */
+
+            {
+                title: "Fabric Proje Klasör Yapısı",
+                category: "Başlangıç",
+                type: "TREE",
+                path: "fabric-example-mod/",
+                action: "DOSYA OLUŞTURMAZ",
+                description: "Fabric Example Mod projesinin temel klasörleri.",
+                note: "Template ve Minecraft sürümüne göre bazı klasörler farklı olabilir.",
+                code: `fabric-example-mod/
+│
+├── build.gradle
+├── gradle.properties
+├── settings.gradle
+├── gradlew
+├── gradlew.bat
+│
+└── src/
+    │
+    ├── main/
+    │   ├── java/
+    │   │   └── com/example/examplemod/
+    │   │       └── ExampleMod.java
+    │   │
+    │   └── resources/
+    │       ├── fabric.mod.json
+    │       ├── assets/
+    │       │   └── examplemod/
+    │       │       ├── lang/
+    │       │       ├── models/
+    │       │       └── textures/
+    │       │
+    │       └── data/
+    │           └── examplemod/
+    │
+    └── client/
+        └── java/
+            └── com/example/examplemod/`
+            },
+
+
+            /* =========================
+               SIMPLE JAVA
+            ========================= */
+
+            {
+                title: "Oyuncuya Mesaj Gönder",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Server tarafında oyuncuya chat mesajı gönderir.",
+                note: "Text API'si Minecraft sürümüne göre farklılık gösterebilir.",
+                code: `player.sendMessage(
+    Text.literal(
+        "LoliMod tarafından gönderildi!"
+    ),
+    false
+);`
+            },
+
+            {
+                title: "Oyuncunun Konumunu Al",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncunun X Y Z koordinatlarını alır.",
+                note: "player değişkeninin ilgili event içinde mevcut olması gerekir.",
+                code: `double x = player.getX();
+double y = player.getY();
+double z = player.getZ();
+
+System.out.println(
+    "X: " + x +
+    " Y: " + y +
+    " Z: " + z
+);`
+            },
+
+            {
+                title: "Oyuncunun Health Değerini Al",
+                category: "Event",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Oyuncunun mevcut canını okur.",
+                note: "LivingEntity health API'si kullanılır.",
+                code: `float health = player.getHealth();
+
+System.out.println(
+    "Oyuncu canı: " + health
+);`
+            },
+
+            {
+                title: "Oyuncunun Inventory'sini Kontrol Et",
+                category: "Item",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Inventory üzerinde işlem yapmak için başlangıç.",
+                note: "Inventory API'si sürüme göre değişebilir.",
+                code: `var inventory = player.getInventory();
+
+for (int i = 0; i < inventory.size(); i++) {
+
+    var stack = inventory.getStack(i);
+
+    if (!stack.isEmpty()) {
+        System.out.println(
+            stack.getName().getString()
+        );
+    }
+}`
+            },
+
+            {
+                title: "Server'a Log Yazdır",
+                category: "Başlangıç",
+                type: "JAVA",
+                path: "src/main/java/com/example/examplemod/ExampleMod.java",
+                action: "MEVCUT DOSYAYA EKLE",
+                description: "Mod çalışırken terminal/log içine bilgi yazdırır.",
+                note: "Gerçek projede SLF4J logger kullanmak daha uygundur.",
+                code: `System.out.println(
+    "[ExampleMod] Mod çalışıyor!"
+);`
+            }
+
+        ];
+
+
+        /* =========================================
+           HELP UI
+        ========================================= */
+
+        const helpGrid =
+            document.getElementById("helpGrid");
+
+        const helpEmpty =
+            document.getElementById("helpEmpty");
+
+        const helpSearch =
+            document.getElementById("helpSearch");
+
+        let activeCategory = "all";
+
+
+        function renderHelp() {
+
+            const search =
+                helpSearch.value
+                    .toLowerCase()
+                    .trim();
+
+            helpGrid.innerHTML = "";
+
+            const filtered =
+                helpItems.filter(item => {
+
+                    const categoryMatch =
+                        activeCategory === "all" ||
+                        item.category === activeCategory;
+
+                    const searchText = `
+                    ${item.title}
+                    ${item.category}
+                    ${item.type}
+                    ${item.path}
+                    ${item.description}
+                `.toLowerCase();
+
+                    const searchMatch =
+                        !search ||
+                        searchText.includes(search);
+
+                    return categoryMatch && searchMatch;
 
                 });
 
 
-            document
-                .getElementById("trBtn")
-                .classList.toggle(
-                    "active",
-                    lang === "tr"
-                );
+            helpEmpty.style.display =
+                filtered.length === 0
+                    ? "block"
+                    : "none";
 
 
-            document
-                .getElementById("enBtn")
-                .classList.toggle(
-                    "active",
-                    lang === "en"
+            filtered.forEach((item, index) => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "help-card";
+
+                card.innerHTML = `
+
+                <div class="help-card-top">
+
+                    <span class="code-type">
+                        ${item.type}
+                    </span>
+
+                    <span class="help-category">
+                        ${item.category}
+                    </span>
+
+                </div>
+
+                <h3>
+                    ${item.title}
+                </h3>
+
+                <p>
+                    ${item.description}
+                </p>
+
+                <div class="path-preview">
+                    ${item.path}
+                </div>
+
+            `;
+
+                card.addEventListener(
+                    "click",
+                    () => openCodeModal(item)
                 );
+
+                helpGrid.appendChild(card);
+
+            });
+
         }
 
 
-        /* =========================
-           PREMIUM MODAL
-        ========================= */
+        document
+            .querySelectorAll(".category-btn")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(".category-btn")
+                            .forEach(btn =>
+                                btn.classList.remove("active")
+                            );
+
+                        button.classList.add("active");
+
+                        activeCategory =
+                            button.dataset.category;
+
+                        renderHelp();
+
+                    }
+                );
+
+            });
+
+
+        helpSearch.addEventListener(
+            "input",
+            renderHelp
+        );
+
+
+        /* =========================================
+           CODE MODAL
+        ========================================= */
+
+        const codeModal =
+            document.getElementById("codeModal");
+
+        const modalTitle =
+            document.getElementById("modalTitle");
+
+        const modalDescription =
+            document.getElementById("modalDescription");
+
+        const modalPath =
+            document.getElementById("modalPath");
+
+        const modalAction =
+            document.getElementById("modalAction");
+
+        const modalCode =
+            document.getElementById("modalCode");
+
+        const modalNote =
+            document.getElementById("modalNote");
+
+
+        let currentCode = "";
+
+
+        function openCodeModal(item) {
+
+            modalTitle.textContent =
+                item.title;
+
+            modalDescription.textContent =
+                item.description;
+
+            modalPath.textContent =
+                item.path;
+
+            modalAction.textContent =
+                item.action;
+
+            modalAction.className =
+                item.action.includes("YENİ")
+                    ? "action-new"
+                    : "action-edit";
+
+            modalCode.textContent =
+                item.code;
+
+            modalNote.textContent =
+                item.note;
+
+            currentCode =
+                item.code;
+
+            codeModal.classList.add("show");
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+
+        function closeCodeModal() {
+
+            codeModal.classList.remove("show");
+
+            document.body.style.overflow =
+                "";
+        }
+
+
+        document
+            .getElementById("closeCodeModal")
+            .addEventListener(
+                "click",
+                closeCodeModal
+            );
+
+
+        codeModal.addEventListener(
+            "click",
+            event => {
+
+                if (event.target === codeModal) {
+                    closeCodeModal();
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Escape") {
+
+                    closeCodeModal();
+                    closePremium();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           COPY CODE
+        ========================================= */
+
+        document
+            .getElementById("copyCode")
+            .addEventListener(
+                "click",
+                async function () {
+
+                    try {
+
+                        await navigator
+                            .clipboard
+                            .writeText(currentCode);
+
+                        const oldText =
+                            this.textContent;
+
+                        this.textContent =
+                            "✓ Kopyalandı";
+
+                        setTimeout(() => {
+                            this.textContent =
+                                oldText;
+                        }, 1500);
+
+                    } catch (error) {
+
+                        const textarea =
+                            document.createElement("textarea");
+
+                        textarea.value =
+                            currentCode;
+
+                        document.body.appendChild(
+                            textarea
+                        );
+
+                        textarea.select();
+
+                        document.execCommand(
+                            "copy"
+                        );
+
+                        textarea.remove();
+
+                        this.textContent =
+                            "✓ Kopyalandı";
+
+                        setTimeout(() => {
+                            this.textContent =
+                                "Kodu Kopyala";
+                        }, 1500);
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           PREMIUM
+        ========================================= */
 
         function openPremium() {
 
-            const modal =
-                document.getElementById(
-                    "premiumModal"
-                );
-
-            modal.classList.add(
-                "show"
-            );
+            document
+                .getElementById("premiumModal")
+                .classList.add("show");
 
             document.body.style.overflow =
                 "hidden";
@@ -2042,171 +3220,97 @@
 
         function closePremium() {
 
-            const modal =
-                document.getElementById(
-                    "premiumModal"
-                );
-
-            modal.classList.remove(
-                "show"
-            );
+            document
+                .getElementById("premiumModal")
+                .classList.remove("show");
 
             document.body.style.overflow =
                 "";
         }
 
 
-        function closePremiumOutside(event) {
-
-            if (
-                event.target.id ===
-                "premiumModal"
-            ) {
-                closePremium();
-            }
-        }
-
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key ===
-                    "Escape"
-                ) {
-                    closePremium();
-                }
-
-            }
-        );
-
-
-        /* =========================
-           SCROLL REVEAL
-        ========================= */
+        /* =========================================
+           REVEAL ANIMATION
+        ========================================= */
 
         const observer =
             new IntersectionObserver(
                 entries => {
 
-                    entries.forEach(
-                        entry => {
+                    entries.forEach(entry => {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                            observer.unobserve(
                                 entry.target
-                                    .classList
-                                    .add(
-                                        "visible"
-                                    );
-
-                                observer
-                                    .unobserve(
-                                        entry.target
-                                    );
-                            }
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
                 {
-                    threshold: 0.12
+                    threshold: .08
                 }
             );
 
 
         document
-            .querySelectorAll(
-                ".reveal"
-            )
-            .forEach(element => {
-
-                observer.observe(
-                    element
-                );
-
-            });
-
-
-        /* =========================
-           PREVIEW 3D EFFECT
-        ========================= */
-
-        const preview =
-            document.querySelector(
-                ".preview-window"
+            .querySelectorAll(".reveal")
+            .forEach(element =>
+                observer.observe(element)
             );
 
 
-        if (preview) {
+        /* =========================================
+           INITIALIZE
+        ========================================= */
 
-            preview.addEventListener(
-                "mousemove",
-                function (event) {
-
-                    const rect =
-                        preview.getBoundingClientRect();
-
-                    const x =
-                        event.clientX -
-                        rect.left;
-
-                    const y =
-                        event.clientY -
-                        rect.top;
-
-                    const rotateY =
-                        (
-                            (x / rect.width)
-                            - 0.5
-                        ) * 3;
-
-                    const rotateX =
-                        (
-                            (y / rect.height)
-                            - 0.5
-                        ) * -3;
+        renderHelp();
 
 
-                    preview.style.transform =
-                        `
-                        perspective(1500px)
-                        rotateX(${rotateX}deg)
-                        rotateY(${rotateY}deg)
-                        translateY(-4px)
-                        `;
-                }
-            );
+        /* =========================================
+           HASH NAVIGATION
+        ========================================= */
 
+        function handleHash() {
 
-            preview.addEventListener(
-                "mouseleave",
-                function () {
+            const hash =
+                window.location.hash;
 
-                    preview.style.transform =
-                        `
-                        perspective(1500px)
-                        rotateX(2deg)
-                        rotateY(0deg)
-                        translateY(0)
-                        `;
+            if (!hash) {
+                return;
+            }
 
-                }
-            );
+            const target =
+                document.querySelector(hash);
+
+            if (target) {
+
+                setTimeout(() => {
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }, 50);
+
+            }
+
         }
 
-
-        /* =========================
-           START
-        ========================= */
-
-        setLanguage(
-            currentLanguage
+        window.addEventListener(
+            "hashchange",
+            handleHash
         );
+
+        handleHash();
 
     </script>
 

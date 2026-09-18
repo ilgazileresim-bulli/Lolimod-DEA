@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>LoliMod-İDEA — Help Center</title>
     <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="stylesheet" href="assets/theme.css">
 
     <style>
         * {
@@ -935,6 +936,13 @@
 
         <div class="top-actions">
 
+            <button class="stats-badge-pill" onclick="window.LoliAuth.openStats()" title="Canlı İstatistikleri Gör">
+                <span style="font-size:8px;">●</span>
+                <span class="live-downloads">20</span> İndirme
+            </button>
+
+            <div class="auth-nav-slot"></div>
+
             <a class="top-btn youtube-btn" href="https://www.youtube.com/@Loli-Mod" target="_blank"
                 rel="noopener noreferrer">
                 <span>▶</span>
@@ -966,6 +974,19 @@
         </aside>
 
         <main class="main">
+
+            <div class="vip-upgrade-banner" id="vipPromoBanner">
+                <div class="vip-banner-content">
+                    <div class="vip-banner-icon">⚡</div>
+                    <div>
+                        <div class="vip-banner-title" id="vipBannerTitle">20.000 Hazır Kod Kütüphanesi</div>
+                        <div class="vip-banner-desc" id="vipBannerDesc">Ücretsiz oturum açarak kütüphanenizi 10.000'den 20.000 koda yükseltin ve gelişmiş mod şablonlarını açın!</div>
+                    </div>
+                </div>
+                <button class="vip-banner-action" id="vipBannerBtn" onclick="window.LoliAuth.openAuth('login')">
+                    Giriş Yap & 20k Kodu Aç ✨
+                </button>
+            </div>
 
             <section class="hero">
 
@@ -1157,7 +1178,7 @@
            CONFIG
         ========================================================= */
 
-        const TOTAL_CODES = 10000;
+        let TOTAL_CODES = 10000;
         const PER_PAGE = 30;
 
         let allCodes = [];
@@ -1166,6 +1187,65 @@
         let selectedCategory = "all";
         let currentCode = null;
         let english = false;
+
+        function updateCodeCapacity() {
+            const isLoggedIn = window.LoliAuth && window.LoliAuth.isLoggedIn();
+            TOTAL_CODES = isLoggedIn ? 20000 : 10000;
+
+            const badgeCodes = document.getElementById("badgeCodes");
+            const searchCount = document.getElementById("searchCount");
+            const vipBannerTitle = document.getElementById("vipBannerTitle");
+            const vipBannerDesc = document.getElementById("vipBannerDesc");
+            const vipBannerBtn = document.getElementById("vipBannerBtn");
+            const vipPromoBanner = document.getElementById("vipPromoBanner");
+
+            if (isLoggedIn) {
+                const user = window.LoliAuth.currentUser;
+                const username = user ? user.username : 'Geliştirici';
+                if (badgeCodes) {
+                    badgeCodes.innerHTML = `⭐ 20.000 Kod (VIP Modu)`;
+                    badgeCodes.style.borderColor = 'rgba(0, 240, 144, 0.45)';
+                    badgeCodes.style.color = '#00f090';
+                }
+                if (searchCount) searchCount.textContent = "20.000";
+                if (vipBannerTitle) vipBannerTitle.textContent = `⭐ VIP Modu Aktif — Hoş Geldin, ${username}!`;
+                if (vipBannerDesc) vipBannerDesc.textContent = `20.000 hazır kod ve şablon erişiminiz açık. Tüm Minecraft sistemleri ve mod şablonları kullanılabilir.`;
+                if (vipBannerBtn) {
+                    vipBannerBtn.textContent = `✓ 20.000 Kod Aktif`;
+                    vipBannerBtn.style.background = "linear-gradient(135deg, #00f090, #00b4d8)";
+                    vipBannerBtn.style.color = "#040814";
+                    vipBannerBtn.onclick = () => window.LoliAuth.showToast('VIP Modu', '20.000 kod kütüphanesi hesabınıza açık durumdadır.', 'success');
+                }
+                if (vipPromoBanner) {
+                    vipPromoBanner.style.borderColor = 'rgba(0, 240, 144, 0.35)';
+                    vipPromoBanner.style.background = 'linear-gradient(135deg, rgba(0, 240, 144, 0.12), rgba(62, 125, 255, 0.12))';
+                }
+            } else {
+                if (badgeCodes) {
+                    badgeCodes.innerHTML = `10.000 Kod (Misafir)`;
+                    badgeCodes.style.borderColor = '';
+                    badgeCodes.style.color = '';
+                }
+                if (searchCount) searchCount.textContent = "10.000";
+                if (vipBannerTitle) vipBannerTitle.textContent = `20.000 Hazır Kod Kütüphanesi`;
+                if (vipBannerDesc) vipBannerDesc.textContent = `Ücretsiz oturum açarak kütüphanenizi 10.000'den 20.000 koda yükseltin ve gelişmiş mod şablonlarını açın!`;
+                if (vipBannerBtn) {
+                    vipBannerBtn.textContent = `Giriş Yap & 20k Kodu Aç ✨`;
+                    vipBannerBtn.style.background = '';
+                    vipBannerBtn.style.color = '';
+                    vipBannerBtn.onclick = () => window.LoliAuth.openAuth('login');
+                }
+                if (vipPromoBanner) {
+                    vipPromoBanner.style.borderColor = '';
+                    vipPromoBanner.style.background = '';
+                }
+            }
+
+            buildDatabase();
+            buildCategories();
+            buildFilters();
+            applyFilters();
+        }
 
 
         /* =========================================================
@@ -2826,14 +2906,22 @@ ${english ? "View Code →" : "Kodu Görüntüle →"}
            START
         ========================================================= */
 
-        buildDatabase();
+        // Called after auth.js sets up window.LoliAuth
+        function initHelpPage() {
+            updateCodeCapacity();
+            window.addEventListener("lolimod:authchange", () => {
+                updateCodeCapacity();
+            });
+        }
 
-        buildCategories();
+    </script>
 
-        buildFilters();
+    <script src="assets/auth.js"></script>
 
-        applyFilters();
-
+    <script>
+        // auth.js initialises synchronously when already loaded
+        // Wait a tick so LoliAuth.init() has completed
+        requestAnimationFrame(() => initHelpPage());
     </script>
 
 </body>

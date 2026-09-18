@@ -8,6 +8,7 @@
     <title>LoliMod-İDEA — Minecraft Modding Studio</title>
 
     <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link rel="stylesheet" href="assets/theme.css">
 
     <meta name="description" content="LoliMod-İDEA — Minecraft modlarını daha kolay geliştir.">
 
@@ -241,57 +242,68 @@
 
             border-radius: 50%;
 
-            filter: blur(95px);
+            opacity: 1;
 
-            opacity: .18;
+            will-change: transform;
+            transform: translateZ(0);
+            contain: strict;
 
             animation:
-                orbFloat 14s ease-in-out infinite;
+                orbFloat 22s ease-in-out infinite;
         }
 
         .orb.one {
-            width: 390px;
-            height: 390px;
+            width: 500px;
+            height: 500px;
 
-            left: -180px;
-            top: 100px;
+            left: -220px;
+            top: 60px;
 
-            background: #3e7dff;
+            background: radial-gradient(circle at center,
+                    rgba(62, 125, 255, .22) 0%,
+                    rgba(62, 125, 255, .07) 55%,
+                    transparent 80%);
         }
 
         .orb.two {
-            width: 450px;
-            height: 450px;
+            width: 560px;
+            height: 560px;
 
-            right: -190px;
-            top: 420px;
+            right: -230px;
+            top: 380px;
 
-            background: #774bff;
+            background: radial-gradient(circle at center,
+                    rgba(119, 75, 255, .2) 0%,
+                    rgba(119, 75, 255, .06) 55%,
+                    transparent 80%);
 
-            animation-delay: -4s;
+            animation-delay: -7s;
         }
 
         .orb.three {
-            width: 310px;
-            height: 310px;
+            width: 400px;
+            height: 400px;
 
             left: 40%;
-            bottom: -170px;
+            bottom: -200px;
 
-            background: #16cfff;
+            background: radial-gradient(circle at center,
+                    rgba(22, 207, 255, .18) 0%,
+                    rgba(22, 207, 255, .05) 55%,
+                    transparent 80%);
 
-            animation-delay: -8s;
+            animation-delay: -13s;
         }
 
         @keyframes orbFloat {
 
             0%,
             100% {
-                transform: translate3d(0, 0, 0) scale(1);
+                transform: translateY(0);
             }
 
             50% {
-                transform: translate3d(25px, -30px, 0) scale(1.08);
+                transform: translateY(-20px);
             }
         }
 
@@ -317,10 +329,7 @@
             box-shadow:
                 0 0 12px rgba(98, 168, 255, .9);
 
-            opacity: .35;
-
-            animation:
-                particleFloat 8s ease-in-out infinite;
+            opacity: .3;
         }
 
         .p1 {
@@ -371,21 +380,7 @@
             animation-delay: -2s
         }
 
-        @keyframes particleFloat {
-
-            0%,
-            100% {
-                transform:
-                    translateY(0) scale(1);
-                opacity: .2;
-            }
-
-            50% {
-                transform:
-                    translateY(-22px) scale(1.5);
-                opacity: .65;
-            }
-        }
+        /* Particles are static — no animation for performance */
 
         /* =========================================================
    NAVBAR
@@ -428,8 +423,9 @@
                     rgba(12, 18, 35, .88),
                     rgba(8, 12, 24, .78));
 
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            will-change: auto;
 
             box-shadow:
                 0 20px 80px rgba(0, 0, 0, .28),
@@ -470,11 +466,11 @@
             top: -150px;
             left: 15%;
 
-            background: #5e9fff;
-
-            filter: blur(80px);
+            filter: blur(50px);
 
             opacity: .08;
+
+            will-change: auto;
         }
 
         /* =========================================================
@@ -932,15 +928,10 @@
                     #8f72ff 72%,
                     #d4ccff 100%);
 
-            background-size: 180% auto;
-
             -webkit-background-clip: text;
             background-clip: text;
 
             color: transparent;
-
-            animation:
-                gradientMove 8s linear infinite;
         }
 
         @keyframes gradientMove {
@@ -2419,6 +2410,14 @@
 
             <div class="nav-actions">
 
+                <button class="stats-badge-pill" onclick="window.LoliAuth.openStats()"
+                    title="Canlı İstatistikleri İncele">
+                    <span style="font-size:8px;">●</span>
+                    <span class="live-downloads">20</span> İndirme
+                </button>
+
+                <div class="auth-nav-slot"></div>
+
                 <button class="language-btn" id="languageButton" onclick="toggleLanguage()">
                     EN
                 </button>
@@ -2495,7 +2494,7 @@
                 <div class="hero-buttons">
 
                     <a href="Loli-Mod-2.0.1%20İnstaller.exe" download="Loli-Mod-2.0.1 İnstaller.exe"
-                        class="primary-button">
+                        class="primary-button" data-download-button="true">
 
                         ↓
 
@@ -2508,8 +2507,8 @@
 
                     <a href="help.html" class="secondary-button">
 
-                        <span data-tr="Kod Kütüphanesini Aç" data-en="Open Code Library">
-                            Kod Kütüphanesini Aç
+                        <span data-tr="Kod Kütüphanesini Aç (20.000 Kod)" data-en="Open Code Library (20k Codes)">
+                            Kod Kütüphanesini Aç (20.000 Kod)
                         </span>
 
                     </a>
@@ -2522,7 +2521,7 @@
                     <div class="stat">
 
                         <div class="stat-number">
-                            10.000+
+                            20.000+
                         </div>
 
                         <div class="stat-label" data-tr="Kod ve şablon" data-en="Codes & templates">
@@ -2532,14 +2531,29 @@
                     </div>
 
 
-                    <div class="stat">
+                    <div class="stat" style="cursor: pointer;" onclick="window.LoliAuth.openStats()"
+                        title="İstatistikleri İncele">
 
-                        <div class="stat-number">
-                            Fabric
+                        <div class="stat-number counter-pulse">
+                            <span class="live-downloads">20</span>+
                         </div>
 
-                        <div class="stat-label" data-tr="Mod geliştirme" data-en="Mod development">
-                            Mod geliştirme
+                        <div class="stat-label" data-tr="Windows İndirmesi" data-en="Windows Downloads">
+                            Windows İndirmesi
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat" style="cursor: pointer;" onclick="window.LoliAuth.openAuth('register')"
+                        title="Kayıt Ol">
+
+                        <div class="stat-number counter-pulse">
+                            <span class="live-users">10</span>+
+                        </div>
+
+                        <div class="stat-label" data-tr="Kayıtlı Geliştirici" data-en="Registered Modders">
+                            Kayıtlı Geliştirici
                         </div>
 
                     </div>
@@ -2548,12 +2562,11 @@
                     <div class="stat">
 
                         <div class="stat-number">
-                            IDE
+                            Fabric & IDE
                         </div>
 
-                        <div class="stat-label" data-tr="Modern geliştirme ortamı"
-                            data-en="Modern development environment">
-                            Modern geliştirme ortamı
+                        <div class="stat-label" data-tr="Mod geliştirme ortamı" data-en="Mod development environment">
+                            Mod geliştirme ortamı
                         </div>
 
                     </div>
@@ -2902,7 +2915,7 @@
                     <div class="download-actions">
 
                         <a href="Loli-Mod-2.0.1%20İnstaller.exe" download="Loli-Mod-2.0.1 İnstaller.exe"
-                            class="primary-button">
+                            class="primary-button" data-download-button="true">
 
                             ↓
 
@@ -2915,8 +2928,8 @@
 
                         <a href="help.html" class="secondary-button">
 
-                            <span data-tr="Yardım Merkezi" data-en="Help Center">
-                                Yardım Merkezi
+                            <span data-tr="Yardım Merkezi (20.000 Kod)" data-en="Help Center (20k Codes)">
+                                Yardım Merkezi (20.000 Kod)
                             </span>
 
                         </a>
@@ -2936,6 +2949,16 @@
 
                         <span>Installer EXE</span>
 
+                    </div>
+
+                    <div style="margin-top: 18px; display: flex; align-items: center; justify-content: center;">
+                        <div class="user-badge-pill" onclick="window.LoliAuth.openStats()"
+                            style="border-color: rgba(0, 240, 144, 0.35); font-size: 13px; padding: 7px 18px; background: rgba(9, 15, 26, 0.9);">
+                            <span
+                                style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00f090; box-shadow:0 0 10px #00f090;"></span>
+                            <span>Toplam <strong><span class="live-downloads">20</span></strong> indirme •
+                                <strong><span class="live-users">10</span></strong> kayıtlı geliştirici</span>
+                        </div>
                     </div>
 
                 </div>
@@ -3217,6 +3240,8 @@
             });
 
     </script>
+
+    <script src="assets/auth.js"></script>
 
 </body>
 

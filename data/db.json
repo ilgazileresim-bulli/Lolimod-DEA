@@ -1,0 +1,49 @@
+{
+  "downloads": 20,
+  "baseRegisteredUsers": 7,
+  "users": [
+    {
+      "id": "usr_demo",
+      "username": "demo",
+      "email": "demo@lolimod.dev",
+      "passwordHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+      "createdAt": "2026-09-01T12:00:00.000Z",
+      "isPro": true,
+      "role": "VIP Modder"
+    },
+    {
+      "id": "usr_mu5w3k83pjfj",
+      "username": "modmaster",
+      "email": "mod@master.com",
+      "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "createdAt": "2026-09-17T18:55:24.963Z",
+      "isPro": true,
+      "role": "VIP Geliştirici"
+    },
+    {
+      "id": "usr_mu5wdgtnland",
+      "username": "Bulliiii",
+      "email": "ilgazileresim@gmail.com",
+      "passwordHash": "34cbc27d60a58bfe7453aba1a149af0be27eba33e9c12a1b03b5cae858fa422b",
+      "createdAt": "2026-09-17T19:03:07.116Z",
+      "isPro": true,
+      "role": "VIP Geliştirici"
+    }
+  ],
+  "downloadHistory": [
+    {
+      "time": "2026-09-17T21:00:00.000Z",
+      "platform": "Windows x64"
+    },
+    {
+      "time": "2026-09-17T18:55:24.953Z",
+      "platform": "Windows x64",
+      "version": "2.0.1"
+    },
+    {
+      "time": "2026-09-17T19:14:12.034Z",
+      "platform": "Windows x64",
+      "version": "2.0.1"
+    }
+  ]
+}

@@ -12,11 +12,5 @@
   },
   "devDependencies": {
     "vite": "^6.2.0"
-  },
-  "dependencies": {
-    "esbuild": "^0.25.12"
-  },
-  "trustedDependencies": [
-    "esbuild"
-  ]
+  }
 }

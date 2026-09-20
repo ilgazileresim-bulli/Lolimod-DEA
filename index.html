@@ -7,52 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     ```
-    <title>LoliMod-İDEA — Minecraft Modding Studio</title>
+    <title>LoliMod-İDEA</title>
 
-    <!-- Vercel / Static HTML compatible icon -->
-    <link rel="icon" type="image/png" href="./ana-icon.png">
-    <link rel="shortcut icon" href="./ana-icon.png">
-
-    <meta name="description" content="LoliMod-İDEA — Minecraft modlarını daha kolay geliştir.">
+    <link rel="icon" type="image/png" href="ana-icon.png">
+    <link rel="shortcut icon" type="image/png" href="ana-icon.png">
 
     <style>
-        :root {
-            --bg: #050711;
-            --bg-deep: #03050b;
-            --bg2: #080d1a;
-            --bg3: #0c1222;
-
-            --panel: rgba(14, 20, 38, .68);
-            --panel-strong: rgba(14, 20, 38, .88);
-            --panel-light: rgba(255, 255, 255, .045);
-
-            --border: rgba(145, 165, 255, .13);
-            --border-hover: rgba(108, 169, 255, .38);
-
-            --text: #f7f9ff;
-            --text-soft: #dce3f5;
-            --muted: #8d97b1;
-            --muted2: #68738d;
-
-            --blue: #62a8ff;
-            --blue2: #3d7fff;
-            --purple: #8a68ff;
-            --purple2: #6847e8;
-            --cyan: #4edaff;
-
-            --green: #58e6a5;
-
-            --radius-sm: 12px;
-            --radius: 20px;
-            --radius-lg: 28px;
-            --radius-xl: 36px;
-
-            --shadow: 0 30px 100px rgba(0, 0, 0, .42);
-            --shadow-blue: 0 20px 70px rgba(78, 143, 255, .20);
-
-            --ease: cubic-bezier(.2, .8, .2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -65,33 +25,17 @@
 
         body {
             min-height: 100vh;
-            color: var(--text);
-
+            overflow-x: hidden;
+            color: #f5f7ff;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(62, 132, 255, .14), transparent 30%),
+                radial-gradient(circle at 85% 15%, rgba(124, 77, 255, .14), transparent 30%),
+                linear-gradient(180deg, #05070d, #070b15 55%, #03050a);
             font-family:
                 Inter,
-                ui-sans-serif,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
+                Arial,
+                Helvetica,
                 sans-serif;
-
-            background:
-                radial-gradient(circle at 15% 8%,
-                    rgba(70, 115, 255, .13),
-                    transparent 27%),
-                radial-gradient(circle at 88% 12%,
-                    rgba(132, 81, 255, .13),
-                    transparent 28%),
-                radial-gradient(circle at 52% 82%,
-                    rgba(49, 204, 255, .07),
-                    transparent 30%),
-                linear-gradient(180deg,
-                    #050711 0%,
-                    #070b16 48%,
-                    #04060c 100%);
-
-            overflow-x: hidden;
         }
 
         body::before {
@@ -99,237 +43,65 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: -10;
-            background:
-                radial-gradient(circle at 50% 0%,
-                    rgba(255, 255, 255, .035),
-                    transparent 35%);
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(120, 150, 255, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(120, 150, 255, .025) 1px, transparent 1px);
+            background-size: 55px 55px;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
         button {
-            font: inherit;
+            font-family: inherit;
         }
 
-        img {
-            max-width: 100%;
-        }
-
-        ::selection {
-            background: rgba(98, 168, 255, .35);
-            color: #fff;
-        }
-
-        ::-webkit-scrollbar {
-            width: 9px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #04060c;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #3c73ff, #7655e9);
-            border-radius: 999px;
-            border: 2px solid #04060c;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #6cb4ff, #9578ff);
-        }
-
-        .background {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -5;
-        }
-
-        .grid {
-            position: absolute;
-            inset: -100px;
-
-            background-image:
-                linear-gradient(rgba(122, 153, 255, .035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(122, 153, 255, .035) 1px, transparent 1px);
-
-            background-size: 58px 58px;
-
-            transform:
-                perspective(700px) rotateX(55deg) scale(1.5) translateY(120px);
-
-            transform-origin: center bottom;
-            opacity: .30;
-        }
-
-        .background-vignette {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at center,
-                    transparent 20%,
-                    rgba(0, 0, 0, .4) 100%);
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(55px);
-            opacity: .10;
-        }
-
-        .orb.one {
-            width: 390px;
-            height: 390px;
-            left: -180px;
-            top: 100px;
-            background: #3e7dff;
-        }
-
-        .orb.two {
-            width: 450px;
-            height: 450px;
-            right: -190px;
-            top: 420px;
-            background: #774bff;
-        }
-
-        .orb.three {
-            width: 310px;
-            height: 310px;
-            left: 40%;
-            bottom: -170px;
-            background: #16cfff;
-        }
-
-        .particles {
-            position: absolute;
-            inset: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: #8bbaff;
-            opacity: .20;
-        }
-
-        .p1 {
-            left: 12%;
-            top: 18%;
-        }
-
-        .p2 {
-            left: 26%;
-            top: 33%;
-        }
-
-        .p3 {
-            left: 72%;
-            top: 19%;
-        }
-
-        .p4 {
-            left: 84%;
-            top: 37%;
-        }
-
-        .p5 {
-            left: 42%;
-            top: 12%;
-        }
-
-        .p6 {
-            left: 64%;
-            top: 61%;
-        }
-
-        .p7 {
-            left: 18%;
-            top: 72%;
-        }
-
-        .p8 {
-            left: 90%;
-            top: 78%;
-        }
-
-        .navbar-wrap {
+        .navbar-area {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            padding: 16px 22px;
+            z-index: 999;
+            padding: 16px;
         }
 
         .navbar {
-            position: relative;
-            max-width: 1280px;
-            height: 74px;
+            width: min(1250px, calc(100% - 10px));
+            height: 72px;
             margin: auto;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 0 12px 0 18px;
+            padding: 0 13px 0 20px;
 
-            border: 1px solid rgba(160, 180, 255, .11);
+            border: 1px solid rgba(255, 255, 255, .09);
             border-radius: 22px;
 
-            background:
-                linear-gradient(135deg,
-                    rgba(12, 18, 35, .88),
-                    rgba(8, 12, 24, .78));
+            background: rgba(8, 12, 23, .82);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
 
             box-shadow:
-                0 20px 80px rgba(0, 0, 0, .28),
-                inset 0 1px 0 rgba(255, 255, 255, .045);
-
-            overflow: hidden;
-        }
-
-        .navbar::before {
-            content: "";
-            position: absolute;
-            left: 8%;
-            right: 8%;
-            top: 0;
-            height: 1px;
-
-            background:
-                linear-gradient(90deg,
-                    transparent,
-                    rgba(115, 181, 255, .65),
-                    rgba(143, 106, 255, .55),
-                    transparent);
+                0 20px 80px rgba(0, 0, 0, .35),
+                inset 0 1px rgba(255, 255, 255, .04);
         }
 
         .brand {
-            position: relative;
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: max-content;
-            z-index: 2;
         }
 
-        .brand-logo {
-            width: 45px;
-            height: 45px;
+        .brand img {
+            width: 46px;
+            height: 46px;
             object-fit: contain;
             display: block;
-
-            filter:
-                drop-shadow(0 0 16px rgba(98, 168, 255, .25));
         }
 
         .brand-name {
@@ -339,306 +111,242 @@
         }
 
         .brand-name span {
-            background:
-                linear-gradient(100deg,
-                    #69adff,
-                    #9272ff);
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #70aaff;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 4px;
-            z-index: 2;
+            gap: 5px;
         }
 
-        .nav-link {
-            position: relative;
+        .nav-links a {
             padding: 11px 15px;
-            color: #929db8;
             border-radius: 12px;
+            color: #8994ae;
             font-size: 13px;
             font-weight: 700;
-            transition: .25s ease;
+            transition: .2s;
         }
 
-        .nav-link:hover {
-            color: #fff;
+        .nav-links a:hover {
+            color: white;
             background: rgba(255, 255, 255, .055);
         }
 
-        .nav-actions {
+        .nav-right {
             display: flex;
             align-items: center;
             gap: 8px;
-            z-index: 2;
         }
 
-        .language-btn {
-            height: 41px;
-            min-width: 46px;
-            padding: 0 12px;
-
-            color: #c8d0e4;
-
-            border: 1px solid rgba(255, 255, 255, .09);
+        .language {
+            height: 42px;
+            padding: 0 13px;
+            border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 12px;
-
             background: rgba(255, 255, 255, .035);
-
+            color: #cbd3e6;
             cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+        }
 
+        .premium-button {
+            height: 44px;
+            padding: 0 16px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            border: 1px solid rgba(138, 102, 255, .3);
+            border-radius: 13px;
+
+            background: linear-gradient(135deg,
+                    rgba(79, 146, 255, .13),
+                    rgba(132, 86, 255, .18));
+
+            color: white;
+            cursor: pointer;
             font-size: 12px;
             font-weight: 850;
         }
 
-        .premium-btn {
-            position: relative;
-
-            height: 43px;
-            padding: 0 17px;
-
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            color: white;
-
-            border: 1px solid rgba(139, 108, 255, .35);
-            border-radius: 13px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(89, 148, 255, .16),
-                    rgba(139, 108, 255, .19));
-
-            cursor: pointer;
-
-            font-size: 13px;
-            font-weight: 850;
-        }
-
-        .premium-icon {
-            width: 21px;
-            height: 21px;
+        .premium-button img {
+            width: 22px;
+            height: 22px;
             object-fit: contain;
         }
 
         .hero {
-            position: relative;
-
-            min-height: 950px;
-            max-width: 1280px;
+            min-height: 900px;
+            width: min(1250px, 100%);
             margin: auto;
 
-            padding: 205px 24px 110px;
+            padding: 190px 25px 100px;
 
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
 
             text-align: center;
         }
 
         .hero-content {
-            position: relative;
             width: 100%;
-            max-width: 1050px;
-            z-index: 2;
+            max-width: 1000px;
         }
 
-        .hero-badge {
-            position: relative;
-
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 9px;
 
             padding: 9px 15px;
 
-            border: 1px solid rgba(101, 168, 255, .17);
+            border: 1px solid rgba(90, 160, 255, .18);
             border-radius: 999px;
 
-            background:
-                linear-gradient(135deg,
-                    rgba(101, 168, 255, .07),
-                    rgba(139, 108, 255, .055));
-
-            color: #bcd4ff;
+            color: #a9caff;
+            background: rgba(70, 130, 255, .055);
 
             font-size: 12px;
             font-weight: 800;
         }
 
-        .badge-dot {
+        .dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-
-            background: #65d8ff;
-
-            box-shadow:
-                0 0 0 4px rgba(80, 217, 255, .08),
-                0 0 18px rgba(80, 217, 255, .9);
+            background: #5cd8ff;
+            box-shadow: 0 0 18px #5cd8ff;
         }
 
-        .hero h1 {
-            margin-top: 31px;
+        h1 {
+            margin-top: 30px;
 
-            font-size: clamp(50px, 7.6vw, 94px);
+            font-size: clamp(52px, 8vw, 94px);
             line-height: .98;
-
             letter-spacing: -6px;
             font-weight: 950;
         }
 
-        .gradient-text {
+        .gradient {
             background:
                 linear-gradient(105deg,
-                    #ffffff 0%,
-                    #cce2ff 20%,
-                    #76b5ff 42%,
-                    #8f72ff 72%,
-                    #d4ccff 100%);
+                    #ffffff,
+                    #b9d7ff 30%,
+                    #62a6ff 55%,
+                    #9270ff 85%);
 
             -webkit-background-clip: text;
             background-clip: text;
-
             color: transparent;
         }
 
-        .hero-description {
-            max-width: 760px;
-            margin: 29px auto 0;
+        .hero-text {
+            max-width: 750px;
+            margin: 30px auto 0;
 
-            color: #939db7;
-
-            font-size: 17px;
-            line-height: 1.85;
+            color: #8d97b1;
+            font-size: 16px;
+            line-height: 1.8;
         }
 
         .hero-buttons {
-            margin-top: 38px;
+            margin-top: 35px;
 
             display: flex;
-            align-items: center;
             justify-content: center;
-
             gap: 12px;
             flex-wrap: wrap;
         }
 
-        .primary-button,
+        .main-button,
         .secondary-button {
-            min-height: 56px;
+            min-height: 55px;
             padding: 0 24px;
 
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
 
             border-radius: 15px;
 
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 850;
+            cursor: pointer;
         }
 
-        .primary-button {
+        .main-button {
+            border: 0;
             color: white;
 
             background:
                 linear-gradient(115deg,
-                    #4e94ff 0%,
-                    #687cff 42%,
-                    #8059ee 100%);
+                    #4a91ff,
+                    #687aff,
+                    #8058eb);
 
             box-shadow:
-                0 15px 45px rgba(84, 110, 255, .24),
-                inset 0 1px 0 rgba(255, 255, 255, .2);
-
-            cursor: pointer;
-            border: none;
+                0 15px 50px rgba(76, 110, 255, .23);
         }
 
         .secondary-button {
-            color: #d4daea;
-
-            border: 1px solid rgba(255, 255, 255, .11);
-
-            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .035);
+            color: #d6dcef;
         }
 
         .stats {
-            max-width: 940px;
-            margin: 82px auto 0;
+            max-width: 900px;
+            margin: 70px auto 0;
 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
 
             border: 1px solid rgba(255, 255, 255, .075);
-            border-radius: 23px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 255, 255, .035),
-                    rgba(255, 255, 255, .012));
-
+            border-radius: 22px;
             overflow: hidden;
+
+            background: rgba(255, 255, 255, .025);
         }
 
         .stat {
-            padding: 29px 18px;
+            padding: 27px 15px;
         }
 
         .stat+.stat {
-            border-left: 1px solid rgba(255, 255, 255, .065);
+            border-left: 1px solid rgba(255, 255, 255, .07);
         }
 
         .stat-number {
-            font-size: 29px;
+            font-size: 28px;
             font-weight: 950;
-
-            background:
-                linear-gradient(110deg,
-                    white,
-                    #a7c9ff,
-                    #a18cff);
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
+            color: #b9d6ff;
         }
 
-        .stat-label {
-            margin-top: 6px;
-            color: #7e89a4;
-            font-size: 12px;
-            font-weight: 650;
+        .stat-text {
+            margin-top: 5px;
+            color: #707b95;
+            font-size: 11px;
         }
 
         .section {
-            max-width: 1280px;
+            width: min(1250px, 100%);
             margin: auto;
-            padding: 115px 24px;
+            padding: 110px 25px;
         }
 
         .section-header {
-            max-width: 760px;
+            max-width: 750px;
             margin: auto;
             text-align: center;
         }
 
-        .section-kicker {
-            display: inline-block;
-
-            color: #78b6ff;
-
+        .kicker {
+            color: #69aaff;
             font-size: 11px;
             font-weight: 900;
             letter-spacing: 2px;
@@ -647,363 +355,205 @@
 
         .section-title {
             margin-top: 13px;
-
-            font-size: clamp(34px, 5vw, 54px);
-            line-height: 1.05;
-
-            letter-spacing: -2.7px;
+            font-size: clamp(35px, 5vw, 55px);
+            letter-spacing: -3px;
             font-weight: 950;
         }
 
         .section-description {
-            margin-top: 18px;
-
-            color: #8e98b1;
-            font-size: 15px;
-            line-height: 1.75;
+            margin-top: 17px;
+            color: #858fa8;
+            line-height: 1.8;
+            font-size: 14px;
         }
 
-        .preview-switcher {
+        .preview-tabs {
             display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 5px;
 
-            gap: 8px;
-            margin: 58px auto 14px;
-
-            padding: 5px;
             width: fit-content;
+            margin: 45px auto 15px;
+            padding: 5px;
 
-            border: 1px solid rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .07);
             border-radius: 14px;
 
             background: #0b101d;
         }
 
-        .preview-switch {
-            min-width: 112px;
+        .preview-tabs button {
             height: 40px;
+            min-width: 105px;
 
-            padding: 0 16px;
-
-            border: 1px solid transparent;
+            border: 0;
             border-radius: 10px;
 
-            color: #7f8aa5;
             background: transparent;
+            color: #77829b;
 
             cursor: pointer;
-
             font-size: 12px;
-            font-weight: 850;
+            font-weight: 800;
         }
 
-        .preview-switch.active {
-            color: #fff;
-
-            border-color: rgba(98, 168, 255, .20);
-
-            background:
-                linear-gradient(135deg,
-                    rgba(78, 148, 255, .16),
-                    rgba(132, 92, 255, .16));
+        .preview-tabs button.active {
+            color: white;
+            background: linear-gradient(135deg,
+                    rgba(79, 145, 255, .16),
+                    rgba(130, 84, 255, .16));
         }
 
-        .preview-label {
-            text-align: center;
+        .preview-box {
+            margin-top: 35px;
+            padding: 8px;
 
-            margin: 0 0 18px;
+            border-radius: 29px;
 
-            color: #69758f;
-
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .preview-wrapper {
-            position: relative;
-
-            padding: 9px;
-
-            border-radius: 31px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(101, 168, 255, .26),
-                    rgba(139, 108, 255, .19),
-                    rgba(80, 217, 255, .08),
+            background: linear-gradient(135deg,
+                    rgba(91, 165, 255, .25),
+                    rgba(133, 91, 255, .2),
                     transparent);
 
-            box-shadow:
-                0 45px 120px rgba(0, 0, 0, .43);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, .4);
         }
 
-        .preview-window {
-            position: relative;
+        .preview-inner {
             overflow: hidden;
-
-            border-radius: 23px;
-            border: 1px solid rgba(255, 255, 255, .11);
-
-            background: #080c17;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: #070b14;
         }
 
-        .preview-image {
+        .preview-inner img {
             display: block;
-
             width: 100%;
             height: auto;
-
-            max-height: 720px;
-
-            object-fit: contain;
-
-            background: #080c17;
         }
 
-        .features-grid {
-            margin-top: 60px;
+        .features {
+            margin-top: 55px;
 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-
             gap: 17px;
         }
 
-        .feature-card {
-            position: relative;
+        .feature {
+            min-height: 260px;
+            padding: 28px;
 
-            min-height: 285px;
-            padding: 29px;
-
-            overflow: hidden;
-
-            border: 1px solid var(--border);
-            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 23px;
 
             background:
                 linear-gradient(145deg,
-                    rgba(19, 27, 48, .74),
-                    rgba(9, 14, 27, .64));
-
-            box-shadow:
-                0 18px 65px rgba(0, 0, 0, .22);
+                    rgba(18, 27, 48, .7),
+                    rgba(8, 13, 25, .65));
         }
 
         .feature-icon {
-            position: relative;
-
-            width: 51px;
-            height: 51px;
+            width: 50px;
+            height: 50px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 15px;
+            border: 1px solid rgba(95, 160, 255, .14);
+            border-radius: 14px;
 
-            border: 1px solid rgba(101, 168, 255, .14);
-
-            background:
-                linear-gradient(135deg,
-                    rgba(101, 168, 255, .13),
-                    rgba(139, 108, 255, .13));
-
-            font-size: 22px;
-        }
-
-        .feature-card h3 {
-            position: relative;
-            z-index: 2;
-
-            margin-top: 22px;
-
-            font-size: 18px;
-            font-weight: 850;
-        }
-
-        .feature-card p {
-            position: relative;
-            z-index: 2;
-
-            margin-top: 11px;
-
-            color: #8791aa;
-
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .workflow {
-            display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 18px;
-
-            margin-top: 60px;
-        }
-
-        .workflow-card {
-            position: relative;
-
-            padding: 31px;
-            min-height: 205px;
-
-            border: 1px solid rgba(255, 255, 255, .075);
-            border-radius: 23px;
-
-            background:
-                linear-gradient(145deg,
-                    rgba(17, 24, 44, .82),
-                    rgba(8, 13, 25, .72));
-        }
-
-        .workflow-number {
-            color: #73adff;
-
-            font-size: 10px;
-            font-weight: 950;
-            letter-spacing: 2px;
-        }
-
-        .workflow-card h3 {
-            margin-top: 13px;
+            background: rgba(70, 130, 255, .09);
 
             font-size: 21px;
-            letter-spacing: -.6px;
         }
 
-        .workflow-card p {
+        .feature h3 {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .feature p {
             margin-top: 10px;
-
-            color: #8791aa;
-
-            line-height: 1.75;
+            color: #808ba4;
             font-size: 13px;
-        }
-
-        .download-section {
-            padding-top: 80px;
-            padding-bottom: 140px;
+            line-height: 1.8;
         }
 
         .download-card {
             position: relative;
             overflow: hidden;
 
-            padding: 68px 58px;
+            padding: 65px;
 
-            border: 1px solid rgba(101, 168, 255, .17);
-            border-radius: 32px;
+            border: 1px solid rgba(100, 165, 255, .16);
+            border-radius: 31px;
 
             background:
-                radial-gradient(circle at 91% 18%,
-                    rgba(139, 108, 255, .21),
+                radial-gradient(circle at 90% 10%,
+                    rgba(132, 83, 255, .17),
                     transparent 32%),
-                radial-gradient(circle at 5% 90%,
-                    rgba(80, 217, 255, .11),
-                    transparent 34%),
                 linear-gradient(135deg,
-                    rgba(15, 22, 42, .92),
-                    rgba(8, 13, 26, .86));
+                    rgba(16, 24, 44, .9),
+                    rgba(7, 12, 24, .88));
 
-            box-shadow:
-                0 40px 120px rgba(0, 0, 0, .42);
-        }
-
-        .download-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
+            box-shadow: 0 35px 100px rgba(0, 0, 0, .38);
         }
 
         .download-card h2 {
-            margin-top: 11px;
-
-            font-size: clamp(36px, 5vw, 60px);
-            line-height: 1.03;
-
+            margin-top: 10px;
+            font-size: clamp(36px, 5vw, 59px);
             letter-spacing: -3px;
             font-weight: 950;
         }
 
         .download-card p {
-            max-width: 690px;
-            margin-top: 17px;
-
-            color: #909ab2;
-
-            font-size: 15px;
+            max-width: 700px;
+            margin-top: 15px;
+            color: #8792aa;
             line-height: 1.8;
         }
 
-        .download-actions {
-            margin-top: 30px;
+        .download-buttons {
+            margin-top: 28px;
 
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
 
-        .download-info {
-            margin-top: 20px;
-
-            display: flex;
-            gap: 13px;
-            flex-wrap: wrap;
-
-            color: #647089;
-
-            font-size: 11px;
-            font-weight: 650;
-        }
-
         footer {
-            position: relative;
-
-            border-top:
-                1px solid rgba(255, 255, 255, .065);
-
-            padding: 34px 24px;
-
-            background:
-                linear-gradient(180deg,
-                    rgba(4, 7, 14, .35),
-                    rgba(2, 4, 8, .72));
+            padding: 35px 25px;
+            border-top: 1px solid rgba(255, 255, 255, .06);
         }
 
         .footer-inner {
-            max-width: 1280px;
+            width: min(1250px, 100%);
             margin: auto;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            gap: 20px;
         }
 
         .footer-brand {
             display: flex;
             align-items: center;
-
             gap: 10px;
 
-            color: #bec7dc;
-
+            color: #bec7da;
             font-size: 13px;
-            font-weight: 750;
+            font-weight: 800;
         }
 
-        .footer-logo {
-            width: 31px;
-            height: 31px;
+        .footer-brand img {
+            width: 32px;
+            height: 32px;
             object-fit: contain;
         }
 
-        .footer-copy {
-            color: #626d85;
+        .copyright {
+            color: #626c82;
             font-size: 11px;
         }
 
@@ -1013,325 +563,155 @@
             z-index: 5000;
 
             display: none;
-
             align-items: center;
             justify-content: center;
 
             padding: 20px;
 
-            background: rgba(2, 4, 10, .74);
+            background: rgba(0, 0, 0, .72);
+            backdrop-filter: blur(8px);
         }
 
-        .modal.active {
+        .modal.show {
             display: flex;
         }
 
-        .modal-box {
-            position: relative;
+        .modal-content {
+            width: min(470px, 100%);
+            padding: 35px;
 
-            width: min(480px, 100%);
-
-            padding: 38px;
-
-            border: 1px solid rgba(139, 108, 255, .25);
+            border: 1px solid rgba(130, 100, 255, .25);
             border-radius: 27px;
 
             background:
-                radial-gradient(circle at 90% 0%,
-                    rgba(130, 92, 255, .13),
-                    transparent 38%),
                 linear-gradient(145deg,
-                    #12192d,
-                    #090e1c);
+                    #12192c,
+                    #080d19);
 
-            box-shadow:
-                0 40px 120px rgba(0, 0, 0, .62);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, .6);
         }
 
-        .modal-icon {
-            width: 64px;
-            height: 64px;
-
-            display: block;
-
-            padding: 10px;
-
+        .modal-content img {
+            width: 62px;
+            height: 62px;
             object-fit: contain;
-
-            border-radius: 17px;
-
-            border: 1px solid rgba(139, 108, 255, .2);
-
-            background:
-                linear-gradient(135deg,
-                    rgba(101, 168, 255, .15),
-                    rgba(139, 108, 255, .19));
         }
 
-        .modal-box h2 {
-            margin-top: 22px;
-
-            font-size: 28px;
-            letter-spacing: -1px;
+        .modal-content h2 {
+            margin-top: 20px;
+            font-size: 27px;
         }
 
-        .modal-box p {
-            margin-top: 11px;
-
-            color: #909ab2;
-
-            font-size: 14px;
+        .modal-content p {
+            margin-top: 12px;
+            color: #8c96ad;
             line-height: 1.8;
+            font-size: 13px;
         }
 
-        .modal-close {
+        .close-modal {
             width: 100%;
             height: 50px;
+            margin-top: 25px;
 
-            margin-top: 27px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 13px;
 
-            border: 1px solid rgba(255, 255, 255, .09);
-            border-radius: 14px;
-
+            background: rgba(255, 255, 255, .05);
             color: white;
-            background: rgba(255, 255, 255, .055);
 
             cursor: pointer;
-
-            font-size: 13px;
             font-weight: 800;
         }
 
-        .download-toast {
-            position: fixed;
-
-            bottom: 30px;
-            left: 50%;
-
-            transform: translateX(-50%) translateY(100px);
-
-            z-index: 6000;
-
-            padding: 14px 24px;
-
-            border: 1px solid rgba(88, 230, 165, .3);
-            border-radius: 14px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(15, 30, 25, .96),
-                    rgba(10, 20, 16, .96));
-
-            color: #d5ffe8;
-
-            font-size: 13px;
-            font-weight: 700;
-
-            opacity: 0;
-            pointer-events: none;
-
-            transition:
-                transform .35s ease,
-                opacity .35s ease;
-
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .download-toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .download-toast-icon {
-            width: 22px;
-            height: 22px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: #58e6a5;
-            color: #052a18;
-
-            font-size: 13px;
-            font-weight: 900;
-        }
-
-        @media(max-width:1000px) {
+        @media(max-width:900px) {
             .nav-links {
                 display: none;
             }
 
-            .hero {
-                min-height: auto;
-                padding-top: 170px;
-            }
-
-            .features-grid {
+            .features {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media(max-width:680px) {
-            .navbar-wrap {
+        @media(max-width:650px) {
+            .navbar-area {
                 padding: 10px;
             }
 
             .navbar {
                 height: 64px;
-                padding: 0 9px 0 12px;
-                border-radius: 18px;
+                padding-left: 12px;
             }
 
-            .brand-logo {
-                width: 37px;
-                height: 37px;
+            .brand img {
+                width: 38px;
+                height: 38px;
             }
 
             .brand-name {
                 font-size: 14px;
             }
 
-            .language-btn {
-                height: 38px;
-                min-width: 42px;
-            }
-
-            .premium-btn {
-                height: 39px;
+            .premium-button {
                 padding: 0 11px;
             }
 
-            .premium-text {
+            .premium-button span {
                 display: none;
             }
 
             .hero {
-                padding: 135px 18px 75px;
+                min-height: auto;
+                padding: 145px 18px 80px;
             }
 
-            .hero-badge {
-                font-size: 10px;
-                padding: 8px 11px;
+            h1 {
+                font-size: 47px;
+                letter-spacing: -3px;
             }
 
-            .hero h1 {
-                margin-top: 24px;
-                font-size: clamp(43px, 13vw, 58px);
-                letter-spacing: -3.7px;
-            }
-
-            .hero-description {
-                margin-top: 22px;
+            .hero-text {
                 font-size: 14px;
             }
 
             .hero-buttons {
-                margin-top: 30px;
                 flex-direction: column;
-                width: 100%;
             }
 
-            .primary-button,
+            .main-button,
             .secondary-button {
                 width: 100%;
-                min-height: 53px;
             }
 
             .stats {
-                margin-top: 60px;
                 grid-template-columns: 1fr;
-                border-radius: 20px;
-            }
-
-            .stat {
-                padding: 23px 15px;
             }
 
             .stat+.stat {
-                border-left: none;
-                border-top: 1px solid rgba(255, 255, 255, .065);
+                border-left: 0;
+                border-top: 1px solid rgba(255, 255, 255, .07);
             }
 
             .section {
                 padding: 75px 18px;
             }
 
-            .section-title {
-                font-size: 35px;
-                letter-spacing: -1.8px;
-            }
-
-            .preview-switcher {
-                width: 100%;
-                margin-top: 40px;
-            }
-
-            .preview-switch {
-                flex: 1;
-                min-width: 0;
-            }
-
-            .preview-wrapper {
-                margin-top: 40px;
-                padding: 5px;
-                border-radius: 20px;
-            }
-
-            .preview-window {
-                border-radius: 16px;
-            }
-
-            .features-grid {
+            .features {
                 grid-template-columns: 1fr;
-                margin-top: 40px;
-            }
-
-            .feature-card {
-                min-height: auto;
-                padding: 25px;
-            }
-
-            .workflow {
-                grid-template-columns: 1fr;
-                margin-top: 40px;
-            }
-
-            .workflow-card {
-                padding: 26px;
-            }
-
-            .download-section {
-                padding-top: 45px;
-                padding-bottom: 90px;
             }
 
             .download-card {
-                padding: 40px 25px;
-                border-radius: 25px;
+                padding: 38px 25px;
             }
 
-            .download-card h2 {
-                font-size: 37px;
-                letter-spacing: -2px;
-            }
-
-            .download-actions {
+            .download-buttons {
                 flex-direction: column;
-            }
-
-            .download-actions .primary-button,
-            .download-actions .secondary-button {
-                width: 100%;
             }
 
             .footer-inner {
                 flex-direction: column;
-                text-align: center;
+                gap: 15px;
             }
         }
     </style>
@@ -1342,31 +722,11 @@
 <body>
 
     ```
-    <div class="background">
-        <div class="grid"></div>
-        <div class="background-vignette"></div>
-
-        <div class="orb one"></div>
-        <div class="orb two"></div>
-        <div class="orb three"></div>
-
-        <div class="particles">
-            <div class="particle p1"></div>
-            <div class="particle p2"></div>
-            <div class="particle p3"></div>
-            <div class="particle p4"></div>
-            <div class="particle p5"></div>
-            <div class="particle p6"></div>
-            <div class="particle p7"></div>
-            <div class="particle p8"></div>
-        </div>
-    </div>
-
-    <div class="navbar-wrap">
+    <div class="navbar-area">
         <nav class="navbar">
 
             <a href="#" class="brand">
-                <img src="./ana-icon.png" alt="LoliMod-İDEA" class="brand-logo">
+                <img src="./ana-icon.png" alt="LoliMod-İDEA">
 
                 <div class="brand-name">
                     LoliMod<span>-İDEA</span>
@@ -1374,37 +734,25 @@
             </a>
 
             <div class="nav-links">
-                <a href="#features" class="nav-link" data-tr="Özellikler" data-en="Features">
-                    Özellikler
-                </a>
-
-                <a href="./help.html" class="nav-link" data-tr="Yardım" data-en="Help">
-                    Yardım
-                </a>
-
-                <a href="#download" class="nav-link" data-tr="İndir" data-en="Download">
-                    İndir
-                </a>
+                <a href="#features">Özellikler</a>
+                <a href="./help.html">Help Center</a>
+                <a href="#download">İndir</a>
             </div>
 
-            <div class="nav-actions">
-
-                <button class="language-btn" id="languageButton" onclick="toggleLanguage()">
+            <div class="nav-right">
+                <button class="language" onclick="changeLanguage()">
                     EN
                 </button>
 
-                <button class="premium-btn" onclick="openPremium()">
-                    <img src="./icon.ico" alt="Premium" class="premium-icon">
-
-                    <span class="premium-text" data-tr="Premium" data-en="Premium">
-                        Premium
-                    </span>
+                <button class="premium-button" onclick="openPremium()">
+                    <img src="./icon.ico" alt="Premium">
+                    <span>Premium</span>
                 </button>
-
             </div>
 
         </nav>
     </div>
+
 
     <main>
 
@@ -1412,52 +760,33 @@
 
             <div class="hero-content">
 
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-
-                    <span data-tr="Yeni nesil Minecraft mod geliştirme"
-                        data-en="Next-generation Minecraft mod development">
-                        Yeni nesil Minecraft mod geliştirme
-                    </span>
+                <div class="badge">
+                    <span class="dot"></span>
+                    Yeni nesil Minecraft mod geliştirme
                 </div>
 
                 <h1>
-
-                    <span class="gradient-text" data-tr="Minecraft Modlarını" data-en="Build Minecraft Mods">
+                    <span class="gradient">
                         Minecraft Modlarını
                     </span>
-
                     <br>
-
-                    <span data-tr="Daha Kolay Geliştir." data-en="More Easily.">
-                        Daha Kolay Geliştir.
-                    </span>
-
+                    Daha Kolay Geliştir.
                 </h1>
 
-                <p class="hero-description"
-                    data-tr="LoliMod-İDEA, Minecraft mod geliştirme sürecini daha anlaşılır, hızlı ve düzenli hale getirmek için tasarlanmış modern bir geliştirme stüdyosudur."
-                    data-en="LoliMod-İDEA is a modern development studio designed to make Minecraft mod development easier, faster and more organized.">
+                <p class="hero-text">
                     LoliMod-İDEA, Minecraft mod geliştirme sürecini
-                    daha anlaşılır, hızlı ve düzenli hale getirmek için
+                    daha kolay, hızlı ve düzenli hale getirmek için
                     tasarlanmış modern bir geliştirme stüdyosudur.
                 </p>
 
                 <div class="hero-buttons">
 
-                    <button type="button" class="primary-button"
-                        onclick="downloadFile('./Loli-Mod-İDEA-3.1.8 İnstaller.exe')">
-                        ↓
-
-                        <span data-tr="Windows için indir" data-en="Download for Windows">
-                            Windows için indir
-                        </span>
+                    <button class="main-button" onclick="downloadInstaller()">
+                        ↓ Windows için indir
                     </button>
 
-                    <a href="./help.html" class="secondary-button">
-                        <span data-tr="Kod Kütüphanesini Aç" data-en="Open Code Library">
-                            Kod Kütüphanesini Aç
-                        </span>
+                    <a class="secondary-button" href="./help.html">
+                        Kod Kütüphanesini Aç
                     </a>
 
                 </div>
@@ -1466,10 +795,9 @@
 
                     <div class="stat">
                         <div class="stat-number">
-                            10.000+
+                            10K+
                         </div>
-
-                        <div class="stat-label" data-tr="Kod ve şablon" data-en="Codes & templates">
+                        <div class="stat-text">
                             Kod ve şablon
                         </div>
                     </div>
@@ -1478,8 +806,7 @@
                         <div class="stat-number">
                             Fabric
                         </div>
-
-                        <div class="stat-label" data-tr="Mod geliştirme" data-en="Mod development">
+                        <div class="stat-text">
                             Mod geliştirme
                         </div>
                     </div>
@@ -1488,10 +815,8 @@
                         <div class="stat-number">
                             IDE
                         </div>
-
-                        <div class="stat-label" data-tr="Modern geliştirme ortamı"
-                            data-en="Modern development environment">
-                            Modern geliştirme ortamı
+                        <div class="stat-text">
+                            Geliştirme ortamı
                         </div>
                     </div>
 
@@ -1501,49 +826,43 @@
 
         </section>
 
+
         <section class="section">
 
             <div class="section-header">
 
-                <div class="section-kicker" data-tr="Uygulamayı keşfet" data-en="Explore the app">
-                    Uygulamayı keşfet
+                <div class="kicker">
+                    UYGULAMAYI KEŞFET
                 </div>
 
-                <h2 class="section-title" data-tr="LoliMod-İDEA'yı yakından gör." data-en="See LoliMod-İDEA up close.">
+                <h2 class="section-title">
                     LoliMod-İDEA'yı yakından gör.
                 </h2>
 
-                <p class="section-description" data-tr="Mod geliştirme deneyimi için tasarlanan arayüzü incele."
-                    data-en="Explore the interface designed for Minecraft mod development.">
-                    Mod geliştirme deneyimi için tasarlanan arayüzü incele.
+                <p class="section-description">
+                    Modern Minecraft mod geliştirme deneyimi için
+                    tasarlanan arayüzü incele.
                 </p>
 
             </div>
 
-            <div class="preview-switcher" role="tablist" aria-label="Preview selection">
+            <div class="preview-tabs">
 
-                <button type="button" class="preview-switch active" id="previewNewButton" data-tr="Yeni" data-en="New"
-                    onclick="setPreview('new')">
-                    Yeni
+                <button id="newTab" class="active" onclick="showPreview('new')">
+                    Yeni Arayüz
                 </button>
 
-                <button type="button" class="preview-switch" id="previewOldButton" data-tr="Eski" data-en="Old"
-                    onclick="setPreview('old')">
-                    Eski
+                <button id="oldTab" onclick="showPreview('old')">
+                    Eski Arayüz
                 </button>
 
             </div>
 
-            <div class="preview-label" id="previewLabel">
-                Loli-Mod-İDEA — Yeni Arayüz
-            </div>
+            <div class="preview-box">
 
-            <div class="preview-wrapper">
+                <div class="preview-inner">
 
-                <div class="preview-window">
-
-                    <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA Yeni Önizleme" class="preview-image"
-                        id="previewImage" loading="lazy" decoding="async">
+                    <img id="preview" src="./Loli-Mod-New1.png" alt="LoliMod-İDEA">
 
                 </div>
 
@@ -1551,197 +870,121 @@
 
         </section>
 
+
         <section class="section" id="features">
 
             <div class="section-header">
 
-                <div class="section-kicker" data-tr="Neden LoliMod?" data-en="Why LoliMod?">
-                    Neden LoliMod?
+                <div class="kicker">
+                    ÖZELLİKLER
                 </div>
 
-                <h2 class="section-title" data-tr="Mod geliştirme artık daha düzenli."
-                    data-en="Mod development, organized.">
+                <h2 class="section-title">
                     Mod geliştirme artık daha düzenli.
                 </h2>
 
-                <p class="section-description"
-                    data-tr="Kodlarını, kaynaklarını ve proje dosyalarını tek bir geliştirme deneyiminde yönet."
-                    data-en="Manage your code, resources and project files in one development experience.">
+                <p class="section-description">
                     Kodlarını, kaynaklarını ve proje dosyalarını
                     tek bir geliştirme deneyiminde yönet.
                 </p>
 
             </div>
 
-            <div class="features-grid">
 
-                <article class="feature-card">
-                    <div class="feature-icon">⚡</div>
+            <div class="features">
 
-                    <h3 data-tr="Hızlı Başlangıç" data-en="Quick Start">
+                <div class="feature">
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
                         Hızlı Başlangıç
                     </h3>
 
-                    <p data-tr="Yeni bir Minecraft mod projesi oluştur ve geliştirmeye başlamak için gereken temel yapıyı düzenle."
-                        data-en="Create a Minecraft mod project and organize the basic structure needed to start developing.">
-                        Yeni bir Minecraft mod projesi oluştur ve
-                        geliştirmeye başlamak için gereken temel
-                        yapıyı düzenle.
+                    <p>
+                        Yeni Minecraft mod projeleri oluştur
+                        ve geliştirmeye hızlıca başla.
                     </p>
-                </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">🧩</div>
 
-                    <h3 data-tr="Hazır Kodlar" data-en="Code Library">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🧩
+                    </div>
+
+                    <h3>
                         Hazır Kodlar
                     </h3>
 
-                    <p data-tr="Binlerce açıklamalı kod örneği arasından ihtiyacın olan yapıyı bul ve projende kullan."
-                        data-en="Find the structure you need among thousands of explained code examples and use it in your project.">
-                        Binlerce açıklamalı kod örneği arasından
-                        ihtiyacın olan yapıyı bul ve projende kullan.
+                    <p>
+                        Sık kullanılan mod geliştirme yapılarını
+                        hazır örneklerle kullan.
                     </p>
-                </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">🛠</div>
 
-                    <h3 data-tr="Proje Araçları" data-en="Project Tools">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🛠
+                    </div>
+
+                    <h3>
                         Proje Araçları
                     </h3>
 
-                    <p data-tr="Dosyalar, kaynaklar, yapılandırmalar ve geliştirme araçlarını tek bir yerde yönet."
-                        data-en="Manage files, resources, configurations and development tools in one place.">
-                        Dosyalar, kaynaklar, yapılandırmalar ve
-                        geliştirme araçlarını tek bir yerde yönet.
+                    <p>
+                        Dosyalarını, kaynaklarını ve yapılandırmalarını
+                        tek bir yerde yönet.
                     </p>
-                </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">🎮</div>
 
-                    <h3 data-tr="Minecraft Odaklı" data-en="Minecraft Focused">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🎮
+                    </div>
+
+                    <h3>
                         Minecraft Odaklı
                     </h3>
 
-                    <p data-tr="Mod geliştirme sürecinde kullanılan Java, JSON, kaynak ve proje yapılarını tek bir deneyimde birleştir."
-                        data-en="Bring Java, JSON, resource and project structures together in one Minecraft-focused experience.">
-                        Mod geliştirme sürecinde kullanılan Java,
-                        JSON, kaynak ve proje yapılarını tek bir
-                        deneyimde birleştir.
+                    <p>
+                        Minecraft mod geliştirme yapısına
+                        özel bir çalışma deneyimi.
                     </p>
-                </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">🔍</div>
 
-                    <h3 data-tr="Kod Arama" data-en="Code Search">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🔎
+                    </div>
+
+                    <h3>
                         Kod Arama
                     </h3>
 
-                    <p data-tr="İhtiyacın olan kodu kategori, başlık veya açıklama üzerinden hızlıca bul."
-                        data-en="Find the code you need using categories, titles or descriptions.">
-                        İhtiyacın olan kodu kategori, başlık veya
-                        açıklama üzerinden hızlıca bul.
+                    <p>
+                        İhtiyacın olan kodları kategori ve
+                        açıklamalar üzerinden bul.
                     </p>
-                </article>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon">🚀</div>
 
-                    <h3 data-tr="Build & Run" data-en="Build & Run">
+                <div class="feature">
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <h3>
                         Build & Run
                     </h3>
 
-                    <p data-tr="Projen üzerinde build ve client çalıştırma süreçlerini daha düzenli bir geliştirme akışıyla yönet."
-                        data-en="Manage build and client execution with a more organized development workflow.">
-                        Projen üzerinde build ve client çalıştırma
-                        süreçlerini daha düzenli bir geliştirme
-                        akışıyla yönet.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div class="section-kicker" data-tr="Nasıl çalışır?" data-en="How it works?">
-                    Nasıl çalışır?
-                </div>
-
-                <h2 class="section-title" data-tr="Fikirden moda." data-en="From idea to mod.">
-                    Fikirden moda.
-                </h2>
-
-                <p class="section-description"
-                    data-tr="LoliMod-İDEA ile geliştirme sürecini daha anlaşılır adımlara ayır."
-                    data-en="Break your development workflow into simpler steps with LoliMod-İDEA.">
-                    LoliMod-İDEA ile geliştirme sürecini
-                    daha anlaşılır adımlara ayır.
-                </p>
-
-            </div>
-
-            <div class="workflow">
-
-                <div class="workflow-card">
-                    <div class="workflow-number">STEP 01</div>
-
-                    <h3 data-tr="Projenizi oluşturun" data-en="Create your project">
-                        Projenizi oluşturun
-                    </h3>
-
-                    <p data-tr="Yeni mod projenizin temel dosyalarını ve geliştirme yapısını hazırlayın."
-                        data-en="Prepare the basic files and development structure for your new mod project.">
-                        Yeni mod projenizin temel dosyalarını ve
-                        geliştirme yapısını hazırlayın.
-                    </p>
-                </div>
-
-                <div class="workflow-card">
-                    <div class="workflow-number">STEP 02</div>
-
-                    <h3 data-tr="Kodlarınızı geliştirin" data-en="Develop your code">
-                        Kodlarınızı geliştirin
-                    </h3>
-
-                    <p data-tr="Java kodlarını, kaynak dosyalarını ve yapılandırmaları düzenleyin."
-                        data-en="Edit Java code, resource files and project configurations.">
-                        Java kodlarını, kaynak dosyalarını ve
-                        yapılandırmaları düzenleyin.
-                    </p>
-                </div>
-
-                <div class="workflow-card">
-                    <div class="workflow-number">STEP 03</div>
-
-                    <h3 data-tr="Hazır kodlardan yararlanın" data-en="Use the code library">
-                        Hazır kodlardan yararlanın
-                    </h3>
-
-                    <p data-tr="Yardım merkezindeki açıklamalı kod örneklerinden ihtiyacınız olan yapıları inceleyin."
-                        data-en="Explore explained code examples in the Help center.">
-                        Yardım merkezindeki açıklamalı kod örneklerinden
-                        ihtiyacınız olan yapıları inceleyin.
-                    </p>
-                </div>
-
-                <div class="workflow-card">
-                    <div class="workflow-number">STEP 04</div>
-
-                    <h3 data-tr="Build ve test" data-en="Build and test">
-                        Build ve test
-                    </h3>
-
-                    <p data-tr="Modunuzu build edin ve Minecraft client üzerinde test ederek geliştirmeye devam edin."
-                        data-en="Build your mod and continue development by testing it in the Minecraft client.">
-                        Modunuzu build edin ve Minecraft client üzerinde
-                        test ederek geliştirmeye devam edin.
+                    <p>
+                        Projeni build et ve Minecraft client
+                        üzerinde test et.
                     </p>
                 </div>
 
@@ -1749,53 +992,33 @@
 
         </section>
 
-        <section class="section download-section" id="download">
+
+        <section class="section" id="download">
 
             <div class="download-card">
 
-                <div class="download-content">
+                <div class="kicker">
+                    WINDOWS SÜRÜMÜ
+                </div>
 
-                    <div class="section-kicker" data-tr="WINDOWS SÜRÜMÜ" data-en="WINDOWS VERSION">
-                        WINDOWS SÜRÜMÜ
-                    </div>
+                <h2>
+                    LoliMod-İDEA'yı kullanmaya başla.
+                </h2>
 
-                    <h2 data-tr="LoliMod-İDEA'yı kullanmaya başla." data-en="Start using LoliMod-İDEA.">
-                        LoliMod-İDEA'yı kullanmaya başla.
-                    </h2>
+                <p>
+                    Windows sürümünü indir ve Minecraft mod
+                    geliştirme deneyimini başlat.
+                </p>
 
-                    <p data-tr="Windows sürümü için uygulamayı indir ve Minecraft mod geliştirme deneyimini başlat."
-                        data-en="Download the Windows version and start your Minecraft mod development experience.">
-                        Windows sürümü için uygulamayı indir ve
-                        Minecraft mod geliştirme deneyimini başlat.
-                    </p>
+                <div class="download-buttons">
 
-                    <div class="download-actions">
+                    <button class="main-button" onclick="downloadInstaller()">
+                        ↓ LoliMod-İDEA 3.1.8 İndir
+                    </button>
 
-                        <button type="button" class="primary-button"
-                            onclick="downloadFile('./Loli-Mod-İDEA-3.1.8 İnstaller.exe')">
-                            ↓
-
-                            <span data-tr="Loli-Mod-İDEA-3.1.8 İnstaller İndir"
-                                data-en="Download Loli-Mod-İDEA-3.1.8 Installer">
-                                Loli-Mod-İDEA-3.1.8 İnstaller İndir
-                            </span>
-                        </button>
-
-                        <a href="./help.html" class="secondary-button">
-                            <span data-tr="Yardım Merkezi" data-en="Help Center">
-                                Yardım Merkezi
-                            </span>
-                        </a>
-
-                    </div>
-
-                    <div class="download-info">
-                        <span>Windows</span>
-                        <span>•</span>
-                        <span>Loli-Mod-İDEA 3.1.8</span>
-                        <span>•</span>
-                        <span>Installer EXE</span>
-                    </div>
+                    <a href="./help.html" class="secondary-button">
+                        Help Center
+                    </a>
 
                 </div>
 
@@ -1805,21 +1028,17 @@
 
     </main>
 
+
     <footer>
 
         <div class="footer-inner">
 
             <div class="footer-brand">
-
-                <img src="./ana-icon.png" alt="LoliMod-İDEA" class="footer-logo">
-
-                <span>
-                    LoliMod-İDEA
-                </span>
-
+                <img src="./ana-icon.png" alt="LoliMod-İDEA">
+                LoliMod-İDEA
             </div>
 
-            <div class="footer-copy">
+            <div class="copyright">
                 © 2026 LoliMod-İDEA
             </div>
 
@@ -1827,23 +1046,23 @@
 
     </footer>
 
-    <div class="modal" id="premiumModal" onclick="outsideModal(event)">
 
-        <div class="modal-box">
+    <div class="modal" id="premiumModal" onclick="closeOutside(event)">
 
-            <img src="./icon.ico" alt="Premium" class="modal-icon">
+        <div class="modal-content">
 
-            <h2 data-tr="Premium Daha Sonra Gelecek" data-en="Premium Coming Later">
+            <img src="./icon.ico" alt="Premium">
+
+            <h2>
                 Premium Daha Sonra Gelecek
             </h2>
 
-            <p data-tr="LoliMod-İDEA Premium şu anda kullanıma açık değil. Premium özellikleri daha sonraki bir sürümde gelecek."
-                data-en="LoliMod-İDEA Premium is not available yet. Premium features will arrive in a future version.">
+            <p>
                 LoliMod-İDEA Premium şu anda kullanıma açık değil.
-                Premium özellikleri daha sonraki bir sürümde gelecek.
+                Premium özellikleri sonraki sürümlerde gelecek.
             </p>
 
-            <button class="modal-close" onclick="closePremium()" data-tr="Tamam" data-en="Got it">
+            <button class="close-modal" onclick="closePremium()">
                 Tamam
             </button>
 
@@ -1851,308 +1070,69 @@
 
     </div>
 
-    <div class="download-toast" id="downloadToast">
-        <div class="download-toast-icon">
-            ✓
-        </div>
-
-        <span data-tr="İndirme başladı" data-en="Download started">
-            İndirme başladı
-        </span>
-    </div>
 
     <script>
 
-        /*
-         * =========================================================
-         * LOLIMOD-IDEA STATIC WEBSITE
-         * NO NPM
-         * NO VITE
-         * NO BUILD SYSTEM
-         * =========================================================
-         */
+        function downloadInstaller() {
 
-        const APP_ICON = "./ana-icon.png";
+            const file =
+                "./Loli-Mod-İDEA-3.1.8%20İnstaller.exe";
 
-        const INSTALLER_FILE =
-            "./Loli-Mod-İDEA-3.1.8 İnstaller.exe";
-
-
-        /* ---------------------------------------------------------
-           DOWNLOAD
-        --------------------------------------------------------- */
-
-        function downloadFile(url) {
-
-            showDownloadToast();
-
-            /*
-             * Statik Vercel sitelerinde en güvenilir yöntem:
-             * doğrudan dosyaya gitmek.
-             */
-
-            const link = document.createElement("a");
-
-            link.href = url;
-
-            link.download = "";
-
-            link.style.display = "none";
-
-            document.body.appendChild(link);
-
-            link.click();
-
-            setTimeout(() => {
-
-                document.body.removeChild(link);
-
-            }, 500);
+            window.location.href = file;
         }
 
 
-        /* ---------------------------------------------------------
-           DOWNLOAD TOAST
-        --------------------------------------------------------- */
+        function showPreview(type) {
 
-        let downloadToastTimer = null;
+            const preview =
+                document.getElementById("preview");
 
-        function showDownloadToast() {
+            const newTab =
+                document.getElementById("newTab");
 
-            const toast =
-                document.getElementById("downloadToast");
+            const oldTab =
+                document.getElementById("oldTab");
 
-            if (!toast) return;
+            if (type === "new") {
 
-            toast.classList.add("show");
+                preview.src =
+                    "./Loli-Mod-New1.png";
 
-            if (downloadToastTimer) {
+                newTab.classList.add("active");
+                oldTab.classList.remove("active");
 
-                clearTimeout(downloadToastTimer);
+            } else {
 
-            }
+                preview.src =
+                    "./Loli-Mod-Old1.png";
 
-            downloadToastTimer =
-                setTimeout(() => {
-
-                    toast.classList.remove("show");
-
-                }, 3500);
-        }
-
-
-        /* ---------------------------------------------------------
-           PREVIEW
-        --------------------------------------------------------- */
-
-        let currentPreview = "new";
-
-        function setPreview(type) {
-
-            const image =
-                document.getElementById("previewImage");
-
-            const label =
-                document.getElementById("previewLabel");
-
-            const newButton =
-                document.getElementById("previewNewButton");
-
-            const oldButton =
-                document.getElementById("previewOldButton");
-
-            if (!image || !label) return;
-
-            currentPreview = type;
-
-            const isNew =
-                type === "new";
-
-            image.src =
-                isNew
-                    ? "./Loli-Mod-New1.png"
-                    : "./Loli-Mod-Old1.png";
-
-            image.alt =
-                isNew
-                    ? "LoliMod-İDEA Yeni Önizleme"
-                    : "LoliMod-İDEA Eski Önizleme";
-
-            label.textContent =
-                isNew
-                    ? (
-                        currentLanguage === "en"
-                            ? "Loli-Mod-İDEA — New Interface"
-                            : "Loli-Mod-İDEA — Yeni Arayüz"
-                    )
-                    : (
-                        currentLanguage === "en"
-                            ? "Loli-Mod-İDEA — Old Interface"
-                            : "Loli-Mod-İDEA — Eski Arayüz"
-                    );
-
-            if (newButton) {
-
-                newButton.classList.toggle(
-                    "active",
-                    isNew
-                );
-
-            }
-
-            if (oldButton) {
-
-                oldButton.classList.toggle(
-                    "active",
-                    !isNew
-                );
+                oldTab.classList.add("active");
+                newTab.classList.remove("active");
 
             }
         }
 
-
-        /* ---------------------------------------------------------
-           LANGUAGE
-        --------------------------------------------------------- */
-
-        let currentLanguage = "tr";
-
-        function updateLanguage() {
-
-            document
-                .querySelectorAll(
-                    "[data-tr][data-en]"
-                )
-                .forEach(element => {
-
-                    element.textContent =
-                        currentLanguage === "tr"
-                            ? element.dataset.tr
-                            : element.dataset.en;
-
-                });
-
-            const languageButton =
-                document.getElementById(
-                    "languageButton"
-                );
-
-            if (languageButton) {
-
-                languageButton.textContent =
-                    currentLanguage === "tr"
-                        ? "EN"
-                        : "TR";
-
-            }
-
-            document.documentElement.lang =
-                currentLanguage;
-
-            try {
-
-                localStorage.setItem(
-                    "lolimod_language",
-                    currentLanguage
-                );
-
-            } catch (error) {
-
-                console.warn(
-                    "Language storage unavailable."
-                );
-
-            }
-
-            setPreview(currentPreview);
-        }
-
-
-        function toggleLanguage() {
-
-            currentLanguage =
-                currentLanguage === "tr"
-                    ? "en"
-                    : "tr";
-
-            updateLanguage();
-        }
-
-
-        try {
-
-            const savedLanguage =
-                localStorage.getItem(
-                    "lolimod_language"
-                );
-
-            if (
-                savedLanguage === "tr" ||
-                savedLanguage === "en"
-            ) {
-
-                currentLanguage =
-                    savedLanguage;
-
-            }
-
-        } catch (error) {
-
-            console.warn(
-                "Language storage unavailable."
-            );
-
-        }
-
-        updateLanguage();
-
-
-        /* ---------------------------------------------------------
-           PREMIUM MODAL
-        --------------------------------------------------------- */
 
         function openPremium() {
 
-            const modal =
-                document.getElementById(
-                    "premiumModal"
-                );
-
-            if (!modal) return;
-
-            modal.classList.add("active");
-
-            document.body.style.overflow =
-                "hidden";
+            document
+                .getElementById("premiumModal")
+                .classList.add("show");
         }
 
 
         function closePremium() {
 
-            const modal =
-                document.getElementById(
-                    "premiumModal"
-                );
-
-            if (!modal) return;
-
-            modal.classList.remove("active");
-
-            document.body.style.overflow =
-                "";
+            document
+                .getElementById("premiumModal")
+                .classList.remove("show");
         }
 
 
-        function outsideModal(event) {
-
-            const modal =
-                document.getElementById(
-                    "premiumModal"
-                );
+        function closeOutside(event) {
 
             if (
-                modal &&
-                event.target === modal
+                event.target.id === "premiumModal"
             ) {
 
                 closePremium();
@@ -2163,7 +1143,7 @@
 
         document.addEventListener(
             "keydown",
-            event => {
+            function (event) {
 
                 if (event.key === "Escape") {
 
@@ -2175,77 +1155,54 @@
         );
 
 
-        /* ---------------------------------------------------------
-           SMOOTH INTERNAL NAVIGATION
-        --------------------------------------------------------- */
+        let english = false;
 
-        document
-            .querySelectorAll(
-                'a[href^="#"]'
-            )
-            .forEach(link => {
+        function changeLanguage() {
 
-                link.addEventListener(
-                    "click",
-                    event => {
+            english = !english;
 
-                        const targetId =
-                            link.getAttribute(
-                                "href"
-                            );
+            const button =
+                document.querySelector(".language");
 
-                        if (
-                            !targetId ||
-                            targetId === "#"
-                        ) {
+            if (english) {
 
-                            return;
+                button.textContent = "TR";
 
-                        }
+                document.title =
+                    "LoliMod-İDEA — Minecraft Modding Studio";
 
-                        const target =
-                            document.querySelector(
-                                targetId
-                            );
+                document.querySelector(".badge")
+                    .innerHTML =
+                    '<span class="dot"></span> Next-generation Minecraft mod development';
 
-                        if (target) {
+                document.querySelector(".hero-text")
+                    .textContent =
+                    "LoliMod-İDEA is a modern development studio designed to make Minecraft mod development easier, faster and more organized.";
 
-                            event.preventDefault();
+                document.querySelector("h1")
+                    .innerHTML =
+                    '<span class="gradient">Build Minecraft Mods</span><br>More Easily.';
 
-                            target.scrollIntoView({
-                                behavior: "auto",
-                                block: "start"
-                            });
+            } else {
 
-                        }
+                button.textContent = "EN";
 
-                    }
-                );
+                document.title =
+                    "LoliMod-İDEA";
 
-            });
+                document.querySelector(".badge")
+                    .innerHTML =
+                    '<span class="dot"></span> Yeni nesil Minecraft mod geliştirme';
 
+                document.querySelector(".hero-text")
+                    .textContent =
+                    "LoliMod-İDEA, Minecraft mod geliştirme sürecini daha kolay, hızlı ve düzenli hale getirmek için tasarlanmış modern bir geliştirme stüdyosudur.";
 
-        /* ---------------------------------------------------------
-           IMAGE ERROR DEBUGGING
-        --------------------------------------------------------- */
-
-        document
-            .querySelectorAll("img")
-            .forEach(image => {
-
-                image.addEventListener(
-                    "error",
-                    () => {
-
-                        console.warn(
-                            "Image could not be loaded:",
-                            image.src
-                        );
-
-                    }
-                );
-
-            });
+                document.querySelector("h1")
+                    .innerHTML =
+                    '<span class="gradient">Minecraft Modlarını</span><br>Daha Kolay Geliştir.';
+            }
+        }
 
     </script>
     ```

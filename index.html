@@ -7,8 +7,7 @@
 
     <title>LoliMod-İDEA — Minecraft Modding Studio</title>
 
-    <link rel="icon" type="image/x-icon" href="icon.ico">
-    <link rel="stylesheet" href="assets/theme.css">
+    <link rel="icon" type="image/png" href="ana-icon.png">
 
     <meta name="description" content="LoliMod-İDEA — Minecraft modlarını daha kolay geliştir.">
 
@@ -242,68 +241,57 @@
 
             border-radius: 50%;
 
-            opacity: 1;
+            filter: blur(95px);
 
-            will-change: transform;
-            transform: translateZ(0);
-            contain: strict;
+            opacity: .18;
 
             animation:
-                orbFloat 22s ease-in-out infinite;
+                orbFloat 14s ease-in-out infinite;
         }
 
         .orb.one {
-            width: 500px;
-            height: 500px;
+            width: 390px;
+            height: 390px;
 
-            left: -220px;
-            top: 60px;
+            left: -180px;
+            top: 100px;
 
-            background: radial-gradient(circle at center,
-                    rgba(62, 125, 255, .22) 0%,
-                    rgba(62, 125, 255, .07) 55%,
-                    transparent 80%);
+            background: #3e7dff;
         }
 
         .orb.two {
-            width: 560px;
-            height: 560px;
+            width: 450px;
+            height: 450px;
 
-            right: -230px;
-            top: 380px;
+            right: -190px;
+            top: 420px;
 
-            background: radial-gradient(circle at center,
-                    rgba(119, 75, 255, .2) 0%,
-                    rgba(119, 75, 255, .06) 55%,
-                    transparent 80%);
+            background: #774bff;
 
-            animation-delay: -7s;
+            animation-delay: -4s;
         }
 
         .orb.three {
-            width: 400px;
-            height: 400px;
+            width: 310px;
+            height: 310px;
 
             left: 40%;
-            bottom: -200px;
+            bottom: -170px;
 
-            background: radial-gradient(circle at center,
-                    rgba(22, 207, 255, .18) 0%,
-                    rgba(22, 207, 255, .05) 55%,
-                    transparent 80%);
+            background: #16cfff;
 
-            animation-delay: -13s;
+            animation-delay: -8s;
         }
 
         @keyframes orbFloat {
 
             0%,
             100% {
-                transform: translateY(0);
+                transform: translate3d(0, 0, 0) scale(1);
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: translate3d(25px, -30px, 0) scale(1.08);
             }
         }
 
@@ -329,7 +317,10 @@
             box-shadow:
                 0 0 12px rgba(98, 168, 255, .9);
 
-            opacity: .3;
+            opacity: .35;
+
+            animation:
+                particleFloat 8s ease-in-out infinite;
         }
 
         .p1 {
@@ -380,7 +371,21 @@
             animation-delay: -2s
         }
 
-        /* Particles are static — no animation for performance */
+        @keyframes particleFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0) scale(1);
+                opacity: .2;
+            }
+
+            50% {
+                transform:
+                    translateY(-22px) scale(1.5);
+                opacity: .65;
+            }
+        }
 
         /* =========================================================
    NAVBAR
@@ -423,9 +428,8 @@
                     rgba(12, 18, 35, .88),
                     rgba(8, 12, 24, .78));
 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            will-change: auto;
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
 
             box-shadow:
                 0 20px 80px rgba(0, 0, 0, .28),
@@ -466,11 +470,11 @@
             top: -150px;
             left: 15%;
 
-            filter: blur(50px);
+            background: #5e9fff;
+
+            filter: blur(80px);
 
             opacity: .08;
-
-            will-change: auto;
         }
 
         /* =========================================================
@@ -928,10 +932,15 @@
                     #8f72ff 72%,
                     #d4ccff 100%);
 
+            background-size: 180% auto;
+
             -webkit-background-clip: text;
             background-clip: text;
 
             color: transparent;
+
+            animation:
+                gradientMove 8s linear infinite;
         }
 
         @keyframes gradientMove {
@@ -1024,6 +1033,9 @@
             box-shadow:
                 0 15px 45px rgba(84, 110, 255, .24),
                 inset 0 1px 0 rgba(255, 255, 255, .2);
+
+            cursor: pointer;
+            border: none;
         }
 
         .primary-button::before {
@@ -1060,6 +1072,10 @@
             box-shadow:
                 0 22px 60px rgba(84, 110, 255, .35),
                 inset 0 1px 0 rgba(255, 255, 255, .24);
+        }
+
+        .primary-button:active {
+            transform: translateY(-2px) scale(1.01);
         }
 
         .secondary-button {
@@ -2103,6 +2119,50 @@
         }
 
         /* =========================================================
+   DOWNLOAD TOAST (İndirme bildirimi)
+   ========================================================= */
+
+        .download-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            z-index: 6000;
+            padding: 14px 24px;
+            border: 1px solid rgba(88, 230, 165, .3);
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(15, 30, 25, .96), rgba(10, 20, 16, .96));
+            color: #d5ffe8;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 30px rgba(88, 230, 165, .1);
+            opacity: 0;
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), opacity .35s ease;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .download-toast-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #58e6a5;
+            color: #052a18;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        /* =========================================================
    RESPONSIVE — TABLET
    ========================================================= */
 
@@ -2337,6 +2397,170 @@
             }
 
         }
+
+        /* =========================================================
+           PERFORMANCE OPTIMIZATION
+           Keep the premium look without heavy GPU effects.
+           ========================================================= */
+
+        .navbar,
+        .stats,
+        .modal {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        body::after {
+            display: none;
+        }
+
+        .orb {
+            filter: blur(55px);
+            animation: none;
+            opacity: .10;
+        }
+
+        .orb.two {
+            animation: none;
+        }
+
+        .orb.three {
+            animation: none;
+        }
+
+        .grid {
+            transform: perspective(700px) rotateX(55deg) scale(1.5) translateY(120px);
+            opacity: .30;
+        }
+
+        .particle {
+            animation: none;
+            box-shadow: none;
+            opacity: .20;
+        }
+
+        .gradient-text {
+            animation: none;
+            background-size: 100% auto;
+        }
+
+        .download-card::after {
+            animation: none;
+            display: none;
+        }
+
+        .preview-wrapper::before {
+            filter: none;
+            opacity: .22;
+        }
+
+        .preview-image {
+            transition: none;
+        }
+
+        .preview-wrapper:hover .preview-image {
+            transform: none;
+            filter: none;
+        }
+
+        .feature-card,
+        .workflow-card,
+        .primary-button,
+        .secondary-button,
+        .premium-btn {
+            transition:
+                border-color .18s ease,
+                background-color .18s ease,
+                box-shadow .18s ease,
+                color .18s ease;
+        }
+
+        .feature-card:hover,
+        .workflow-card:hover,
+        .primary-button:hover,
+        .secondary-button:hover,
+        .premium-btn:hover {
+            transform: none;
+        }
+
+        .modal-box {
+            animation: none;
+        }
+
+        .modal-icon {
+            animation: none;
+        }
+
+        .hero-badge {
+            animation: none;
+        }
+
+        .badge-dot {
+            animation: none;
+        }
+
+        .preview-switcher {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto 14px;
+            padding: 5px;
+            width: fit-content;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 14px;
+            background: #0b101d;
+        }
+
+        .preview-switch {
+            min-width: 112px;
+            height: 40px;
+            padding: 0 16px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            color: #7f8aa5;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 850;
+            transition: background-color .16s ease, color .16s ease, border-color .16s ease;
+        }
+
+        .preview-switch:hover {
+            color: #dce7ff;
+            background: rgba(255, 255, 255, .045);
+        }
+
+        .preview-switch.active {
+            color: #fff;
+            border-color: rgba(98, 168, 255, .20);
+            background: linear-gradient(135deg, rgba(78, 148, 255, .16), rgba(132, 92, 255, .16));
+        }
+
+        .preview-label {
+            text-align: center;
+            margin: 0 0 18px;
+            color: #69758f;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        @media(max-width:680px) {
+            .preview-switch {
+                width: 100%;
+            }
+
+            .preview-switch button {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .preview-switch {
+                transition: none;
+            }
+        }
     </style>
 </head>
 
@@ -2382,7 +2606,7 @@
 
             <a href="#" class="brand">
 
-                <img src="45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" alt="LoliMod-İDEA" class="brand-logo">
+                <img src="ana-icon.png" alt="LoliMod-İDEA" class="brand-logo">
 
                 <div class="brand-name">
                     LoliMod<span>-İDEA</span>
@@ -2409,14 +2633,6 @@
 
 
             <div class="nav-actions">
-
-                <button class="stats-badge-pill" onclick="window.LoliAuth.openStats()"
-                    title="Canlı İstatistikleri İncele">
-                    <span style="font-size:8px;">●</span>
-                    <span class="live-downloads">20</span> İndirme
-                </button>
-
-                <div class="auth-nav-slot"></div>
 
                 <button class="language-btn" id="languageButton" onclick="toggleLanguage()">
                     EN
@@ -2493,8 +2709,8 @@
 
                 <div class="hero-buttons">
 
-                    <a href="Loli-Mod-2.0.1%20İnstaller.exe" download="Loli-Mod-2.0.1 İnstaller.exe"
-                        class="primary-button" data-download-button="true">
+                    <button type="button" class="primary-button"
+                        onclick="downloadFile('Loli-Mod-İDEA-3.1.8 İnstaller.exe', 'Loli-Mod-İDEA-3.1.8 İnstaller.exe')">
 
                         ↓
 
@@ -2502,13 +2718,13 @@
                             Windows için indir
                         </span>
 
-                    </a>
+                    </button>
 
 
                     <a href="help.html" class="secondary-button">
 
-                        <span data-tr="Kod Kütüphanesini Aç (20.000 Kod)" data-en="Open Code Library (20k Codes)">
-                            Kod Kütüphanesini Aç (20.000 Kod)
+                        <span data-tr="Kod Kütüphanesini Aç" data-en="Open Code Library">
+                            Kod Kütüphanesini Aç
                         </span>
 
                     </a>
@@ -2521,7 +2737,7 @@
                     <div class="stat">
 
                         <div class="stat-number">
-                            20.000+
+                            10.000+
                         </div>
 
                         <div class="stat-label" data-tr="Kod ve şablon" data-en="Codes & templates">
@@ -2531,29 +2747,14 @@
                     </div>
 
 
-                    <div class="stat" style="cursor: pointer;" onclick="window.LoliAuth.openStats()"
-                        title="İstatistikleri İncele">
+                    <div class="stat">
 
-                        <div class="stat-number counter-pulse">
-                            <span class="live-downloads">20</span>+
+                        <div class="stat-number">
+                            Fabric
                         </div>
 
-                        <div class="stat-label" data-tr="Windows İndirmesi" data-en="Windows Downloads">
-                            Windows İndirmesi
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat" style="cursor: pointer;" onclick="window.LoliAuth.openAuth('register')"
-                        title="Kayıt Ol">
-
-                        <div class="stat-number counter-pulse">
-                            <span class="live-users">10</span>+
-                        </div>
-
-                        <div class="stat-label" data-tr="Kayıtlı Geliştirici" data-en="Registered Modders">
-                            Kayıtlı Geliştirici
+                        <div class="stat-label" data-tr="Mod geliştirme" data-en="Mod development">
+                            Mod geliştirme
                         </div>
 
                     </div>
@@ -2562,11 +2763,12 @@
                     <div class="stat">
 
                         <div class="stat-number">
-                            Fabric & IDE
+                            IDE
                         </div>
 
-                        <div class="stat-label" data-tr="Mod geliştirme ortamı" data-en="Mod development environment">
-                            Mod geliştirme ortamı
+                        <div class="stat-label" data-tr="Modern geliştirme ortamı"
+                            data-en="Modern development environment">
+                            Modern geliştirme ortamı
                         </div>
 
                     </div>
@@ -2604,11 +2806,27 @@
             </div>
 
 
+            <div class="preview-switcher" role="tablist" aria-label="Preview selection">
+                <button type="button" class="preview-switch active" id="previewNewButton" data-tr="Yeni" data-en="New"
+                    onclick="setPreview('new')">
+                    Yeni
+                </button>
+                <button type="button" class="preview-switch" id="previewOldButton" data-tr="Eski" data-en="Old"
+                    onclick="setPreview('old')">
+                    Eski
+                </button>
+            </div>
+
+            <div class="preview-label" id="previewLabel">
+                Loli-Mod-İDEA — Yeni Arayüz
+            </div>
+
             <div class="preview-wrapper">
 
                 <div class="preview-window">
 
-                    <img src="image.png" alt="LoliMod-İDEA Önizleme" class="preview-image">
+                    <img src="Loli-Mod-New1.png" alt="LoliMod-İDEA Yeni Önizleme" class="preview-image"
+                        id="previewImage" loading="lazy" decoding="async">
 
                     <div class="preview-overlay"></div>
 
@@ -2914,22 +3132,23 @@
 
                     <div class="download-actions">
 
-                        <a href="Loli-Mod-2.0.1%20İnstaller.exe" download="Loli-Mod-2.0.1 İnstaller.exe"
-                            class="primary-button" data-download-button="true">
+                        <button type="button" class="primary-button"
+                            onclick="downloadFile('Loli-Mod-İDEA-3.1.8 İnstaller.exe', 'Loli-Mod-İDEA-3.1.8 İnstaller.exe')">
 
                             ↓
 
-                            <span data-tr="Loli-Mod-2.0.1 Installer İndir" data-en="Download Loli-Mod-2.0.1 Installer">
-                                Loli-Mod-2.0.1 Installer İndir
+                            <span data-tr="Loli-Mod-İDEA-3.1.8 İnstaller İndir"
+                                data-en="Download Loli-Mod-İDEA-3.1.8 Installer">
+                                Loli-Mod-İDEA-3.1.8 İnstaller İndir
                             </span>
 
-                        </a>
+                        </button>
 
 
                         <a href="help.html" class="secondary-button">
 
-                            <span data-tr="Yardım Merkezi (20.000 Kod)" data-en="Help Center (20k Codes)">
-                                Yardım Merkezi (20.000 Kod)
+                            <span data-tr="Yardım Merkezi" data-en="Help Center">
+                                Yardım Merkezi
                             </span>
 
                         </a>
@@ -2943,22 +3162,12 @@
 
                         <span>•</span>
 
-                        <span>Loli-Mod 2.0.1</span>
+                        <span>Loli-Mod-İDEA 3.1.8</span>
 
                         <span>•</span>
 
                         <span>Installer EXE</span>
 
-                    </div>
-
-                    <div style="margin-top: 18px; display: flex; align-items: center; justify-content: center;">
-                        <div class="user-badge-pill" onclick="window.LoliAuth.openStats()"
-                            style="border-color: rgba(0, 240, 144, 0.35); font-size: 13px; padding: 7px 18px; background: rgba(9, 15, 26, 0.9);">
-                            <span
-                                style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00f090; box-shadow:0 0 10px #00f090;"></span>
-                            <span>Toplam <strong><span class="live-downloads">20</span></strong> indirme •
-                                <strong><span class="live-users">10</span></strong> kayıtlı geliştirici</span>
-                        </div>
                     </div>
 
                 </div>
@@ -2980,7 +3189,7 @@
 
             <div class="footer-brand">
 
-                <img src="45ffb498-07ec-4284-8bee-a5fc8f21f98b.png" alt="LoliMod-İDEA" class="footer-logo">
+                <img src="ana-icon.png" alt="LoliMod-İDEA" class="footer-logo">
 
                 <span>
                     LoliMod-İDEA
@@ -3031,10 +3240,121 @@
 
 
     <!-- =======================================================
+     DOWNLOAD TOAST (İndirme bildirimi)
+     ======================================================= -->
+
+    <div class="download-toast" id="downloadToast">
+        <div class="download-toast-icon">✓</div>
+        <span data-tr="İndirme başladı" data-en="Download started">İndirme başladı</span>
+    </div>
+
+
+    <!-- =======================================================
      JAVASCRIPT
      ======================================================= -->
 
     <script>
+
+        /* =========================================================
+           DOWNLOAD FILE — Direkt indirme (uyarı çıkmaz)
+           ========================================================= */
+
+        function downloadFile(url, filename) {
+            // Önce toast göster
+            showDownloadToast();
+
+            // Fetch ile dosyayı blob olarak al
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.blob();
+                })
+                .then(blob => {
+                    // Blob'u direkt indir
+                    const blobUrl = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename || url.split('/').pop();
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // Temizlik
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(blobUrl);
+                    }, 200);
+                })
+                .catch(err => {
+                    // Fetch başarısız olursa direkt link fallback
+                    console.warn('Fetch download failed, using direct link:', err);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename || url.split('/').pop();
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => document.body.removeChild(a), 200);
+                });
+        }
+
+
+        /* =========================================================
+           DOWNLOAD TOAST
+           ========================================================= */
+
+        let downloadToastTimer = null;
+
+        function showDownloadToast() {
+            const toast = document.getElementById('downloadToast');
+            if (!toast) return;
+
+            toast.classList.add('show');
+
+            if (downloadToastTimer) {
+                clearTimeout(downloadToastTimer);
+            }
+
+            downloadToastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+
+        /* =========================================================
+           PREVIEW SWITCHER
+           ========================================================= */
+
+        let currentPreview = "new";
+
+        function setPreview(type) {
+            const image = document.getElementById("previewImage");
+            const label = document.getElementById("previewLabel");
+            const newButton = document.getElementById("previewNewButton");
+            const oldButton = document.getElementById("previewOldButton");
+
+            if (!image || !label) return;
+
+            currentPreview = type;
+
+            const isNew = type === "new";
+
+            image.src = isNew ? "Loli-Mod-New1.png" : "Loli-Mod-Old1.png";
+            image.alt = isNew
+                ? "LoliMod-İDEA Yeni Önizleme"
+                : "LoliMod-İDEA Eski Önizleme";
+
+            label.textContent = isNew
+                ? (currentLanguage === "en"
+                    ? "Loli-Mod-İDEA — New Interface"
+                    : "Loli-Mod-İDEA — Yeni Arayüz")
+                : (currentLanguage === "en"
+                    ? "Loli-Mod-İDEA — Old Interface"
+                    : "Loli-Mod-İDEA — Eski Arayüz");
+
+            newButton.classList.toggle("active", isNew);
+            oldButton.classList.toggle("active", !isNew);
+        }
 
         /* =========================================================
            LANGUAGE SYSTEM
@@ -3228,7 +3548,7 @@
                             event.preventDefault();
 
                             target.scrollIntoView({
-                                behavior: "smooth",
+                                behavior: "auto",
                                 block: "start"
                             });
 
@@ -3240,8 +3560,6 @@
             });
 
     </script>
-
-    <script src="assets/auth.js"></script>
 
 </body>
 

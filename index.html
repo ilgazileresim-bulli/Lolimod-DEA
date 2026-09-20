@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LoliMod-İDEA — Minecraft Modding Studio</title>
+    <title>LoliMod-İDEA</title>
+    <meta name="description"
+        content="LoliMod-İDEA — Minecraft mod geliştirmeyi kolaylaştıran modern geliştirme platformu.">
 
-    <!-- Vercel / GitHub için dosya adı birebir: Ana-icon.png -->
-    <link rel="icon" type="image/png" href="./Ana-icon.png">
+    <link rel="icon" type="image/x-icon" href="./icon.ico">
 
     <style>
         * {
@@ -32,22 +33,26 @@
                 sans-serif;
 
             background:
-                radial-gradient(circle at 15% 10%,
-                    rgba(91, 92, 255, 0.12),
-                    transparent 28%),
-                radial-gradient(circle at 85% 20%,
-                    rgba(0, 200, 255, 0.08),
-                    transparent 25%),
-                #070a10;
+                radial-gradient(circle at 20% 10%, rgba(85, 167, 255, .12), transparent 28%),
+                radial-gradient(circle at 80% 20%, rgba(124, 92, 255, .10), transparent 30%),
+                #070a0f;
 
-            color: #f4f7ff;
+            color: #f4f7fb;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        ::selection {
-            background: #6d5cff;
-            color: white;
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: linear-gradient(to bottom, black, transparent 90%);
+            z-index: -1;
         }
 
         a {
@@ -59,63 +64,11 @@
             font-family: inherit;
         }
 
-        /* =========================
-           BACKGROUND
-        ========================= */
-
-        .background-grid {
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-            pointer-events: none;
-
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.025) 1px,
-                    transparent 1px),
-                linear-gradient(90deg,
-                    rgba(255, 255, 255, 0.025) 1px,
-                    transparent 1px);
-
-            background-size: 50px 50px;
-
-            mask-image: linear-gradient(to bottom,
-                    black,
-                    transparent 85%);
-        }
-
-        .glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: .18;
-            pointer-events: none;
-            z-index: -4;
-        }
-
-        .glow.one {
-            background: #6757ff;
-            top: -200px;
-            left: -180px;
-        }
-
-        .glow.two {
-            background: #00b7ff;
-            right: -220px;
-            top: 350px;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-
+            width: 100%;
             height: 76px;
 
             display: flex;
@@ -124,8 +77,9 @@
 
             padding: 0 6%;
 
-            background: rgba(7, 10, 16, .78);
-            backdrop-filter: blur(20px);
+            background: rgba(7, 10, 15, .72);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
 
             border-bottom: 1px solid rgba(255, 255, 255, .07);
 
@@ -136,20 +90,24 @@
             display: flex;
             align-items: center;
             gap: 12px;
-
-            font-weight: 800;
             font-size: 19px;
-            letter-spacing: -.5px;
+            font-weight: 800;
+            letter-spacing: -.4px;
         }
 
         .brand img {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 11px;
+            box-shadow: 0 0 30px rgba(85, 167, 255, .2);
+        }
 
-            box-shadow:
-                0 0 25px rgba(100, 85, 255, .28);
+        .brand span {
+            background: linear-gradient(90deg, #fff, #9dcaff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .nav-links {
@@ -159,70 +117,52 @@
         }
 
         .nav-links a {
-            color: #9ca5b8;
+            color: #aeb7c7;
             font-size: 14px;
             font-weight: 600;
-            transition: .25s ease;
+            transition: .2s ease;
         }
 
         .nav-links a:hover {
-            color: white;
+            color: #fff;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
         }
 
-        .language-btn {
+        .language-btn,
+        .premium-btn {
             border: 1px solid rgba(255, 255, 255, .1);
             background: rgba(255, 255, 255, .04);
-            color: #cfd5e4;
-
-            padding: 9px 13px;
+            color: #fff;
             border-radius: 10px;
-
+            padding: 10px 14px;
             cursor: pointer;
-            transition: .25s ease;
+            transition: .2s ease;
+            font-weight: 700;
         }
 
         .language-btn:hover {
-            background: rgba(255, 255, 255, .08);
-            color: white;
+            border-color: rgba(85, 167, 255, .5);
+            background: rgba(85, 167, 255, .08);
         }
 
         .premium-btn {
             display: flex;
             align-items: center;
             gap: 8px;
-
-            padding: 10px 15px;
-
-            border-radius: 11px;
-
-            background:
-                linear-gradient(135deg,
-                    #6d5cff,
-                    #8b5cf6);
-
-            border: 1px solid rgba(255, 255, 255, .15);
-
-            color: white;
-            font-weight: 700;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 10px 30px rgba(109, 92, 255, .22);
-
-            transition: .25s ease;
+            border-color: rgba(124, 92, 255, .35);
+            background: linear-gradient(135deg,
+                    rgba(124, 92, 255, .18),
+                    rgba(85, 167, 255, .12));
         }
 
         .premium-btn:hover {
             transform: translateY(-2px);
-            box-shadow:
-                0 14px 40px rgba(109, 92, 255, .35);
+            box-shadow: 0 10px 30px rgba(124, 92, 255, .18);
         }
 
         .premium-btn img {
@@ -231,15 +171,9 @@
             object-fit: contain;
         }
 
-        /* =========================
-           HERO
-        ========================= */
-
         .hero {
-            min-height: 100vh;
-
-            padding:
-                150px 7% 100px;
+            min-height: 800px;
+            padding: 160px 7% 100px;
 
             display: flex;
             flex-direction: column;
@@ -250,9 +184,8 @@
         }
 
         .hero-logo {
-            width: 120px;
-            height: 120px;
-
+            width: 125px;
+            height: 125px;
             object-fit: contain;
 
             border-radius: 30px;
@@ -260,21 +193,8 @@
             margin-bottom: 30px;
 
             box-shadow:
-                0 0 70px rgba(104, 86, 255, .18);
-
-            animation: floating 5s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
+                0 0 60px rgba(85, 167, 255, .18),
+                0 0 100px rgba(124, 92, 255, .10);
         }
 
         .badge {
@@ -282,260 +202,228 @@
             align-items: center;
             gap: 8px;
 
-            padding: 8px 13px;
+            padding: 8px 14px;
+            margin-bottom: 22px;
 
             border-radius: 999px;
 
-            background: rgba(109, 92, 255, .09);
-            border: 1px solid rgba(109, 92, 255, .22);
+            border: 1px solid rgba(85, 167, 255, .2);
+            background: rgba(85, 167, 255, .06);
 
-            color: #bdb5ff;
-
+            color: #a9ceff;
             font-size: 13px;
             font-weight: 700;
-
-            margin-bottom: 22px;
         }
 
         .badge-dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: #7c6cff;
-            box-shadow: 0 0 15px #7c6cff;
+            background: #55a7ff;
+            box-shadow: 0 0 15px #55a7ff;
         }
 
         .hero h1 {
-            max-width: 900px;
+            max-width: 950px;
 
-            font-size:
-                clamp(45px,
-                    7vw,
-                    88px);
-
+            font-size: clamp(45px, 7vw, 86px);
             line-height: .98;
             letter-spacing: -4px;
 
-            font-weight: 900;
-
             background:
                 linear-gradient(135deg,
-                    #ffffff 15%,
-                    #c5c9ff 50%,
-                    #8d7dff 90%);
+                    #ffffff 10%,
+                    #b8d9ff 50%,
+                    #8d72ff 100%);
 
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
 
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .hero p {
-            max-width: 700px;
-
-            color: #8993a8;
-
+            max-width: 720px;
+            color: #99a5b8;
             font-size: 18px;
-            line-height: 1.8;
-
+            line-height: 1.75;
             margin-bottom: 35px;
         }
 
         .hero-buttons {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 14px;
-
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .primary-btn,
-        .secondary-btn {
-            min-width: 170px;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
 
-            padding: 14px 21px;
+            min-height: 48px;
+            padding: 0 21px;
 
-            border-radius: 13px;
+            border-radius: 12px;
 
-            font-weight: 800;
             font-size: 14px;
+            font-weight: 800;
 
-            transition: .25s ease;
+            transition: .2s ease;
         }
 
-        .primary-btn {
-            color: white;
-
-            background:
-                linear-gradient(135deg,
-                    #6656ff,
-                    #8b5cf6);
-
-            border: 1px solid rgba(255, 255, 255, .13);
-
-            box-shadow:
-                0 15px 40px rgba(102, 86, 255, .25);
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(135deg, #55a7ff, #7c5cff);
+            box-shadow: 0 15px 40px rgba(85, 167, 255, .17);
         }
 
-        .primary-btn:hover {
+        .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow:
-                0 20px 50px rgba(102, 86, 255, .35);
+            box-shadow: 0 20px 50px rgba(85, 167, 255, .25);
         }
 
-        .secondary-btn {
-            color: #dce1ec;
-
-            background: rgba(255, 255, 255, .035);
-
+        .btn-secondary {
+            color: #dce5f3;
             border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .035);
         }
 
-        .secondary-btn:hover {
-            background: rgba(255, 255, 255, .07);
+        .btn-secondary:hover {
             transform: translateY(-3px);
+            background: rgba(255, 255, 255, .07);
         }
-
-        /* =========================
-           STATS
-        ========================= */
 
         .stats {
-            width: min(1000px, 90%);
+            width: 86%;
+            max-width: 1100px;
+            margin: -20px auto 100px;
 
             display: grid;
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 14px;
-
-            margin-top: 75px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
         .stat {
-            padding: 22px;
-
-            background:
-                linear-gradient(180deg,
-                    rgba(255, 255, 255, .045),
-                    rgba(255, 255, 255, .018));
+            padding: 25px;
+            text-align: center;
 
             border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 18px;
 
-            border-radius: 17px;
+            background: rgba(255, 255, 255, .025);
         }
 
         .stat strong {
             display: block;
-
-            font-size: 26px;
-
+            font-size: 29px;
             margin-bottom: 5px;
+
+            background: linear-gradient(90deg, #fff, #86baff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .stat span {
-            color: #737e93;
-            font-size: 12px;
+            color: #7f8b9e;
+            font-size: 13px;
         }
 
-        /* =========================
-           SECTIONS
-        ========================= */
-
         section {
-            padding: 110px 7%;
+            width: 86%;
+            max-width: 1250px;
+            margin: 0 auto 130px;
         }
 
         .section-head {
             text-align: center;
-            max-width: 750px;
-            margin: 0 auto 55px;
+            margin-bottom: 45px;
         }
 
-        .section-head span {
-            color: #8578ff;
-            font-size: 12px;
+        .section-head small {
+            color: #6faeff;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 11px;
         }
 
         .section-head h2 {
-            font-size: clamp(34px, 5vw, 55px);
+            margin-top: 12px;
+            font-size: clamp(32px, 4vw, 52px);
             letter-spacing: -2px;
-            margin: 12px 0 16px;
         }
 
         .section-head p {
-            color: #7f899e;
-            line-height: 1.8;
+            max-width: 650px;
+            margin: 14px auto 0;
+            color: #8490a2;
+            line-height: 1.7;
         }
 
-        /* =========================
-           FEATURES
-        ========================= */
-
         .features {
-            max-width: 1200px;
-            margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 18px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
         }
 
         .feature {
-            padding: 28px;
+            position: relative;
+            overflow: hidden;
 
+            padding: 30px;
+            min-height: 220px;
+
+            border: 1px solid rgba(255, 255, 255, .07);
             border-radius: 20px;
 
             background:
                 linear-gradient(145deg,
-                    rgba(255, 255, 255, .055),
-                    rgba(255, 255, 255, .018));
+                    rgba(255, 255, 255, .045),
+                    rgba(255, 255, 255, .015));
 
-            border: 1px solid rgba(255, 255, 255, .075);
+            transition: .25s ease;
+        }
 
-            transition: .3s ease;
+        .feature::before {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            right: -60px;
+            top: -60px;
+
+            background: rgba(85, 167, 255, .08);
+            filter: blur(30px);
+            border-radius: 50%;
         }
 
         .feature:hover {
-            transform: translateY(-6px);
-
-            border-color:
-                rgba(123, 105, 255, .35);
-
-            background:
-                linear-gradient(145deg,
-                    rgba(110, 90, 255, .09),
-                    rgba(255, 255, 255, .025));
+            transform: translateY(-5px);
+            border-color: rgba(85, 167, 255, .2);
         }
 
         .feature-icon {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 14px;
+            border-radius: 13px;
 
-            background:
-                rgba(109, 92, 255, .11);
+            background: linear-gradient(135deg,
+                    rgba(85, 167, 255, .16),
+                    rgba(124, 92, 255, .16));
 
-            border:
-                1px solid rgba(109, 92, 255, .2);
+            border: 1px solid rgba(85, 167, 255, .12);
 
-            color: #a79cff;
-
-            font-size: 21px;
-
+            font-size: 20px;
             margin-bottom: 20px;
         }
 
@@ -545,171 +433,75 @@
         }
 
         .feature p {
-            color: #7e899d;
-            line-height: 1.7;
+            color: #808c9e;
             font-size: 14px;
-        }
-
-        /* =========================
-           PREVIEW
-        ========================= */
-
-        .preview-wrapper {
-            max-width: 1250px;
-            margin: auto;
-        }
-
-        .preview-card {
-            position: relative;
-
-            padding: 12px;
-
-            border-radius: 25px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 255, 255, .08),
-                    rgba(255, 255, 255, .02));
-
-            border:
-                1px solid rgba(255, 255, 255, .09);
-
-            box-shadow:
-                0 30px 100px rgba(0, 0, 0, .35);
-
-            overflow: hidden;
-        }
-
-        .preview-card img {
-            display: block;
-
-            width: 100%;
-
-            border-radius: 17px;
-
-            object-fit: cover;
-
-            background: #0c1018;
+            line-height: 1.7;
         }
 
         .preview-grid {
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1.3fr .7fr;
             gap: 18px;
-
-            margin-top: 18px;
         }
 
-        /* =========================
-           DOWNLOAD
-        ========================= */
+        .preview-card {
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, .07);
+            background: #0b0f16;
+        }
+
+        .preview-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 330px;
+            object-fit: cover;
+        }
 
         .download-box {
-            max-width: 1000px;
-            margin: auto;
-
+            padding: 55px;
             text-align: center;
 
-            padding: 65px 35px;
-
-            border-radius: 30px;
+            border: 1px solid rgba(85, 167, 255, .12);
+            border-radius: 25px;
 
             background:
-                radial-gradient(circle at top,
-                    rgba(109, 92, 255, .15),
-                    transparent 60%),
+                radial-gradient(circle at 50% 0%,
+                    rgba(85, 167, 255, .10),
+                    transparent 55%),
                 rgba(255, 255, 255, .025);
-
-            border:
-                1px solid rgba(255, 255, 255, .08);
-
-            box-shadow:
-                0 30px 100px rgba(0, 0, 0, .25);
         }
 
         .download-box h2 {
-            font-size: clamp(34px, 5vw, 58px);
-            letter-spacing: -2px;
+            font-size: 40px;
+            letter-spacing: -1.5px;
             margin-bottom: 15px;
         }
 
         .download-box p {
-            color: #818ca0;
             max-width: 650px;
-            margin: auto auto 30px;
+            margin: 0 auto 28px;
+            color: #8995a7;
             line-height: 1.7;
         }
 
-        .download-info {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-
-            color: #687389;
-            font-size: 12px;
-
-            margin-top: 20px;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
         footer {
-            border-top:
-                1px solid rgba(255, 255, 255, .07);
-
-            padding:
-                35px 7%;
+            width: 100%;
+            padding: 35px 7%;
+            border-top: 1px solid rgba(255, 255, 255, .06);
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            gap: 20px;
-
-            color: #687287;
+            color: #687486;
             font-size: 13px;
         }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-brand img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        /* =========================
-           MODAL
-        ========================= */
 
         .modal {
             position: fixed;
             inset: 0;
-
-            background:
-                rgba(0, 0, 0, .72);
-
-            backdrop-filter: blur(12px);
 
             display: none;
             align-items: center;
@@ -717,30 +509,30 @@
 
             padding: 20px;
 
-            z-index: 5000;
+            background: rgba(0, 0, 0, .72);
+            backdrop-filter: blur(10px);
+
+            z-index: 3000;
         }
 
         .modal.active {
             display: flex;
         }
 
-        .modal-card {
+        .modal-box {
             width: min(470px, 100%);
 
             padding: 35px;
 
-            border-radius: 24px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, .1);
 
             background:
                 linear-gradient(145deg,
-                    #151a27,
-                    #0d111a);
+                    #111722,
+                    #0a0e14);
 
-            border:
-                1px solid rgba(255, 255, 255, .1);
-
-            box-shadow:
-                0 30px 100px rgba(0, 0, 0, .6);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, .55);
 
             text-align: center;
         }
@@ -748,67 +540,29 @@
         .modal-icon {
             width: 65px;
             height: 65px;
-
-            margin: auto auto 20px;
+            margin: 0 auto 20px;
 
             object-fit: contain;
-
             border-radius: 17px;
         }
 
-        .modal-card h3 {
-            font-size: 25px;
-            margin-bottom: 10px;
+        .modal-box h2 {
+            margin-bottom: 12px;
         }
 
-        .modal-card p {
-            color: #7d879b;
+        .modal-box p {
+            color: #8b97a8;
             line-height: 1.7;
-            font-size: 14px;
             margin-bottom: 25px;
         }
 
-        .modal-close {
-            width: 100%;
-
-            padding: 13px;
-
-            border-radius: 12px;
-
-            border:
-                1px solid rgba(255, 255, 255, .1);
-
-            background:
-                rgba(255, 255, 255, .05);
-
-            color: white;
-
-            cursor: pointer;
-
-            font-weight: 700;
-        }
-
-        .modal-close:hover {
-            background:
-                rgba(255, 255, 255, .09);
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
         @media (max-width: 900px) {
-
             .nav-links {
                 display: none;
             }
 
             .features {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .preview-grid {
@@ -816,13 +570,16 @@
             }
         }
 
-        @media (max-width: 600px) {
-
+        @media (max-width: 650px) {
             .navbar {
                 padding: 0 18px;
             }
 
             .brand span {
+                display: none;
+            }
+
+            .premium-btn span {
                 display: none;
             }
 
@@ -832,44 +589,38 @@
             }
 
             .hero h1 {
-                letter-spacing: -2px;
+                letter-spacing: -2.5px;
             }
 
             .hero p {
-                font-size: 15px;
+                font-size: 16px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                width: 90%;
             }
 
             section {
-                padding:
-                    75px 20px;
+                width: 90%;
             }
 
             .features {
                 grid-template-columns: 1fr;
             }
 
-            .stats {
-                grid-template-columns: 1fr 1fr;
-                width: 100%;
+            .download-box {
+                padding: 35px 20px;
             }
 
-            .stat {
-                padding: 18px;
+            .download-box h2 {
+                font-size: 31px;
             }
 
             footer {
                 flex-direction: column;
+                gap: 12px;
                 text-align: center;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .primary-btn,
-            .secondary-btn {
-                width: 100%;
             }
         }
     </style>
@@ -877,160 +628,123 @@
 
 <body>
 
-    <div class="background-grid"></div>
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-
-    <!-- =========================
-         NAVBAR
-    ========================= -->
-
     <nav class="navbar">
 
-        <a href="./index.html" class="brand">
-
-            <!-- DOĞRU DOSYA ADI -->
+        <a href="#" class="brand">
             <img src="./Ana-icon.png" alt="LoliMod-İDEA">
-
             <span>LoliMod-İDEA</span>
-
         </a>
 
         <div class="nav-links">
-
-            <a href="#features">Özellikler</a>
-
-            <a href="#preview">Önizleme</a>
-
-            <a href="#download">İndir</a>
-
-            <a href="./help.html">Help Center</a>
-
+            <a href="#features" data-i18n="features">Özellikler</a>
+            <a href="#preview" data-i18n="preview">Önizleme</a>
+            <a href="#download" data-i18n="download">İndir</a>
+            <a href="./help.html" data-i18n="help">Yardım Merkezi</a>
         </div>
 
         <div class="nav-actions">
 
-            <button class="language-btn" id="languageBtn" type="button">
-                TR
+            <button class="language-btn" id="languageButton" type="button" aria-label="Change language">
+                EN
             </button>
 
-            <button class="premium-btn" id="premiumBtn" type="button">
+            <button class="premium-btn" id="premiumButton" type="button">
 
                 <img src="./icon.ico" alt="Premium">
 
-                Premium
-
+                <span data-i18n="premium">Premium</span>
             </button>
 
         </div>
-
     </nav>
 
-
-    <!-- =========================
-         HERO
-    ========================= -->
 
     <main>
 
         <section class="hero">
 
-            <!-- DOĞRU DOSYA ADI -->
-            <img class="hero-logo" src="./Ana-icon.png" alt="LoliMod-İDEA Logo">
+            <img class="hero-logo" src="./Ana-icon.png" alt="LoliMod-İDEA">
 
             <div class="badge">
                 <span class="badge-dot"></span>
-                LoliMod-İDEA 3.1.8
+                <span data-i18n="badge">Yeni nesil Minecraft mod geliştirme</span>
             </div>
 
-            <h1>
-                Minecraft Modlarını
-                Daha Kolay Geliştir.
+            <h1 data-i18n="heroTitle">
+                Minecraft Modlarını Daha Kolay Geliştir.
             </h1>
 
-            <p>
-                LoliMod-İDEA, Minecraft mod geliştirme sürecini
-                daha kolay, düzenli ve modern hale getirmek için
-                tasarlanmış yeni nesil bir geliştirme deneyimidir.
+            <p data-i18n="heroDescription">
+                LoliMod-İDEA ile Minecraft mod projelerini daha hızlı,
+                düzenli ve modern bir geliştirme ortamında oluştur.
             </p>
 
             <div class="hero-buttons">
 
-                <a class="primary-btn" href="#download">
-                    Windows İçin İndir
+                <a class="btn btn-primary" href="#download" data-i18n="startButton">
+                    Hemen Başla
                 </a>
 
-                <a class="secondary-btn" href="./help.html">
-                    Help Center
+                <a class="btn btn-secondary" href="./help.html" data-i18n="helpButton">
+                    Yardım Merkezi
                 </a>
-
-            </div>
-
-            <div class="stats">
-
-                <div class="stat">
-                    <strong>200+</strong>
-                    <span>Geliştirme özelliği</span>
-                </div>
-
-                <div class="stat">
-                    <strong>Dark+</strong>
-                    <span>Modern arayüz</span>
-                </div>
-
-                <div class="stat">
-                    <strong>Fabric</strong>
-                    <span>Mod geliştirme</span>
-                </div>
-
-                <div class="stat">
-                    <strong>Fast</strong>
-                    <span>Hızlı çalışma deneyimi</span>
-                </div>
 
             </div>
 
         </section>
 
 
-        <!-- =========================
-             FEATURES
-        ========================= -->
+        <div class="stats">
+
+            <div class="stat">
+                <strong>200+</strong>
+                <span data-i18n="statFeatures">Özellik</span>
+            </div>
+
+            <div class="stat">
+                <strong>1.21+</strong>
+                <span data-i18n="statVersions">Minecraft sürümleri</span>
+            </div>
+
+            <div class="stat">
+                <strong>100%</strong>
+                <span data-i18n="statFocus">Geliştirici odaklı</span>
+            </div>
+
+        </div>
+
 
         <section id="features">
 
             <div class="section-head">
 
-                <span>Studio</span>
+                <small data-i18n="featuresSmall">ÖZELLİKLER</small>
 
-                <h2>
-                    Geliştirme sürecini
-                    kolaylaştır.
+                <h2 data-i18n="featuresTitle">
+                    Geliştirme sürecini hızlandır.
                 </h2>
 
-                <p>
-                    Kod yazma, proje yönetimi, build işlemleri
-                    ve Minecraft mod geliştirme araçlarını
-                    tek bir yerde kullan.
+                <p data-i18n="featuresDescription">
+                    Kodlama deneyimini daha düzenli ve kullanışlı hale
+                    getirmek için tasarlanmış modern araçlar.
                 </p>
 
             </div>
+
 
             <div class="features">
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        ✦
-                    </div>
+                    <div class="feature-icon">⚡</div>
 
-                    <h3>
-                        Modern Editor
+                    <h3 data-i18n="feature1Title">
+                        Hızlı Proje Oluşturma
                     </h3>
 
-                    <p>
-                        Java dosyalarını daha düzenli bir
-                        geliştirme ortamında düzenle.
+                    <p data-i18n="feature1Description">
+                        Yeni Minecraft mod projelerini birkaç adımda oluştur
+                        ve geliştirmeye hemen başla.
                     </p>
 
                 </article>
@@ -1038,17 +752,15 @@
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        ⚡
-                    </div>
+                    <div class="feature-icon">🧩</div>
 
-                    <h3>
-                        Hızlı Build
+                    <h3 data-i18n="feature2Title">
+                        Hazır Araçlar
                     </h3>
 
-                    <p>
-                        Gradle tabanlı projelerini kolayca
-                        build etmene yardımcı olacak araçlar.
+                    <p data-i18n="feature2Description">
+                        Sık kullanılan işlemler için hazır geliştirme araçlarını
+                        tek bir yerde kullan.
                     </p>
 
                 </article>
@@ -1056,17 +768,15 @@
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        ◈
-                    </div>
+                    <div class="feature-icon">💻</div>
 
-                    <h3>
-                        Project Explorer
+                    <h3 data-i18n="feature3Title">
+                        Modern Editör
                     </h3>
 
-                    <p>
-                        Java, resources, assets ve proje
-                        dosyalarını tek panel üzerinden yönet.
+                    <p data-i18n="feature3Description">
+                        Kodlarını modern ve sade bir geliştirme arayüzünde
+                        düzenle.
                     </p>
 
                 </article>
@@ -1074,17 +784,15 @@
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        #
-                    </div>
+                    <div class="feature-icon">🛠️</div>
 
-                    <h3>
-                        Hazır Kod Araçları
+                    <h3 data-i18n="feature4Title">
+                        Build Araçları
                     </h3>
 
-                    <p>
-                        Sık kullanılan Minecraft modlama
-                        kodlarını daha hızlı oluştur.
+                    <p data-i18n="feature4Description">
+                        Projeni derleme ve geliştirme işlemlerini daha kolay
+                        şekilde yönet.
                     </p>
 
                 </article>
@@ -1092,17 +800,15 @@
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        ▶
-                    </div>
+                    <div class="feature-icon">📁</div>
 
-                    <h3>
-                        Run Client
+                    <h3 data-i18n="feature5Title">
+                        Proje Yönetimi
                     </h3>
 
-                    <p>
-                        Geliştirme ortamından Minecraft test
-                        client işlemlerini çalıştır.
+                    <p data-i18n="feature5Description">
+                        Dosyalarını ve proje yapını düzenli bir şekilde
+                        yönet.
                     </p>
 
                 </article>
@@ -1110,17 +816,15 @@
 
                 <article class="feature">
 
-                    <div class="feature-icon">
-                        ◆
-                    </div>
+                    <div class="feature-icon">🎨</div>
 
-                    <h3>
-                        Dark Premium UI
+                    <h3 data-i18n="feature6Title">
+                        Premium Tasarım
                     </h3>
 
-                    <p>
-                        Koyu renkli, modern ve dikkat dağıtmayan
-                        geliştirme arayüzü.
+                    <p data-i18n="feature6Description">
+                        Koyu renkli, modern ve geliştirici odaklı bir çalışma
+                        deneyimi kullan.
                     </p>
 
                 </article>
@@ -1129,50 +833,32 @@
 
         </section>
 
-
-        <!-- =========================
-             PREVIEW
-        ========================= -->
 
         <section id="preview">
 
             <div class="section-head">
 
-                <span>Preview</span>
+                <small data-i18n="previewSmall">ÖNİZLEME</small>
 
-                <h2>
+                <h2 data-i18n="previewTitle">
                     LoliMod-İDEA'yı keşfet.
                 </h2>
 
-                <p>
-                    Uygulamanın arayüzüne ve geliştirme
-                    deneyimine göz at.
+                <p data-i18n="previewDescription">
+                    Modern arayüz ve geliştirme araçları tek bir platformda.
                 </p>
 
             </div>
 
-            <div class="preview-wrapper">
+
+            <div class="preview-grid">
 
                 <div class="preview-card">
-
-                    <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA Yeni Arayüz" loading="lazy">
-
+                    <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA Preview">
                 </div>
 
-                <div class="preview-grid">
-
-                    <div class="preview-card">
-
-                        <img src="./Loli-Mod-Old1.png" alt="LoliMod-İDEA Eski Arayüz" loading="lazy">
-
-                    </div>
-
-                    <div class="preview-card">
-
-                        <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA Studio" loading="lazy">
-
-                    </div>
-
+                <div class="preview-card">
+                    <img src="./Loli-Mod-Old1.png" alt="LoliMod-İDEA Preview">
                 </div>
 
             </div>
@@ -1180,47 +866,23 @@
         </section>
 
 
-        <!-- =========================
-             DOWNLOAD
-        ========================= -->
-
         <section id="download">
 
             <div class="download-box">
 
-                <div class="badge">
-                    <span class="badge-dot"></span>
-                    Windows
-                </div>
-
-                <h2>
-                    LoliMod-İDEA'yı İndir
+                <h2 data-i18n="downloadTitle">
+                    LoliMod-İDEA'yı indir.
                 </h2>
 
-                <p>
-                    Windows için LoliMod-İDEA 3.1.8 sürümünü
-                    indir ve Minecraft mod geliştirmeye başla.
+                <p data-i18n="downloadDescription">
+                    Windows için LoliMod-İDEA'yı indir ve Minecraft mod
+                    geliştirmeye hemen başla.
                 </p>
 
-                <a class="primary-btn" href="./Loli-Mod-İDEA-3.1.8%20İnstaller.exe" download>
-                    ⬇ Windows İçin İndir
+                <a class="btn btn-primary" href="./Loli-Mod-İDEA-3.1.8%20İnstaller.exe" download
+                    data-i18n="downloadButton">
+                    Windows için İndir
                 </a>
-
-                <div class="download-info">
-
-                    <span>
-                        Version 3.1.8
-                    </span>
-
-                    <span>
-                        Windows
-                    </span>
-
-                    <span>
-                        LoliMod-İDEA
-                    </span>
-
-                </div>
 
             </div>
 
@@ -1229,64 +891,36 @@
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
     <footer>
 
-        <div class="footer-brand">
-
-            <!-- DOĞRU DOSYA ADI -->
-            <img src="./Ana-icon.png" alt="LoliMod-İDEA">
-
-            <span>
-                © 2026 LoliMod-İDEA
-            </span>
-
+        <div>
+            © 2026 LoliMod-İDEA
         </div>
 
-        <div class="footer-links">
-
-            <a href="./help.html">
-                Help Center
-            </a>
-
-            <a href="#features">
-                Features
-            </a>
-
-            <a href="#download">
-                Download
-            </a>
-
+        <div data-i18n="footerText">
+            Minecraft mod geliştirme için tasarlanmıştır.
         </div>
 
     </footer>
 
 
-    <!-- =========================
-         PREMIUM MODAL
-    ========================= -->
-
     <div class="modal" id="premiumModal">
 
-        <div class="modal-card">
+        <div class="modal-box">
 
             <img class="modal-icon" src="./icon.ico" alt="Premium">
 
-            <h3>
-                Premium
-            </h3>
+            <h2 data-i18n="modalTitle">
+                Premium Yakında
+            </h2>
 
-            <p>
-                LoliMod-İDEA Premium şu anda geliştirme
-                aşamasında. Premium özellikler daha sonra
-                kullanıma sunulacak.
+            <p data-i18n="modalDescription">
+                LoliMod-İDEA Premium şu anda geliştirme aşamasında.
+                Yeni özellikler çok yakında burada olacak.
             </p>
 
-            <button class="modal-close" id="closeModal" type="button">
-                Tamam
+            <button class="btn btn-primary" id="closeModal" type="button" data-i18n="closeButton">
+                Kapat
             </button>
 
         </div>
@@ -1295,13 +929,233 @@
 
 
     <script>
+        /*
+            ============================================================
+            LOLIMOD-İDEA LANGUAGE SYSTEM
+            Türkçe <-> English
+            ============================================================
+        */
 
-        /* =========================
-           PREMIUM MODAL
-        ========================= */
+        const translations = {
 
-        const premiumBtn =
-            document.getElementById("premiumBtn");
+            tr: {
+
+                features: "Özellikler",
+                preview: "Önizleme",
+                download: "İndir",
+                help: "Yardım Merkezi",
+                premium: "Premium",
+
+                badge: "Yeni nesil Minecraft mod geliştirme",
+
+                heroTitle: "Minecraft Modlarını Daha Kolay Geliştir.",
+
+                heroDescription:
+                    "LoliMod-İDEA ile Minecraft mod projelerini daha hızlı, düzenli ve modern bir geliştirme ortamında oluştur.",
+
+                startButton: "Hemen Başla",
+                helpButton: "Yardım Merkezi",
+
+                statFeatures: "Özellik",
+                statVersions: "Minecraft sürümleri",
+                statFocus: "Geliştirici odaklı",
+
+                featuresSmall: "ÖZELLİKLER",
+
+                featuresTitle:
+                    "Geliştirme sürecini hızlandır.",
+
+                featuresDescription:
+                    "Kodlama deneyimini daha düzenli ve kullanışlı hale getirmek için tasarlanmış modern araçlar.",
+
+                feature1Title:
+                    "Hızlı Proje Oluşturma",
+
+                feature1Description:
+                    "Yeni Minecraft mod projelerini birkaç adımda oluştur ve geliştirmeye hemen başla.",
+
+                feature2Title:
+                    "Hazır Araçlar",
+
+                feature2Description:
+                    "Sık kullanılan işlemler için hazır geliştirme araçlarını tek bir yerde kullan.",
+
+                feature3Title:
+                    "Modern Editör",
+
+                feature3Description:
+                    "Kodlarını modern ve sade bir geliştirme arayüzünde düzenle.",
+
+                feature4Title:
+                    "Build Araçları",
+
+                feature4Description:
+                    "Projeni derleme ve geliştirme işlemlerini daha kolay şekilde yönet.",
+
+                feature5Title:
+                    "Proje Yönetimi",
+
+                feature5Description:
+                    "Dosyalarını ve proje yapını düzenli bir şekilde yönet.",
+
+                feature6Title:
+                    "Premium Tasarım",
+
+                feature6Description:
+                    "Koyu renkli, modern ve geliştirici odaklı bir çalışma deneyimi kullan.",
+
+                previewSmall: "ÖNİZLEME",
+
+                previewTitle:
+                    "LoliMod-İDEA'yı keşfet.",
+
+                previewDescription:
+                    "Modern arayüz ve geliştirme araçları tek bir platformda.",
+
+                downloadTitle:
+                    "LoliMod-İDEA'yı indir.",
+
+                downloadDescription:
+                    "Windows için LoliMod-İDEA'yı indir ve Minecraft mod geliştirmeye hemen başla.",
+
+                downloadButton:
+                    "Windows için İndir",
+
+                footerText:
+                    "Minecraft mod geliştirme için tasarlanmıştır.",
+
+                modalTitle:
+                    "Premium Yakında",
+
+                modalDescription:
+                    "LoliMod-İDEA Premium şu anda geliştirme aşamasında. Yeni özellikler çok yakında burada olacak.",
+
+                closeButton:
+                    "Kapat"
+            },
+
+
+            en: {
+
+                features: "Features",
+                preview: "Preview",
+                download: "Download",
+                help: "Help Center",
+                premium: "Premium",
+
+                badge: "Next-generation Minecraft mod development",
+
+                heroTitle:
+                    "Develop Minecraft Mods More Easily.",
+
+                heroDescription:
+                    "Create your Minecraft mod projects faster, cleaner and in a modern development environment with LoliMod-İDEA.",
+
+                startButton:
+                    "Get Started",
+
+                helpButton:
+                    "Help Center",
+
+                statFeatures:
+                    "Features",
+
+                statVersions:
+                    "Minecraft versions",
+
+                statFocus:
+                    "Developer focused",
+
+                featuresSmall:
+                    "FEATURES",
+
+                featuresTitle:
+                    "Speed up your development.",
+
+                featuresDescription:
+                    "Modern tools designed to make your coding experience more organized and convenient.",
+
+                feature1Title:
+                    "Fast Project Creation",
+
+                feature1Description:
+                    "Create new Minecraft mod projects in just a few steps and start developing immediately.",
+
+                feature2Title:
+                    "Ready-to-Use Tools",
+
+                feature2Description:
+                    "Use useful development tools for common tasks from one convenient place.",
+
+                feature3Title:
+                    "Modern Editor",
+
+                feature3Description:
+                    "Edit your code in a modern and clean development interface.",
+
+                feature4Title:
+                    "Build Tools",
+
+                feature4Description:
+                    "Manage project building and development tasks more easily.",
+
+                feature5Title:
+                    "Project Management",
+
+                feature5Description:
+                    "Manage your files and project structure in an organized way.",
+
+                feature6Title:
+                    "Premium Design",
+
+                feature6Description:
+                    "Enjoy a dark, modern and developer-focused working experience.",
+
+                previewSmall:
+                    "PREVIEW",
+
+                previewTitle:
+                    "Explore LoliMod-İDEA.",
+
+                previewDescription:
+                    "A modern interface and development tools in one platform.",
+
+                downloadTitle:
+                    "Download LoliMod-İDEA.",
+
+                downloadDescription:
+                    "Download LoliMod-İDEA for Windows and start developing Minecraft mods.",
+
+                downloadButton:
+                    "Download for Windows",
+
+                footerText:
+                    "Designed for Minecraft mod development.",
+
+                modalTitle:
+                    "Premium Coming Soon",
+
+                modalDescription:
+                    "LoliMod-İDEA Premium is currently under development. New features will be available here soon.",
+
+                closeButton:
+                    "Close"
+            }
+
+        };
+
+
+        /*
+            ============================================================
+            ELEMENTLER
+            ============================================================
+        */
+
+        const languageButton =
+            document.getElementById("languageButton");
+
+        const premiumButton =
+            document.getElementById("premiumButton");
 
         const premiumModal =
             document.getElementById("premiumModal");
@@ -1310,49 +1164,165 @@
             document.getElementById("closeModal");
 
 
-        premiumBtn.addEventListener(
+        /*
+            ============================================================
+            DİLİ UYGULA
+            ============================================================
+        */
+
+        function applyLanguage(language) {
+
+            if (!translations[language]) {
+                language = "tr";
+            }
+
+            const dictionary =
+                translations[language];
+
+            /*
+                data-i18n bulunan bütün elementleri bul.
+            */
+
+            document
+                .querySelectorAll("[data-i18n]")
+                .forEach(element => {
+
+                    const key =
+                        element.getAttribute("data-i18n");
+
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            dictionary,
+                            key
+                        )
+                    ) {
+
+                        element.textContent =
+                            dictionary[key];
+
+                    }
+
+                });
+
+
+            /*
+                HTML lang
+            */
+
+            document.documentElement.lang =
+                language;
+
+
+            /*
+                Sayfa başlığı
+            */
+
+            document.title =
+                language === "tr"
+                    ? "LoliMod-İDEA"
+                    : "LoliMod-İDEA";
+
+
+            /*
+                Dil butonu:
+                Türkçe kullanıyorsak EN göster.
+                İngilizce kullanıyorsak TR göster.
+            */
+
+            languageButton.textContent =
+                language === "tr"
+                    ? "EN"
+                    : "TR";
+
+
+            /*
+                Bir sonraki seçilecek dili belirle.
+            */
+
+            languageButton.dataset.nextLanguage =
+                language === "tr"
+                    ? "en"
+                    : "tr";
+
+
+            /*
+                LocalStorage'a kaydet.
+            */
+
+            localStorage.setItem(
+                "lolimod-language",
+                language
+            );
+
+        }
+
+
+        /*
+            ============================================================
+            DİL DEĞİŞTİR
+            ============================================================
+        */
+
+        languageButton.addEventListener(
             "click",
-            () => {
+            function () {
+
+                const nextLanguage =
+                    languageButton.dataset.nextLanguage || "en";
+
+                applyLanguage(nextLanguage);
+
+            }
+        );
+
+
+        /*
+            ============================================================
+            PREMIUM MODAL
+            ============================================================
+        */
+
+        premiumButton.addEventListener(
+            "click",
+            function () {
+
                 premiumModal.classList.add("active");
+
             }
         );
 
 
         closeModal.addEventListener(
             "click",
-            () => {
+            function () {
+
                 premiumModal.classList.remove("active");
+
             }
         );
 
 
         premiumModal.addEventListener(
             "click",
-            (event) => {
+            function (event) {
 
-                if (
-                    event.target === premiumModal
-                ) {
+                if (event.target === premiumModal) {
+
                     premiumModal.classList.remove("active");
+
                 }
 
             }
         );
 
-
-        /* =========================
-           ESC KEY
-        ========================= */
 
         document.addEventListener(
             "keydown",
-            (event) => {
+            function (event) {
 
                 if (event.key === "Escape") {
 
-                    premiumModal.classList.remove(
-                        "active"
-                    );
+                    premiumModal.classList.remove("active");
 
                 }
 
@@ -1360,38 +1330,76 @@
         );
 
 
-        /* =========================
-           LANGUAGE BUTTON
-        ========================= */
+        /*
+            ============================================================
+            İLK DİLİ BELİRLE
+            ============================================================
+        */
 
-        const languageBtn =
-            document.getElementById("languageBtn");
+        const savedLanguage =
+            localStorage.getItem("lolimod-language");
 
-        let english = false;
 
-        languageBtn.addEventListener(
-            "click",
-            () => {
+        if (
+            savedLanguage === "tr" ||
+            savedLanguage === "en"
+        ) {
 
-                english = !english;
+            applyLanguage(savedLanguage);
 
-                if (english) {
+        } else {
 
-                    languageBtn.textContent = "EN";
+            /*
+                İlk açılış Türkçe.
+            */
 
-                    document.documentElement.lang = "en";
+            applyLanguage("tr");
 
-                } else {
+        }
 
-                    languageBtn.textContent = "TR";
 
-                    document.documentElement.lang = "tr";
+        /*
+            ============================================================
+            SMOOTH SCROLL
+            ============================================================
+        */
 
-                }
+        document
+            .querySelectorAll('a[href^="#"]')
+            .forEach(link => {
 
-            }
-        );
+                link.addEventListener(
+                    "click",
+                    function (event) {
 
+                        const targetId =
+                            this.getAttribute("href");
+
+                        if (
+                            targetId &&
+                            targetId !== "#"
+                        ) {
+
+                            const target =
+                                document.querySelector(targetId);
+
+                            if (target) {
+
+                                event.preventDefault();
+
+                                target.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+
+                            }
+
+                        }
+
+                    }
+                );
+
+            });
     </script>
 
 </body>

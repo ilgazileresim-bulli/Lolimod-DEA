@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>LoliMod-İDEA</title>
+
     <meta name="description"
         content="LoliMod-İDEA — Minecraft mod geliştirmeyi kolaylaştıran modern geliştirme platformu.">
 
@@ -18,11 +19,26 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #06090f;
+            --bg2: #0b1019;
+            --card: rgba(255, 255, 255, .045);
+            --card-hover: rgba(255, 255, 255, .075);
+            --border: rgba(255, 255, 255, .09);
+            --text: #f7f9fc;
+            --muted: #8995a8;
+            --blue: #55a7ff;
+            --purple: #7c5cff;
+        }
+
         html {
             scroll-behavior: smooth;
         }
 
         body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
             font-family:
                 Inter,
                 ui-sans-serif,
@@ -32,26 +48,48 @@
                 "Segoe UI",
                 sans-serif;
 
-            background:
-                radial-gradient(circle at 20% 10%, rgba(85, 167, 255, .12), transparent 28%),
-                radial-gradient(circle at 80% 20%, rgba(124, 92, 255, .10), transparent 30%),
-                #070a0f;
+            color: var(--text);
 
-            color: #f4f7fb;
-            min-height: 100vh;
-            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 15% 10%,
+                    rgba(85, 167, 255, .14),
+                    transparent 28%),
+                radial-gradient(circle at 85% 15%,
+                    rgba(124, 92, 255, .13),
+                    transparent 30%),
+                linear-gradient(180deg,
+                    #06090f,
+                    #080c13 50%,
+                    #06090f);
         }
 
         body::before {
             content: "";
+
             position: fixed;
             inset: 0;
+
             pointer-events: none;
+
             background:
-                linear-gradient(rgba(255, 255, 255, .018) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .018) 1px, transparent 1px);
-            background-size: 50px 50px;
-            mask-image: linear-gradient(to bottom, black, transparent 90%);
+                linear-gradient(rgba(255, 255, 255, .018) 1px,
+                    transparent 1px),
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, .018) 1px,
+                    transparent 1px);
+
+            background-size: 48px 48px;
+
+            mask-image:
+                linear-gradient(to bottom,
+                    black,
+                    transparent 90%);
+
+            -webkit-mask-image:
+                linear-gradient(to bottom,
+                    black,
+                    transparent 90%);
+
             z-index: -1;
         }
 
@@ -61,13 +99,18 @@
         }
 
         button {
-            font-family: inherit;
+            font: inherit;
         }
+
+        /* =========================
+           NAVBAR
+        ========================= */
 
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
+
             width: 100%;
             height: 76px;
 
@@ -77,11 +120,14 @@
 
             padding: 0 6%;
 
-            background: rgba(7, 10, 15, .72);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background:
+                rgba(6, 9, 15, .78);
 
-            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, .07);
 
             z-index: 1000;
         }
@@ -90,93 +136,173 @@
             display: flex;
             align-items: center;
             gap: 12px;
+
             font-size: 19px;
-            font-weight: 800;
-            letter-spacing: -.4px;
+            font-weight: 850;
+
+            white-space: nowrap;
         }
 
         .brand img {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
+
             object-fit: contain;
-            border-radius: 11px;
-            box-shadow: 0 0 30px rgba(85, 167, 255, .2);
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 0 30px rgba(85, 167, 255, .2);
         }
 
         .brand span {
-            background: linear-gradient(90deg, #fff, #9dcaff);
+            background:
+                linear-gradient(90deg,
+                    #fff,
+                    #a7cfff,
+                    #9a84ff);
+
             -webkit-background-clip: text;
             background-clip: text;
+
             color: transparent;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
+
             gap: 28px;
         }
 
         .nav-links a {
-            color: #aeb7c7;
+            position: relative;
+
+            color: #aeb8c9;
+
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 650;
+
             transition: .2s ease;
         }
 
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            border-radius: 999px;
+
+            background:
+                linear-gradient(90deg,
+                    var(--blue),
+                    var(--purple));
+
+            transition: .25s ease;
+        }
+
         .nav-links a:hover {
-            color: #fff;
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
+
             gap: 9px;
         }
 
         .language-btn,
         .premium-btn {
-            border: 1px solid rgba(255, 255, 255, .1);
-            background: rgba(255, 255, 255, .04);
-            color: #fff;
-            border-radius: 10px;
-            padding: 10px 14px;
+            min-height: 40px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid rgba(255, 255, 255, .1);
+
+            color: white;
+
+            background:
+                rgba(255, 255, 255, .045);
+
             cursor: pointer;
+
             transition: .2s ease;
-            font-weight: 700;
+        }
+
+        .language-btn {
+            min-width: 48px;
+            padding: 0 13px;
+
+            font-size: 13px;
+            font-weight: 800;
         }
 
         .language-btn:hover {
-            border-color: rgba(85, 167, 255, .5);
-            background: rgba(85, 167, 255, .08);
+            border-color:
+                rgba(85, 167, 255, .55);
+
+            background:
+                rgba(85, 167, 255, .1);
+
+            transform: translateY(-2px);
         }
 
         .premium-btn {
             display: flex;
             align-items: center;
+
             gap: 8px;
-            border-color: rgba(124, 92, 255, .35);
-            background: linear-gradient(135deg,
+
+            padding: 0 14px;
+
+            border-color:
+                rgba(124, 92, 255, .35);
+
+            background:
+                linear-gradient(135deg,
                     rgba(124, 92, 255, .18),
-                    rgba(85, 167, 255, .12));
+                    rgba(85, 167, 255, .1));
         }
 
         .premium-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(124, 92, 255, .18);
+
+            box-shadow:
+                0 12px 35px rgba(124, 92, 255, .2);
         }
 
         .premium-btn img {
             width: 18px;
             height: 18px;
+
             object-fit: contain;
         }
 
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            min-height: 800px;
-            padding: 160px 7% 100px;
+            min-height: 810px;
+
+            padding:
+                160px 7% 100px;
 
             display: flex;
             flex-direction: column;
+
             align-items: center;
             justify-content: center;
 
@@ -184,333 +310,829 @@
         }
 
         .hero-logo {
-            width: 125px;
-            height: 125px;
+            width: 130px;
+            height: 130px;
+
             object-fit: contain;
 
-            border-radius: 30px;
+            border-radius: 31px;
 
-            margin-bottom: 30px;
+            margin-bottom: 28px;
 
-            box-shadow:
-                0 0 60px rgba(85, 167, 255, .18),
-                0 0 100px rgba(124, 92, 255, .10);
+            filter:
+                drop-shadow(0 0 30px rgba(85, 167, 255, .2));
+
+            animation:
+                floating 5s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
 
-            padding: 8px 14px;
-            margin-bottom: 22px;
+            gap: 9px;
+
+            padding: 9px 15px;
+
+            margin-bottom: 23px;
+
+            border:
+                1px solid rgba(85, 167, 255, .2);
 
             border-radius: 999px;
 
-            border: 1px solid rgba(85, 167, 255, .2);
-            background: rgba(85, 167, 255, .06);
+            background:
+                rgba(85, 167, 255, .055);
 
-            color: #a9ceff;
+            color: #a8d0ff;
+
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 750;
         }
 
         .badge-dot {
             width: 7px;
             height: 7px;
+
             border-radius: 50%;
-            background: #55a7ff;
-            box-shadow: 0 0 15px #55a7ff;
+
+            background: var(--blue);
+
+            box-shadow:
+                0 0 16px var(--blue);
+
+            animation:
+                pulse 1.7s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: .4;
+                transform: scale(.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .hero h1 {
-            max-width: 950px;
+            max-width: 980px;
 
-            font-size: clamp(45px, 7vw, 86px);
-            line-height: .98;
+            font-size:
+                clamp(44px, 7vw, 88px);
+
+            line-height: .97;
+
             letter-spacing: -4px;
+
+            margin-bottom: 28px;
 
             background:
                 linear-gradient(135deg,
-                    #ffffff 10%,
-                    #b8d9ff 50%,
-                    #8d72ff 100%);
+                    #ffffff 5%,
+                    #c4e0ff 48%,
+                    #957dff 100%);
 
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
 
-            margin-bottom: 28px;
+            color: transparent;
         }
 
         .hero p {
-            max-width: 720px;
-            color: #99a5b8;
+            max-width: 730px;
+
+            color: var(--muted);
+
             font-size: 18px;
+
             line-height: 1.75;
-            margin-bottom: 35px;
+
+            margin-bottom: 36px;
         }
 
         .hero-buttons {
             display: flex;
+            align-items: center;
             justify-content: center;
+
             gap: 12px;
+
             flex-wrap: wrap;
         }
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
             gap: 9px;
 
-            min-height: 48px;
-            padding: 0 21px;
+            min-height: 50px;
 
-            border-radius: 12px;
+            padding: 0 22px;
+
+            border-radius: 13px;
 
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 850;
 
-            transition: .2s ease;
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
         }
 
         .btn-primary {
-            color: #fff;
-            background: linear-gradient(135deg, #55a7ff, #7c5cff);
-            box-shadow: 0 15px 40px rgba(85, 167, 255, .17);
+            color: white;
+
+            background:
+                linear-gradient(135deg,
+                    #55a7ff,
+                    #7c5cff);
+
+            box-shadow:
+                0 16px 42px rgba(85, 167, 255, .18);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(85, 167, 255, .25);
+
+            box-shadow:
+                0 22px 55px rgba(85, 167, 255, .28);
         }
 
         .btn-secondary {
-            color: #dce5f3;
-            border: 1px solid rgba(255, 255, 255, .1);
-            background: rgba(255, 255, 255, .035);
+            color: #dce6f5;
+
+            border:
+                1px solid rgba(255, 255, 255, .1);
+
+            background:
+                rgba(255, 255, 255, .035);
         }
 
         .btn-secondary:hover {
             transform: translateY(-3px);
-            background: rgba(255, 255, 255, .07);
+
+            background:
+                rgba(255, 255, 255, .07);
         }
+
+        /* YouTube butonu için özel stil */
+        .btn-youtube {
+            color: #fff;
+
+            border:
+                1px solid rgba(255, 0, 0, .35);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 0, 0, .22),
+                    rgba(180, 0, 0, .12));
+
+            box-shadow:
+                0 16px 42px rgba(255, 0, 0, .15);
+        }
+
+        .btn-youtube:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(255, 0, 0, .6);
+
+            box-shadow:
+                0 22px 55px rgba(255, 0, 0, .28);
+        }
+
+        .yt-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 20px;
+            height: 20px;
+
+            border-radius: 5px;
+
+            background: #ff0000;
+
+            color: #fff;
+
+            font-size: 12px;
+
+            line-height: 1;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
 
         .stats {
             width: 86%;
             max-width: 1100px;
-            margin: -20px auto 100px;
+
+            margin:
+                -20px auto 110px;
 
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .stat {
-            padding: 25px;
+            padding: 27px;
+
             text-align: center;
 
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 18px;
+            border:
+                1px solid rgba(255, 255, 255, .075);
 
-            background: rgba(255, 255, 255, .025);
+            border-radius: 19px;
+
+            background:
+                rgba(255, 255, 255, .025);
+
+            transition: .25s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(85, 167, 255, .22);
+
+            background:
+                rgba(85, 167, 255, .035);
         }
 
         .stat strong {
             display: block;
-            font-size: 29px;
+
             margin-bottom: 5px;
 
-            background: linear-gradient(90deg, #fff, #86baff);
+            font-size: 30px;
+
+            background:
+                linear-gradient(90deg,
+                    white,
+                    #83baff);
+
             -webkit-background-clip: text;
             background-clip: text;
+
             color: transparent;
         }
 
         .stat span {
-            color: #7f8b9e;
+            color: #7d899b;
+
             font-size: 13px;
         }
+
+        /* =========================
+           SECTIONS
+        ========================= */
 
         section {
             width: 86%;
             max-width: 1250px;
-            margin: 0 auto 130px;
+
+            margin:
+                0 auto 130px;
         }
 
         .section-head {
             text-align: center;
-            margin-bottom: 45px;
+
+            margin-bottom: 46px;
         }
 
         .section-head small {
-            color: #6faeff;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #70aeff;
+
             font-size: 11px;
+            font-weight: 850;
+
+            letter-spacing: 2px;
         }
 
         .section-head h2 {
             margin-top: 12px;
-            font-size: clamp(32px, 4vw, 52px);
+
+            font-size:
+                clamp(32px, 4vw, 53px);
+
             letter-spacing: -2px;
         }
 
         .section-head p {
-            max-width: 650px;
-            margin: 14px auto 0;
+            max-width: 680px;
+
+            margin:
+                15px auto 0;
+
             color: #8490a2;
-            line-height: 1.7;
+
+            line-height: 1.75;
         }
+
+        /* =========================
+           FEATURES
+        ========================= */
 
         .features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 17px;
         }
 
         .feature {
             position: relative;
+
             overflow: hidden;
 
-            padding: 30px;
-            min-height: 220px;
+            min-height: 225px;
 
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 20px;
+            padding: 30px;
+
+            border:
+                1px solid rgba(255, 255, 255, .075);
+
+            border-radius: 21px;
 
             background:
                 linear-gradient(145deg,
                     rgba(255, 255, 255, .045),
-                    rgba(255, 255, 255, .015));
+                    rgba(255, 255, 255, .012));
 
             transition: .25s ease;
         }
 
         .feature::before {
             content: "";
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            right: -60px;
-            top: -60px;
 
-            background: rgba(85, 167, 255, .08);
-            filter: blur(30px);
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -75px;
+            top: -75px;
+
             border-radius: 50%;
+
+            background:
+                rgba(85, 167, 255, .09);
+
+            filter: blur(32px);
+
+            pointer-events: none;
         }
 
         .feature:hover {
-            transform: translateY(-5px);
-            border-color: rgba(85, 167, 255, .2);
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(85, 167, 255, .23);
+
+            box-shadow:
+                0 22px 65px rgba(0, 0, 0, .23);
         }
 
         .feature-icon {
-            width: 46px;
-            height: 46px;
+            width: 47px;
+            height: 47px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            margin-bottom: 20px;
+
             border-radius: 13px;
 
-            background: linear-gradient(135deg,
+            border:
+                1px solid rgba(85, 167, 255, .13);
+
+            background:
+                linear-gradient(135deg,
                     rgba(85, 167, 255, .16),
                     rgba(124, 92, 255, .16));
 
-            border: 1px solid rgba(85, 167, 255, .12);
-
             font-size: 20px;
-            margin-bottom: 20px;
         }
 
         .feature h3 {
-            font-size: 18px;
             margin-bottom: 10px;
+
+            font-size: 18px;
         }
 
         .feature p {
             color: #808c9e;
+
             font-size: 14px;
-            line-height: 1.7;
+
+            line-height: 1.75;
         }
+
+        /* =========================
+           PREVIEW
+        ========================= */
 
         .preview-grid {
             display: grid;
-            grid-template-columns: 1.3fr .7fr;
+
+            grid-template-columns:
+                1.3fr .7fr;
+
             gap: 18px;
         }
 
         .preview-card {
+            position: relative;
+
             overflow: hidden;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, .07);
+
+            border-radius: 21px;
+
+            border:
+                1px solid rgba(255, 255, 255, .075);
+
             background: #0b0f16;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, .24);
+
+            transition: .3s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(85, 167, 255, .23);
         }
 
         .preview-card img {
             display: block;
+
             width: 100%;
             height: 100%;
+
             min-height: 330px;
+
             object-fit: cover;
         }
 
+        /* ---------- PREVIEW ETİKETLERİ (NEW / OLD) ---------- */
+
+        .preview-label {
+            position: absolute;
+
+            top: 16px;
+            left: 16px;
+
+            z-index: 5;
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 16px;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            letter-spacing: 2.5px;
+
+            text-transform: uppercase;
+
+            color: #fff;
+
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+
+            border: 1px solid rgba(255, 255, 255, .22);
+
+            background: rgba(255, 255, 255, .08);
+
+            box-shadow:
+                0 8px 26px rgba(0, 0, 0, .45),
+                inset 0 1px 0 rgba(255, 255, 255, .25);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                letter-spacing .3s ease;
+        }
+
+        .preview-label::before {
+            content: "";
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+            box-shadow:
+                0 0 12px currentColor,
+                0 0 22px currentColor;
+
+            animation:
+                labelPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes labelPulse {
+
+            0%,
+            100% {
+                opacity: .55;
+                transform: scale(.85);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* NEW etiketi → mavi-mor neon */
+        .preview-label.label-new {
+            color: #cfe3ff;
+
+            border-color:
+                rgba(85, 167, 255, .55);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(85, 167, 255, .32),
+                    rgba(124, 92, 255, .32));
+
+            box-shadow:
+                0 8px 26px rgba(0, 0, 0, .45),
+                0 0 28px rgba(85, 167, 255, .45),
+                0 0 55px rgba(124, 92, 255, .28),
+                inset 0 1px 0 rgba(255, 255, 255, .3);
+        }
+
+        /* OLD etiketi → gri-turuncu */
+        .preview-label.label-old {
+            color: #ffe6c2;
+
+            border-color:
+                rgba(255, 170, 70, .5);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(120, 120, 130, .35),
+                    rgba(255, 150, 60, .28));
+
+            box-shadow:
+                0 8px 26px rgba(0, 0, 0, .45),
+                0 0 26px rgba(255, 160, 70, .35),
+                inset 0 1px 0 rgba(255, 255, 255, .25);
+        }
+
+        .preview-card:hover .preview-label {
+            transform: translateY(-4px) scale(1.06);
+
+            letter-spacing: 3.5px;
+        }
+
+        .preview-card:hover .label-new {
+            box-shadow:
+                0 12px 34px rgba(0, 0, 0, .5),
+                0 0 40px rgba(85, 167, 255, .65),
+                0 0 80px rgba(124, 92, 255, .45),
+                inset 0 1px 0 rgba(255, 255, 255, .35);
+        }
+
+        .preview-card:hover .label-old {
+            box-shadow:
+                0 12px 34px rgba(0, 0, 0, .5),
+                0 0 38px rgba(255, 160, 70, .55),
+                inset 0 1px 0 rgba(255, 255, 255, .3);
+        }
+
+        /* Görselin üstünde hafif karartma → etiket daha okunur olsun */
+        .preview-card::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(180deg,
+                    rgba(0, 0, 0, .38) 0%,
+                    rgba(0, 0, 0, 0) 30%);
+
+            z-index: 2;
+
+            transition: opacity .3s ease;
+        }
+
+        .preview-card:hover::after {
+            opacity: .7;
+        }
+
+        /* =========================
+           DOWNLOAD
+        ========================= */
+
         .download-box {
-            padding: 55px;
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 70px 30px;
+
             text-align: center;
 
-            border: 1px solid rgba(85, 167, 255, .12);
-            border-radius: 25px;
+            border:
+                1px solid rgba(85, 167, 255, .16);
+
+            border-radius: 27px;
 
             background:
                 radial-gradient(circle at 50% 0%,
-                    rgba(85, 167, 255, .10),
+                    rgba(85, 167, 255, .12),
                     transparent 55%),
-                rgba(255, 255, 255, .025);
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .045),
+                    rgba(255, 255, 255, .015));
+        }
+
+        .download-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 360px;
+            height: 360px;
+
+            left: 50%;
+            top: -260px;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(124, 92, 255, .1);
+
+            filter: blur(65px);
+
+            pointer-events: none;
         }
 
         .download-box h2 {
-            font-size: 40px;
-            letter-spacing: -1.5px;
+            position: relative;
+
             margin-bottom: 15px;
+
+            font-size:
+                clamp(32px, 4vw, 43px);
+
+            letter-spacing: -1.7px;
         }
 
         .download-box p {
-            max-width: 650px;
-            margin: 0 auto 28px;
+            position: relative;
+
+            max-width: 680px;
+
+            margin:
+                0 auto 30px;
+
             color: #8995a7;
-            line-height: 1.7;
+
+            line-height: 1.75;
         }
+
+        .download-actions {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .download-actions .btn {
+            min-width: 230px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             width: 100%;
-            padding: 35px 7%;
-            border-top: 1px solid rgba(255, 255, 255, .06);
+
+            padding:
+                36px 7%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
+            gap: 18px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, .06);
+
             color: #687486;
+
             font-size: 13px;
+
+            flex-wrap: wrap;
         }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+
+            flex-wrap: wrap;
+        }
+
+        .footer-yt {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 7px;
+
+            color: #8b97a8;
+
+            transition: .2s ease;
+        }
+
+        .footer-yt:hover {
+            color: #fff;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
 
         .modal {
             position: fixed;
             inset: 0;
 
             display: none;
+
             align-items: center;
             justify-content: center;
 
             padding: 20px;
 
-            background: rgba(0, 0, 0, .72);
-            backdrop-filter: blur(10px);
+            background:
+                rgba(0, 0, 0, .75);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
 
             z-index: 3000;
         }
@@ -522,27 +1144,48 @@
         .modal-box {
             width: min(470px, 100%);
 
-            padding: 35px;
+            padding: 36px;
 
-            border-radius: 22px;
-            border: 1px solid rgba(255, 255, 255, .1);
+            text-align: center;
+
+            border:
+                1px solid rgba(255, 255, 255, .1);
+
+            border-radius: 23px;
 
             background:
                 linear-gradient(145deg,
                     #111722,
-                    #0a0e14);
+                    #090d14);
 
-            box-shadow: 0 30px 100px rgba(0, 0, 0, .55);
+            box-shadow:
+                0 35px 110px rgba(0, 0, 0, .6);
 
-            text-align: center;
+            animation:
+                modalIn .25s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .modal-icon {
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 20px;
+            width: 66px;
+            height: 66px;
+
+            margin:
+                0 auto 20px;
 
             object-fit: contain;
+
             border-radius: 17px;
         }
 
@@ -551,18 +1194,26 @@
         }
 
         .modal-box p {
-            color: #8b97a8;
-            line-height: 1.7;
             margin-bottom: 25px;
+
+            color: #8b97a8;
+
+            line-height: 1.75;
         }
 
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 900px) {
+
             .nav-links {
                 display: none;
             }
 
             .features {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .preview-grid {
@@ -571,6 +1222,7 @@
         }
 
         @media (max-width: 650px) {
+
             .navbar {
                 padding: 0 18px;
             }
@@ -584,8 +1236,8 @@
             }
 
             .hero {
-                padding-left: 20px;
-                padding-right: 20px;
+                padding:
+                    145px 20px 90px;
             }
 
             .hero h1 {
@@ -596,9 +1248,15 @@
                 font-size: 16px;
             }
 
+            .hero-logo {
+                width: 105px;
+                height: 105px;
+            }
+
             .stats {
-                grid-template-columns: 1fr;
                 width: 90%;
+
+                grid-template-columns: 1fr;
             }
 
             section {
@@ -610,17 +1268,37 @@
             }
 
             .download-box {
-                padding: 35px 20px;
+                padding:
+                    48px 20px;
             }
 
-            .download-box h2 {
-                font-size: 31px;
+            .download-actions {
+                flex-direction: column;
+            }
+
+            .download-actions .btn {
+                width: 100%;
+                min-width: 0;
             }
 
             footer {
                 flex-direction: column;
+
                 gap: 12px;
+
                 text-align: center;
+            }
+
+            .footer-right {
+                justify-content: center;
+            }
+
+            .preview-label {
+                font-size: 11px;
+
+                padding: 7px 13px;
+
+                letter-spacing: 2px;
             }
         }
     </style>
@@ -628,23 +1306,45 @@
 
 <body>
 
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
     <nav class="navbar">
 
         <a href="#" class="brand">
+
             <img src="./Ana-icon.png" alt="LoliMod-İDEA">
+
             <span>LoliMod-İDEA</span>
+
         </a>
 
         <div class="nav-links">
-            <a href="#features" data-i18n="features">Özellikler</a>
-            <a href="#preview" data-i18n="preview">Önizleme</a>
-            <a href="#download" data-i18n="download">İndir</a>
-            <a href="./help.html" data-i18n="help">Yardım Merkezi</a>
+
+            <a href="#features" data-i18n="features">
+                Özellikler
+            </a>
+
+            <a href="#preview" data-i18n="preview">
+                Önizleme
+            </a>
+
+            <a href="#download" data-i18n="download">
+                İndir
+            </a>
+
+            <a href="https://www.youtube.com/@Loli-Mod/videos" target="_blank" rel="noopener noreferrer"
+                data-i18n="youtube">
+                YouTube
+            </a>
+
         </div>
 
         <div class="nav-actions">
 
-            <button class="language-btn" id="languageButton" type="button" aria-label="Change language">
+            <!-- ÇALIŞAN DİL BUTONU -->
+            <button class="language-btn" id="languageButton" type="button">
                 EN
             </button>
 
@@ -652,22 +1352,35 @@
 
                 <img src="./icon.ico" alt="Premium">
 
-                <span data-i18n="premium">Premium</span>
+                <span data-i18n="premium">
+                    Premium
+                </span>
+
             </button>
 
         </div>
+
     </nav>
 
 
     <main>
+
+        <!-- =========================
+             HERO
+        ========================= -->
 
         <section class="hero">
 
             <img class="hero-logo" src="./Ana-icon.png" alt="LoliMod-İDEA">
 
             <div class="badge">
+
                 <span class="badge-dot"></span>
-                <span data-i18n="badge">Yeni nesil Minecraft mod geliştirme</span>
+
+                <span data-i18n="badge">
+                    Yeni nesil Minecraft mod geliştirme
+                </span>
+
             </div>
 
             <h1 data-i18n="heroTitle">
@@ -685,8 +1398,15 @@
                     Hemen Başla
                 </a>
 
-                <a class="btn btn-secondary" href="./help.html" data-i18n="helpButton">
-                    Yardım Merkezi
+                <a class="btn btn-youtube" href="https://www.youtube.com/@Loli-Mod/videos" target="_blank"
+                    rel="noopener noreferrer">
+
+                    <span class="yt-icon">▶</span>
+
+                    <span data-i18n="youtubeButton">
+                        YouTube Kanalı
+                    </span>
+
                 </a>
 
             </div>
@@ -694,31 +1414,50 @@
         </section>
 
 
+        <!-- =========================
+             STATS
+        ========================= -->
+
         <div class="stats">
 
             <div class="stat">
                 <strong>200+</strong>
-                <span data-i18n="statFeatures">Özellik</span>
+
+                <span data-i18n="statFeatures">
+                    Özellik
+                </span>
             </div>
 
             <div class="stat">
                 <strong>1.21+</strong>
-                <span data-i18n="statVersions">Minecraft sürümleri</span>
+
+                <span data-i18n="statVersions">
+                    Minecraft sürümleri
+                </span>
             </div>
 
             <div class="stat">
                 <strong>100%</strong>
-                <span data-i18n="statFocus">Geliştirici odaklı</span>
+
+                <span data-i18n="statFocus">
+                    Geliştirici odaklı
+                </span>
             </div>
 
         </div>
 
 
+        <!-- =========================
+             FEATURES
+        ========================= -->
+
         <section id="features">
 
             <div class="section-head">
 
-                <small data-i18n="featuresSmall">ÖZELLİKLER</small>
+                <small data-i18n="featuresSmall">
+                    ÖZELLİKLER
+                </small>
 
                 <h2 data-i18n="featuresTitle">
                     Geliştirme sürecini hızlandır.
@@ -834,11 +1573,17 @@
         </section>
 
 
+        <!-- =========================
+             PREVIEW
+        ========================= -->
+
         <section id="preview">
 
             <div class="section-head">
 
-                <small data-i18n="previewSmall">ÖNİZLEME</small>
+                <small data-i18n="previewSmall">
+                    ÖNİZLEME
+                </small>
 
                 <h2 data-i18n="previewTitle">
                     LoliMod-İDEA'yı keşfet.
@@ -854,17 +1599,33 @@
             <div class="preview-grid">
 
                 <div class="preview-card">
-                    <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA Preview">
+
+                    <span class="preview-label label-new" data-i18n="previewNew">
+                        NEW
+                    </span>
+
+                    <img src="./Loli-Mod-New1.png" alt="LoliMod-İDEA New Preview">
+
                 </div>
 
                 <div class="preview-card">
-                    <img src="./Loli-Mod-Old1.png" alt="LoliMod-İDEA Preview">
+
+                    <span class="preview-label label-old" data-i18n="previewOld">
+                        OLD
+                    </span>
+
+                    <img src="./Loli-Mod-Old1.png" alt="LoliMod-İDEA Old Preview">
+
                 </div>
 
             </div>
 
         </section>
 
+
+        <!-- =========================
+             DOWNLOAD
+        ========================= -->
 
         <section id="download">
 
@@ -875,14 +1636,39 @@
                 </h2>
 
                 <p data-i18n="downloadDescription">
-                    Windows için LoliMod-İDEA'yı indir ve Minecraft mod
-                    geliştirmeye hemen başla.
+                    LoliMod-İDEA'yı Windows için indirmek üzere aşağıdaki
+                    butona tıkla. İndirme, Loli_mod_5.0.1_İnstaller.exe
+                    dosyasını başlatacaktır.
                 </p>
 
-                <a class="btn btn-primary" href="./Loli-Mod-İDEA-3.1.8%20İnstaller.exe" download
-                    data-i18n="downloadButton">
-                    Windows için İndir
-                </a>
+                <div class="download-actions">
+
+                    <!-- WINDOWS İNDİRME BUTONU -->
+                    <a id="downloadButton" class="btn btn-primary" href="Loli_mod_5.0.1_İnstaller.exe" download>
+
+                        <span class="youtube-icon">
+                            ⬇
+                        </span>
+
+                        <span data-i18n="downloadButton">
+                            Windows için İndir
+                        </span>
+
+                    </a>
+
+                    <!-- YOUTUBE BUTONU -->
+                    <a class="btn btn-youtube" href="https://www.youtube.com/@Loli-Mod/videos" target="_blank"
+                        rel="noopener noreferrer">
+
+                        <span class="yt-icon">▶</span>
+
+                        <span data-i18n="youtubeButton">
+                            YouTube Kanalı
+                        </span>
+
+                    </a>
+
+                </div>
 
             </div>
 
@@ -891,18 +1677,41 @@
     </main>
 
 
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
 
         <div>
             © 2026 LoliMod-İDEA
         </div>
 
-        <div data-i18n="footerText">
-            Minecraft mod geliştirme için tasarlanmıştır.
+        <div class="footer-right">
+
+            <span data-i18n="footerText">
+                Minecraft mod geliştirme için tasarlanmıştır.
+            </span>
+
+            <a class="footer-yt" href="https://www.youtube.com/@Loli-Mod/videos" target="_blank"
+                rel="noopener noreferrer">
+
+                <span class="yt-icon">▶</span>
+
+                <span data-i18n="youtube">
+                    YouTube
+                </span>
+
+            </a>
+
         </div>
 
     </footer>
 
+
+    <!-- =========================
+         PREMIUM MODAL
+    ========================= -->
 
     <div class="modal" id="premiumModal">
 
@@ -920,7 +1729,9 @@
             </p>
 
             <button class="btn btn-primary" id="closeModal" type="button" data-i18n="closeButton">
+
                 Kapat
+
             </button>
 
         </div>
@@ -929,38 +1740,45 @@
 
 
     <script>
-        /*
-            ============================================================
-            LOLIMOD-İDEA LANGUAGE SYSTEM
-            Türkçe <-> English
-            ============================================================
-        */
+
+        /* =========================================================
+           ÇEVİRİLER
+        ========================================================= */
 
         const translations = {
 
             tr: {
-
                 features: "Özellikler",
                 preview: "Önizleme",
                 download: "İndir",
-                help: "Yardım Merkezi",
+                youtube: "YouTube",
                 premium: "Premium",
 
                 badge: "Yeni nesil Minecraft mod geliştirme",
 
-                heroTitle: "Minecraft Modlarını Daha Kolay Geliştir.",
+                heroTitle:
+                    "Minecraft Modlarını Daha Kolay Geliştir.",
 
                 heroDescription:
                     "LoliMod-İDEA ile Minecraft mod projelerini daha hızlı, düzenli ve modern bir geliştirme ortamında oluştur.",
 
-                startButton: "Hemen Başla",
-                helpButton: "Yardım Merkezi",
+                startButton:
+                    "Hemen Başla",
 
-                statFeatures: "Özellik",
-                statVersions: "Minecraft sürümleri",
-                statFocus: "Geliştirici odaklı",
+                youtubeButton:
+                    "YouTube Kanalı",
 
-                featuresSmall: "ÖZELLİKLER",
+                statFeatures:
+                    "Özellik",
+
+                statVersions:
+                    "Minecraft sürümleri",
+
+                statFocus:
+                    "Geliştirici odaklı",
+
+                featuresSmall:
+                    "ÖZELLİKLER",
 
                 featuresTitle:
                     "Geliştirme sürecini hızlandır.",
@@ -1004,7 +1822,8 @@
                 feature6Description:
                     "Koyu renkli, modern ve geliştirici odaklı bir çalışma deneyimi kullan.",
 
-                previewSmall: "ÖNİZLEME",
+                previewSmall:
+                    "ÖNİZLEME",
 
                 previewTitle:
                     "LoliMod-İDEA'yı keşfet.",
@@ -1012,11 +1831,17 @@
                 previewDescription:
                     "Modern arayüz ve geliştirme araçları tek bir platformda.",
 
+                previewNew:
+                    "NEW",
+
+                previewOld:
+                    "OLD",
+
                 downloadTitle:
                     "LoliMod-İDEA'yı indir.",
 
                 downloadDescription:
-                    "Windows için LoliMod-İDEA'yı indir ve Minecraft mod geliştirmeye hemen başla.",
+                    "LoliMod-İDEA'yı Windows için indirmek üzere aşağıdaki butona tıkla. İndirme, Loli_mod_5.0.1_İnstaller.exe dosyasını başlatacaktır.",
 
                 downloadButton:
                     "Windows için İndir",
@@ -1036,14 +1861,14 @@
 
 
             en: {
-
                 features: "Features",
                 preview: "Preview",
                 download: "Download",
-                help: "Help Center",
+                youtube: "YouTube",
                 premium: "Premium",
 
-                badge: "Next-generation Minecraft mod development",
+                badge:
+                    "Next-generation Minecraft mod development",
 
                 heroTitle:
                     "Develop Minecraft Mods More Easily.",
@@ -1054,8 +1879,8 @@
                 startButton:
                     "Get Started",
 
-                helpButton:
-                    "Help Center",
+                youtubeButton:
+                    "YouTube Channel",
 
                 statFeatures:
                     "Features",
@@ -1120,11 +1945,17 @@
                 previewDescription:
                     "A modern interface and development tools in one platform.",
 
+                previewNew:
+                    "NEW",
+
+                previewOld:
+                    "OLD",
+
                 downloadTitle:
                     "Download LoliMod-İDEA.",
 
                 downloadDescription:
-                    "Download LoliMod-İDEA for Windows and start developing Minecraft mods.",
+                    "Click the button below to download LoliMod-İDEA for Windows. The download will start Loli_mod_5.0.1_İnstaller.exe.",
 
                 downloadButton:
                     "Download for Windows",
@@ -1145,11 +1976,9 @@
         };
 
 
-        /*
-            ============================================================
-            ELEMENTLER
-            ============================================================
-        */
+        /* =========================================================
+           ELEMENTLER
+        ========================================================= */
 
         const languageButton =
             document.getElementById("languageButton");
@@ -1164,31 +1993,30 @@
             document.getElementById("closeModal");
 
 
-        /*
-            ============================================================
-            DİLİ UYGULA
-            ============================================================
-        */
+        /* =========================================================
+           DİL UYGULAMA
+        ========================================================= */
 
         function applyLanguage(language) {
 
-            if (!translations[language]) {
+            if (language !== "tr" && language !== "en") {
                 language = "tr";
             }
 
             const dictionary =
                 translations[language];
 
+
             /*
-                data-i18n bulunan bütün elementleri bul.
-            */
+             * Bütün data-i18n elementlerini bul.
+             */
 
             document
                 .querySelectorAll("[data-i18n]")
                 .forEach(element => {
 
                     const key =
-                        element.getAttribute("data-i18n");
+                        element.dataset.i18n;
 
                     if (
                         Object.prototype.hasOwnProperty.call(
@@ -1206,28 +2034,19 @@
 
 
             /*
-                HTML lang
-            */
+             * HTML dilini değiştir.
+             */
 
             document.documentElement.lang =
                 language;
 
 
             /*
-                Sayfa başlığı
-            */
-
-            document.title =
-                language === "tr"
-                    ? "LoliMod-İDEA"
-                    : "LoliMod-İDEA";
-
-
-            /*
-                Dil butonu:
-                Türkçe kullanıyorsak EN göster.
-                İngilizce kullanıyorsak TR göster.
-            */
+             * Butonda diğer dili göster.
+             *
+             * TR kullanılıyorsa -> EN
+             * EN kullanılıyorsa -> TR
+             */
 
             languageButton.textContent =
                 language === "tr"
@@ -1236,39 +2055,51 @@
 
 
             /*
-                Bir sonraki seçilecek dili belirle.
-            */
+             * Sonraki dili data attribute olarak tut.
+             */
 
-            languageButton.dataset.nextLanguage =
-                language === "tr"
-                    ? "en"
-                    : "tr";
+            languageButton.dataset.language =
+                language;
 
 
             /*
-                LocalStorage'a kaydet.
-            */
+             * Dili kaydet.
+             */
 
-            localStorage.setItem(
-                "lolimod-language",
-                language
-            );
+            try {
+
+                localStorage.setItem(
+                    "lolimod-language",
+                    language
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Language preference could not be saved.",
+                    error
+                );
+
+            }
 
         }
 
 
-        /*
-            ============================================================
-            DİL DEĞİŞTİR
-            ============================================================
-        */
+        /* =========================================================
+           DİL BUTONU
+        ========================================================= */
 
         languageButton.addEventListener(
             "click",
             function () {
 
+                const currentLanguage =
+                    languageButton.dataset.language || "tr";
+
                 const nextLanguage =
-                    languageButton.dataset.nextLanguage || "en";
+                    currentLanguage === "tr"
+                        ? "en"
+                        : "tr";
 
                 applyLanguage(nextLanguage);
 
@@ -1276,11 +2107,9 @@
         );
 
 
-        /*
-            ============================================================
-            PREMIUM MODAL
-            ============================================================
-        */
+        /* =========================================================
+           PREMIUM
+        ========================================================= */
 
         premiumButton.addEventListener(
             "click",
@@ -1330,39 +2159,42 @@
         );
 
 
-        /*
-            ============================================================
-            İLK DİLİ BELİRLE
-            ============================================================
-        */
+        /* =========================================================
+           KAYITLI DİLİ YÜKLE
+        ========================================================= */
 
-        const savedLanguage =
-            localStorage.getItem("lolimod-language");
+        let savedLanguage = "tr";
 
+        try {
 
-        if (
-            savedLanguage === "tr" ||
-            savedLanguage === "en"
-        ) {
+            const stored =
+                localStorage.getItem("lolimod-language");
 
-            applyLanguage(savedLanguage);
+            if (
+                stored === "tr" ||
+                stored === "en"
+            ) {
 
-        } else {
+                savedLanguage = stored;
 
-            /*
-                İlk açılış Türkçe.
-            */
+            }
 
-            applyLanguage("tr");
+        } catch (error) {
+
+            console.warn(
+                "Saved language could not be read.",
+                error
+            );
 
         }
 
 
-        /*
-            ============================================================
-            SMOOTH SCROLL
-            ============================================================
-        */
+        applyLanguage(savedLanguage);
+
+
+        /* =========================================================
+           SMOOTH SCROLL
+        ========================================================= */
 
         document
             .querySelectorAll('a[href^="#"]')
@@ -1372,34 +2204,35 @@
                     "click",
                     function (event) {
 
-                        const targetId =
+                        const id =
                             this.getAttribute("href");
 
                         if (
-                            targetId &&
-                            targetId !== "#"
+                            !id ||
+                            id === "#"
                         ) {
-
-                            const target =
-                                document.querySelector(targetId);
-
-                            if (target) {
-
-                                event.preventDefault();
-
-                                target.scrollIntoView({
-                                    behavior: "smooth",
-                                    block: "start"
-                                });
-
-                            }
-
+                            return;
                         }
+
+                        const target =
+                            document.querySelector(id);
+
+                        if (!target) {
+                            return;
+                        }
+
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
 
                     }
                 );
 
             });
+
     </script>
 
 </body>

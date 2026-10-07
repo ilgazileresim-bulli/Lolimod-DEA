@@ -215,6 +215,45 @@
             width: 100%;
         }
 
+        /* Server linki için özel stil */
+        .nav-links a.server-link {
+            padding: 8px 16px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(85, 167, 255, .3);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(85, 167, 255, .12),
+                    rgba(124, 92, 255, .12));
+
+            color: #cfe3ff;
+
+            transition: .2s ease;
+        }
+
+        .nav-links a.server-link::after {
+            display: none;
+        }
+
+        .nav-links a.server-link:hover {
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(85, 167, 255, .6);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(85, 167, 255, .22),
+                    rgba(124, 92, 255, .22));
+
+            box-shadow:
+                0 10px 30px rgba(85, 167, 255, .2);
+
+            color: #fff;
+        }
+
         .nav-actions {
             display: flex;
             align-items: center;
@@ -544,6 +583,32 @@
             font-size: 12px;
 
             line-height: 1;
+        }
+
+        /* Server butonu için özel stil */
+        .btn-server {
+            color: #fff;
+
+            border:
+                1px solid rgba(85, 167, 255, .35);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(85, 167, 255, .22),
+                    rgba(124, 92, 255, .22));
+
+            box-shadow:
+                0 16px 42px rgba(85, 167, 255, .15);
+        }
+
+        .btn-server:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(85, 167, 255, .7);
+
+            box-shadow:
+                0 22px 55px rgba(85, 167, 255, .3);
         }
 
         /* =========================
@@ -1339,6 +1404,11 @@
                 YouTube
             </a>
 
+            <!-- SERVER BUTONU -->
+            <a href="server.html" class="server-link" data-i18n="server">
+                Server
+            </a>
+
         </div>
 
         <div class="nav-actions">
@@ -1396,6 +1466,16 @@
 
                 <a class="btn btn-primary" href="#download" data-i18n="startButton">
                     Hemen Başla
+                </a>
+
+                <a class="btn btn-server" href="server.html">
+
+                    <span>🖥️</span>
+
+                    <span data-i18n="serverButton">
+                        Server Sayfası
+                    </span>
+
                 </a>
 
                 <a class="btn btn-youtube" href="https://www.youtube.com/@Loli-Mod/videos" target="_blank"
@@ -1546,8 +1626,7 @@
                     </h3>
 
                     <p data-i18n="feature5Description">
-                        Dosyalarını ve proje yapını düzenli bir şekilde
-                        yönet.
+                        Dosyalarını ve proje yapını düzenli bir şekilde yönet.
                     </p>
 
                 </article>
@@ -1753,6 +1832,7 @@
                 download: "İndir",
                 youtube: "YouTube",
                 premium: "Premium",
+                server: "Server",
 
                 badge: "Yeni nesil Minecraft mod geliştirme",
 
@@ -1764,6 +1844,9 @@
 
                 startButton:
                     "Hemen Başla",
+
+                serverButton:
+                    "Server Sayfası",
 
                 youtubeButton:
                     "YouTube Kanalı",
@@ -1866,6 +1949,7 @@
                 download: "Download",
                 youtube: "YouTube",
                 premium: "Premium",
+                server: "Server",
 
                 badge:
                     "Next-generation Minecraft mod development",
@@ -1878,6 +1962,9 @@
 
                 startButton:
                     "Get Started",
+
+                serverButton:
+                    "Server Page",
 
                 youtubeButton:
                     "YouTube Channel",
